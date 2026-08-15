@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Taluppfattning 4–6 | Praktisk matematik</title>
+
+<style>
+:root{
+  --bg:#f3eee3;
+  --paper:#fffdf8;
+  --green:#4e705e;
+  --dark:#29483b;
+  --soft:#dfe8dd;
+  --sand:#e8dece;
+  --red:#a8665b;
+  --ink:#2e3933;
+  --muted:#68746d;
+  --line:#d9d2c6
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Arial,sans-serif;
+  line-height:1.6
+}
+
+button,select,input{font:inherit}
+
+header{
+  min-height:72px;
+  padding:12px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  background:var(--paper);
+  border-bottom:1px solid var(--line)
+}
+
+header a{
+  text-decoration:none;
+  color:var(--dark);
+  font-weight:bold
+}
+
+.back{
+  color:var(--green);
+  font-size:13px
+}
+
+.hero{
+  padding:58px 7% 70px;
+  background:linear-gradient(140deg,var(--paper),#e4eadf)
+}
+
+.hero small{
+  color:var(--green);
+  font-weight:bold;
+  letter-spacing:.14em
+}
+
+.hero h1{
+  max-width:1000px;
+  margin:14px 0;
+  color:var(--dark);
+  font-family:Georgia,serif;
+  font-size:clamp(40px,6vw,68px);
+  line-height:1.05
+}
+
+.hero p{
+  max-width:780px;
+  color:var(--muted);
+  font-size:17px
+}
+
+.lgr{
+  max-width:1080px;
+  margin:-22px auto 35px;
+  padding:22px;
+  background:var(--dark);
+  color:white;
+  border-radius:12px
+}
+
+.lgr b{color:#dce8ca}
+
+.lgr p{
+  margin:5px 0;
+  font-size:13px
+}
+
+.tools{
+  max-width:1080px;
+  margin:auto;
+  padding:20px;
+  display:grid;
+  grid-template-columns:1fr repeat(3,180px);
+  gap:10px
+}
+
+.tools input,
+.tools select{
+  padding:12px;
+  background:var(--paper);
+  color:var(--ink);
+  border:1px solid var(--line);
+  border-radius:8px
+}
+
+.results{
+  max-width:1080px;
+  margin:5px auto 16px;
+  padding:0 20px;
+  color:var(--muted);
+  font-size:13px
+}
+
+.list{
+  max-width:1080px;
+  margin:auto;
+  padding:0 20px 75px
+}
+
+.card{
+  margin:17px 0;
+  padding:24px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-left:6px solid var(--green);
+  border-radius:13px;
+  box-shadow:0 7px 20px #29483b0c
+}
+
+.card.done-card{
+  border-left-color:var(--dark);
+  box-shadow:0 0 0 2px #b8c9bc inset
+}
+
+.top{
+  display:flex;
+  gap:16px
+}
+
+.icon{
+  width:52px;
+  height:52px;
+  flex:0 0 52px;
+  display:grid;
+  place-items:center;
+  background:var(--soft);
+  border-radius:14px;
+  font-size:26px
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px
+}
+
+.tag{
+  padding:4px 9px;
+  background:#ecefe8;
+  border-radius:20px;
+  font-size:10px;
+  font-weight:bold
+}
+
+.card h2{
+  margin:8px 0 5px;
+  color:var(--dark);
+  font-family:Georgia,serif;
+  font-size:26px
+}
+
+.summary{
+  color:var(--muted);
+  font-size:14px
+}
+
+.actions{
+  margin-top:16px;
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px
+}
+
+.actions button{
+  padding:9px 12px;
+  border:0;
+  border-radius:7px;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:bold
+}
+
+.open{
+  background:var(--dark);
+  color:white
+}
+
+.print{background:#e7e3da}
+
+.student{
+  background:var(--soft);
+  color:var(--dark)
+}
+
+.status{
+  margin-left:auto;
+  display:flex;
+  gap:7px
+}
+
+.status button{
+  background:white;
+  border:1px solid
+}
+
+.red{
+  color:var(--red);
+  border-color:#cda7a0!important
+}
+
+.green{
+  color:var(--green);
+  border-color:#9db8aa!important
+}
+
+.red.active{
+  background:var(--red);
+  color:white
+}
+
+.green.active{
+  background:var(--green);
+  color:white
+}
+
+.details{
+  display:none;
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid var(--line)
+}
+
+.card.opened .details{display:block}
+
+.facts{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px
+}
+
+.fact{
+  padding:11px;
+  background:#f2efe8;
+  border-radius:7px;
+  font-size:12px
+}
+
+.fact b{
+  display:block;
+  color:var(--green);
+  font-size:9px;
+  text-transform:uppercase
+}
+
+.lgrbox{
+  margin:18px 0;
+  padding:16px;
+  background:#edf2e9;
+  border:1px solid #bdcdbd;
+  border-radius:8px
+}
+
+.details h3{
+  margin:20px 0 7px;
+  color:var(--dark);
+  font-size:16px
+}
+
+.steps{
+  padding:0;
+  list-style:none
+}
+
+.steps li{
+  margin:9px 0;
+  display:flex;
+  gap:10px;
+  font-size:13px
+}
+
+.steps i{
+  width:25px;
+  height:25px;
+  flex:0 0 25px;
+  display:grid;
+  place-items:center;
+  background:var(--dark);
+  color:white;
+  border-radius:50%;
+  font-style:normal;
+  font-weight:bold
+}
+
+.talk{
+  padding:16px 20px;
+  background:var(--soft);
+  border-radius:8px
+}
+
+.twocol{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px
+}
+
+.twocol>div{
+  padding:15px;
+  background:#f2efe8;
+  border-radius:8px
+}
+
+.student-sheet{
+  display:none;
+  min-height:250mm;
+  padding:12mm;
+  border:2px solid var(--green)
+}
+
+.student-sheet h2{
+  color:var(--dark);
+  font-family:Georgia,serif
+}
+
+.box{
+  min-height:70px;
+  margin:10px 0;
+  border:1px solid #9eaaa3
+}
+
+.line{
+  height:28px;
+  border-bottom:1px solid #777
+}
+
+.empty{
+  padding:45px;
+  background:var(--paper);
+  border-radius:12px;
+  text-align:center
+}
+
+footer{
+  padding:25px 6%;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  background:var(--dark);
+  color:#d9e3de;
+  font-size:12px
+}
+
+@media(max-width:760px){
+  .tools{grid-template-columns:1fr 1fr}
+  .tools input{grid-column:span 2}
+  .facts{grid-template-columns:1fr 1fr}
+  .twocol{grid-template-columns:1fr}
+  .status{width:100%;margin-left:0}
+  .hero{padding:48px 22px 62px}
+}
+
+@media(max-width:480px){
+  .tools{grid-template-columns:1fr}
+  .tools input{grid-column:auto}
+  .actions>button{width:100%}
+  .status{display:grid;grid-template-columns:1fr 1fr}
+  .top{display:block}
+  .icon{margin-bottom:10px}
+  footer{flex-direction:column}
+}
+
+@page{
+  size:A4 portrait;
+  margin:13mm
+}
+
+@media print{
+  body{
+    background:white;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact
+  }
+
+  header,
+  .hero,
+  .lgr,
+  .tools,
+  .results,
+  footer,
+  .no-print{
+    display:none!important
+  }
+
+  .list{
+    padding:0;
+    max-width:none
+  }
+
+  .card{display:none}
+
+  .card.printing{
+    display:block;
+    margin:0;
+    padding:5mm;
+    border:0;
+    border-left:5px solid var(--green);
+    box-shadow:none
+  }
+
+  .card.printing .details{display:block}
+
+  .card.student-mode>.top,
+  .card.student-mode>.actions,
+  .card.student-mode>.details{
+    display:none!important
+  }
+
+  .card.student-mode .student-sheet{display:block}
+
+  .facts{grid-template-columns:repeat(4,1fr)}
+
+  .details section,
+  .lgrbox,
+  .twocol>div{
+    break-inside:avoid
+  }
+
+  h2,h3{break-after:avoid}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">∑ Praktisk matematik F–9</a>
+  <a class="back" href="4-6.html">← 4–6 områden</a>
+</header>
+
+<section class="hero">
+  <small>4–6 · TALUPPFATTNING · LGR22</small>
+  <h1>Taluppfattning i praktiken</h1>
+  <p>
+    Eleverna undersöker stora och små tal, decimaltal, negativa tal,
+    positionssystem, avrundning och rimlighet genom konkreta modeller
+    och rörelse.
+  </p>
+</section>
+
+<section class="lgr">
+  <p>
+    <b>Syfte enligt Lgr22:</b>
+    Utveckla förmåga att använda matematiska begrepp och metoder,
+    föra resonemang, lösa problem och kommunicera matematik.
+  </p>
+  <p>
+    <b>Centralt innehåll:</b>
+    Rationella tal, däribland negativa tal, positionssystemet för tal
+    i decimalform, tallinjen, avrundning, uppskattning och rimlighet.
+  </p>
+</section>
+
+<section class="tools no-print">
+  <input id="search" placeholder="Sök aktivitet…">
+
+  <select id="place">
+    <option>Alla platser</option>
+    <option>Klassrum</option>
+    <option>Inne på skolan</option>
+    <option>Utomhus</option>
+    <option>Inne och ute</option>
+  </select>
+
+  <select id="form">
+    <option>Alla arbetsformer</option>
+    <option>Enskilt</option>
+    <option>Par</option>
+    <option>Grupp</option>
+    <option>Helklass</option>
+  </select>
+
+  <select id="state">
+    <option>Alla statusar</option>
+    <option>Inte klar</option>
+    <option>Klar</option>
+  </select>
+</section>
+
+<div class="results no-print" id="results"></div>
+<main class="list" id="list"></main>
+
+<footer>
+  <strong>Praktisk matematik 4–6</strong>
+  <span>12 aktiviteter · Enkla hjälpmedel · Lgr22 · A4-utskrift i färg</span>
+</footer>
+
+<script>
+const activities=[
+{
+  id:"levande-decimaltallinje",
+  icon:"↔️",
+  title:"Den levande decimaltallinjen",
+  place:"Klassrum",
+  form:"Helklass",
+  time:"30 min",
+  material:"Snöre, talkort och klädnypor",
+  prep:"Lägg en tom tallinje från 0 till 2",
+  summary:"Eleverna placerar heltal, tiondelar och hundradelar på en gemensam tallinje.",
+  goal:"placera och jämföra tal i decimalform samt motivera avstånd",
+  steps:[
+    "Markera 0, 1 och 2.",
+    "Dela ut kort med heltal och decimaltal.",
+    "Eleverna placerar korten utan färdiga mellanmarkeringar.",
+    "Klassen granskar avstånd och ordning.",
+    "Lägg till två tal mellan redan placerade tal."
+  ],
+  talk:[
+    "Vilka hållpunkter använde du?",
+    "Hur långt är det mellan 0,7 och 1?",
+    "Vilka tal kan ligga mellan två givna tal?"
+  ],
+  support:"Använd tiondelar och markera varje heltal.",
+  challenge:"Använd hundradelar eller en tallinje från −1 till 1."
+},
+{
+  id:"positionsbanken",
+  icon:"🏦",
+  title:"Positionsbanken",
+  place:"Klassrum",
+  form:"Par",
+  time:"30 min",
+  material:"Kapsyler, muggar och positionsmatta",
+  prep:"Märk fält med tusental, hundratal, tiotal, ental, tiondel och hundradel",
+  summary:"Paren växlar tio enheter mellan positioner och bygger tal i decimalform.",
+  goal:"förstå positionsvärde och växling i vårt talsystem",
+  steps:[
+    "Dra ett tal och bygg det på mattan.",
+    "Växla tio ental mot ett tiotal.",
+    "Växla ett ental mot tio tiondelar.",
+    "Flytta en siffra en position och läs det nya talet.",
+    "Förklara hur värdet förändrades."
+  ],
+  talk:[
+    "Vad är siffran värd på denna plats?",
+    "Varför blir värdet tio gånger större?",
+    "Hur syns decimaltecknets betydelse?"
+  ],
+  support:"Arbeta först med heltal och tydligt färgkodade positioner.",
+  challenge:"Ta med tusendelar eller multiplicera och dividera talet med 10."
+},
+{
+  id:"avrundningslinjen",
+  icon:"🎯",
+  title:"Närmaste hållpunkt",
+  place:"Utomhus",
+  form:"Par",
+  time:"30 min",
+  material:"Kritor och talkort",
+  prep:"Rita stora intervall mellan tiotal och hundratal",
+  summary:"Paren placerar tal och avgör vilket tiotal eller hundratal som ligger närmast.",
+  goal:"avrunda naturliga tal och decimaltal samt motivera med tallinje",
+  steps:[
+    "Dra ett talkort.",
+    "Ställ dig mellan två närliggande tiotal.",
+    "Markera mittpunkten.",
+    "Avgör och motivera avrundningen.",
+    "Byt till hundratal eller hela tal för decimaltal."
+  ],
+  talk:[
+    "Vilka två tal ligger måltalet mellan?",
+    "Vad händer exakt vid mittpunkten?",
+    "När är avrundning användbar?"
+  ],
+  support:"Använd tal mellan 0 och 100.",
+  challenge:"Avrunda till olika positioner och jämför felen."
+},
+{
+  id:"negativa-termometern",
+  icon:"🌡️",
+  title:"Den mänskliga termometern",
+  place:"Utomhus",
+  form:"Helklass",
+  time:"25 min",
+  material:"Kritor och temperaturkort",
+  prep:"Rita en temperaturskala",
+  summary:"Klassen jämför och beräknar förändringar över och under noll.",
+  goal:"tolka, jämföra och använda negativa tal i vardagliga situationer",
+  steps:[
+    "Markera nollpunkten tydligt.",
+    "Placera positiva och negativa temperaturer.",
+    "Ordna eleverna från kallast till varmast.",
+    "Dra ett förändringskort och flytta rätt antal grader.",
+    "Skriv förändringen som en beräkning."
+  ],
+  talk:[
+    "Vilket tal är störst: −2 eller −8?",
+    "Hur långt är det mellan temperaturerna?",
+    "Vad händer när noll passeras?"
+  ],
+  support:"Använd −10 till 10 och markera varje grad.",
+  challenge:"Använd större förändringar och flera steg."
+},
+{
+  id:"storleksjakten",
+  icon:"🔎",
+  title:"Stora tal i skolan",
+  place:"Inne på skolan",
+  form:"Grupp",
+  time:"35 min",
+  material:"Faktakort, papper och penna",
+  prep:"Förbered tal om böcker, steg, elever och dagar",
+  summary:"Grupperna uppskattar, jämför och ordnar stora tal från skolans vardag.",
+  goal:"läsa, skriva, jämföra och rimlighetsbedöma stora tal",
+  steps:[
+    "Hitta eller dra ett faktakort.",
+    "Läs talet med korrekt positionsvärde.",
+    "Gör en rimlig uppskattning av vad talet beskriver.",
+    "Ordna gruppens tal från minst till störst.",
+    "Visa ett tal i utvecklad form."
+  ],
+  talk:[
+    "Vilken siffra avgör jämförelsen först?",
+    "Hur kan talet skrivas i utvecklad form?",
+    "Verkar uppgiften rimlig?"
+  ],
+  support:"Använd tal upp till 10 000 och positionskort.",
+  challenge:"Använd miljontal och jämför ungefärliga värden."
+},
+{
+  id:"decimalbutiken",
+  icon:"🛒",
+  title:"Decimalbutiken",
+  place:"Klassrum",
+  form:"Par",
+  time:"35 min",
+  material:"Tomma förpackningar, prislappar och leksakspengar",
+  prep:"Sätt priser med kronor och ören",
+  summary:"Paren jämför priser, bygger belopp och resonerar om decimalernas värde.",
+  goal:"använda och jämföra tal i decimalform i en vardaglig situation",
+  steps:[
+    "Välj tre varor.",
+    "Ordna priserna från lägst till högst.",
+    "Bygg ett pris med pengar.",
+    "Avrunda priserna till hela kronor och gör ett överslag.",
+    "Kontrollera totalsumman exakt."
+  ],
+  talk:[
+    "Varför är 4,50 samma som 4,5?",
+    "Vilken position visar ören?",
+    "När räcker ett överslag?"
+  ],
+  support:"Använd priser med hela kronor och femtio öre.",
+  challenge:"Håll en budget eller jämför två kombinationer."
+},
+{
+  id:"talens-historier",
+  icon:"🏺",
+  title:"Talsystemens verkstad",
+  place:"Klassrum",
+  form:"Grupp",
+  time:"35 min",
+  material:"Pinnar, papper och symbolkort",
+  prep:"Förbered enkla romerska och historiska talsymboler",
+  summary:"Grupperna jämför vårt positionssystem med andra sätt att skriva tal.",
+  goal:"upptäcka hur tal kan representeras i olika talsystem",
+  steps:[
+    "Bygg ett tal med vårt positionssystem.",
+    "Skriv samma tal med romerska symboler.",
+    "Jämför hur noll och position används.",
+    "Lös ett tal från en annan grupp.",
+    "Skriv två fördelar och en svårighet."
+  ],
+  talk:[
+    "Vad visar positionen i vårt system?",
+    "Varför behövs noll?",
+    "Vilket system gör stora tal enklast?"
+  ],
+  support:"Använd talen 1–20 och en symbolnyckel.",
+  challenge:"Undersök ytterligare ett historiskt talsystem."
+},
+{
+  id:"uppskattningslaboratoriet",
+  icon:"🫙",
+  title:"Uppskattningslaboratoriet",
+  place:"Klassrum",
+  form:"Grupp",
+  time:"35 min",
+  material:"Burkar, kapsyler och referensmängder",
+  prep:"Förbered flera mängder och en känd referens",
+  summary:"Eleverna utvecklar strategier för att uppskatta stora antal.",
+  goal:"göra, motivera och utvärdera rimliga uppskattningar",
+  steps:[
+    "Studera en känd referensmängd.",
+    "Uppskatta en okänd mängd enskilt.",
+    "Diskutera och välj gruppens strategi.",
+    "Kontrollräkna systematiskt.",
+    "Beräkna skillnaden och förbättra strategin."
+  ],
+  talk:[
+    "Vilken referens använde ni?",
+    "Hur nära behöver en uppskattning vara?",
+    "Vad gjorde metoden systematisk?"
+  ],
+  support:"Använd tydliga grupper om 10 eller 100.",
+  challenge:"Uppskatta utan att se hela mängden."
+},
+{
+  id:"talrepet",
+  icon:"🧵",
+  title:"Tal mellan tal",
+  place:"Utomhus",
+  form:"Par",
+  time:"30 min",
+  material:"Rep, klädnypor och tomma kort",
+  prep:"Spänn upp rep med olika ändpunkter",
+  summary:"Paren skapar flera tal mellan givna heltal, bråk och decimaltal.",
+  goal:"förstå att det finns många rationella tal mellan två givna tal",
+  steps:[
+    "Läs repets två ändpunkter.",
+    "Skriv tre tal som ligger mellan.",
+    "Placera dem proportionerligt.",
+    "Byt rep med ett annat par och granska.",
+    "Lägg till ett tal mellan två redan placerade tal."
+  ],
+  talk:[
+    "Hur vet ni att talet ligger mellan?",
+    "Kan ni alltid hitta ett nytt tal?",
+    "Hur kan bråk och decimalform visa samma tal?"
+  ],
+  support:"Använd 0 och 1 med tiondelar.",
+  challenge:"Använd negativa tal och bråk med olika nämnare."
+},
+{
+  id:"narmast-malet",
+  icon:"🎲",
+  title:"Bygg talet närmast målet",
+  place:"Klassrum",
+  form:"Par",
+  time:"30 min",
+  material:"Sifferkort, decimaltecken och målkort",
+  prep:"Gör målkort med heltal och decimaltal",
+  summary:"Paren placerar dragna siffror för att komma nära ett måltal.",
+  goal:"använda positionsvärde strategiskt och jämföra differenser",
+  steps:[
+    "Dra ett måltal.",
+    "Dra fyra sifferkort.",
+    "Placera siffrorna och eventuellt decimaltecken.",
+    "Jämför avståndet till målet.",
+    "Byt en position och försök komma närmare."
+  ],
+  talk:[
+    "Vilken position är viktigast?",
+    "Hur mäter ni avståndet till målet?",
+    "Finns flera lika bra lösningar?"
+  ],
+  support:"Använd tresiffriga heltal.",
+  challenge:"Använd decimaler och placeringsvillkor."
+},
+{
+  id:"talstationer",
+  icon:"🔄",
+  title:"Fyra praktiska talstationer",
+  place:"Klassrum",
+  form:"Grupp",
+  time:"50 min",
+  material:"Talkort, positionsmatta, tallinje, pengar och temperaturkort",
+  prep:"Förbered fyra stationer med bildinstruktioner",
+  summary:"Eleverna arbetar med positionsvärde, decimaler, negativa tal och avrundning.",
+  goal:"växla mellan representationer och använda flera delar av taluppfattning",
+  steps:[
+    "Station 1: bygg tal i positionssystemet.",
+    "Station 2: placera decimaltal på tallinjen.",
+    "Station 3: jämför negativa temperaturer.",
+    "Station 4: avrunda och gör överslag.",
+    "Samlas och förklara en vald strategi."
+  ],
+  talk:[
+    "Vilken representation hjälpte mest?",
+    "Hur kontrollerades svaret?",
+    "Vilken missuppfattning upptäckte ni?"
+  ],
+  support:"Ge genomförda exempel och tydliga talområden.",
+  challenge:"Skapa en kontrollfråga till nästa grupp."
+},
+{
+  id:"kunskapsuppdrag",
+  icon:"🧭",
+  title:"Kunskapsuppdraget – Talexperten",
+  place:"Inne och ute",
+  form:"Enskilt",
+  time:"50–70 min",
+  material:"Talkort, snöre, positionsmatta, pengar och protokoll",
+  prep:"Placera sex uppdragskort längs en trygg slinga",
+  summary:"Eleven visar självständigt förståelse för taluppfattning.",
+  goal:"representera, jämföra, placera och avrunda rationella tal samt förklara rimlighet",
+  steps:[
+    "Bygg ett tal i utvecklad form.",
+    "Placera tre decimaltal på en tallinje.",
+    "Jämför och ordna positiva och negativa tal.",
+    "Avrunda ett tal till två olika positioner.",
+    "Gör en uppskattning och kontrollera den.",
+    "Förklara hur positionen påverkar en siffras värde."
+  ],
+  talk:[
+    "Hur vet du att placeringen är rimlig?",
+    "Vilken hållpunkt använde du?",
+    "Hur kan du kontrollera på ett annat sätt?"
+  ],
+  support:"Använd färre tal, markerad tallinje och ett uppdrag i taget.",
+  challenge:"Använd större tal, hundradelar och en tallinje som passerar noll."
+}
+];
+
+const done=JSON.parse(
+  localStorage.getItem("46-tal-done")||"[]"
+);
+
+function card(a){
+  const isDone=done.includes(a.id);
+
+  return `
+  <article
+    class="card ${isDone?"done-card":""}"
+    data-id="${a.id}"
+    data-place="${a.place}"
+    data-form="${a.form}"
+  >
+    <div class="top">
+      <span class="icon">${a.icon}</span>
+
+      <div>
+        <div class="tags">
+          <span class="tag">4–6</span>
+          <span class="tag">${a.place}</span>
+          <span class="tag">${a.form}</span>
+          <span class="tag">${a.time}</span>
+        </div>
+
+        <h2>${a.title}</h2>
+        <p class="summary">${a.summary}</p>
+      </div>
+    </div>
+
+    <div class="actions no-print">
+      <button class="open" onclick="toggleActivity(this)">
+        Visa hela aktiviteten
+      </button>
+
+      <button class="print" onclick="printTeacher(this)">
+        🖨 Lärarhandledning
+      </button>
+
+      <button class="student" onclick="printStudent(this)">
+        📝 Elevblad
+      </button>
+
+      <div class="status">
+        <button
+          class="red ${isDone?"":"active"}"
+          onclick="markActivity(this,false)"
+        >
+          ● Inte klar
+        </button>
+
+        <button
+          class="green ${isDone?"active":""}"
+          onclick="markActivity(this,true)"
+        >
+          ✓ Klar
+        </button>
+      </div>
+    </div>
+
+    <div class="details">
+      <div class="facts">
+        <div class="fact"><b>Tid</b>${a.time}</div>
+        <div class="fact"><b>Plats</b>${a.place}</div>
+        <div class="fact"><b>Arbetsform</b>${a.form}</div>
+        <div class="fact"><b>Material</b>${a.material}</div>
+      </div>
+
+      <section class="lgrbox">
+        <h3>Koppling till Lgr22</h3>
+        <p><b>Lärandemål:</b> Eleven ska kunna ${a.goal}.</p>
+        <p>
+          <b>Förmågor:</b>
+          Begrepp, metoder, problemlösning, resonemang och kommunikation.
+        </p>
+        <p>
+          <b>Centralt innehåll:</b>
+          Rationella tal, negativa tal, positionssystemet för tal i
+          decimalform, tallinjen, avrundning, uppskattning och rimlighet.
+        </p>
+      </section>
+
+      <section>
+        <h3>Förberedelser</h3>
+        <p>${a.prep}.</p>
+      </section>
+
+      <section>
+        <h3>Gör så här – steg för steg</h3>
+        <ol class="steps">
+          ${a.steps.map((step,index)=>`
+            <li>
+              <i>${index+1}</i>
+              <span>${step}</span>
+            </li>
+          `).join("")}
+        </ol>
+      </section>
+
+      <section class="talk">
+        <h3>Matematiska samtalsfrågor</h3>
+        <ul>
+          ${a.talk.map(question=>`
+            <li>${question}</li>
+          `).join("")}
+        </ul>
+      </section>
+
+      <div class="twocol">
+        <div>
+          <h3>Språk och begrepp</h3>
+          <p>
+            rationellt tal, heltal, decimaltal, negativt tal,
+            positionsvärde, decimaltecken, avrundning,
+            uppskattning och rimlighet.
+          </p>
+        </div>
+
+        <div>
+          <h3>Formativ bedömning</h3>
+          <p>
+            Observera om eleven jämför och representerar tal korrekt,
+            använder positionsvärde och kan motivera avrundning
+            samt rimlighet.
+          </p>
+        </div>
+
+        <div>
+          <h3>Stöd</h3>
+          <p>${a.support}</p>
+        </div>
+
+        <div>
+          <h3>Utmaning</h3>
+          <p>${a.challenge}</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="student-sheet">
+      <h2>${a.title}</h2>
+      <p>Namn: __________________ Datum: __________</p>
+
+      <h3>Mitt uppdrag</h3>
+      <ol>
+        ${a.steps.map(step=>`<li>${step}</li>`).join("")}
+      </ol>
+
+      <h3>Jag dokumenterar</h3>
+      <div class="box"></div>
+      <div class="box"></div>
+
+      <h3>Jag förklarar hur jag tänkte</h3>
+      <div class="box"></div>
+
+      <h3>Min exit ticket</h3>
+      <p>Det här kan jag nu:</p>
+      <div class="line"></div>
+
+      <p>Det här vill jag träna mer på:</p>
+      <div class="line"></div>
+    </section>
+  </article>`;
+}
+
+function render(){
+  const query=document
+    .getElementById("search")
+    .value
+    .toLowerCase();
+
+  const selectedPlace=
+    document.getElementById("place").value;
+
+  const selectedForm=
+    document.getElementById("form").value;
+
+  const selectedState=
+    document.getElementById("state").value;
+
+  const filtered=activities.filter(a=>{
+    const matchesSearch=
+      !query||
+      `${a.title} ${a.summary}`
+        .toLowerCase()
+        .includes(query);
+
+    const matchesPlace=
+      selectedPlace==="Alla platser"||
+      a.place===selectedPlace;
+
+    const matchesForm=
+      selectedForm==="Alla arbetsformer"||
+      a.form===selectedForm;
+
+    const matchesState=
+      selectedState==="Alla statusar"||
+      (selectedState==="Klar"&&done.includes(a.id))||
+      (selectedState==="Inte klar"&&!done.includes(a.id));
+
+    return(
+      matchesSearch&&
+      matchesPlace&&
+      matchesForm&&
+      matchesState
+    );
+  });
+
+  document.getElementById("list").innerHTML=
+    filtered.length
+      ?filtered.map(card).join("")
+      :`<div class="empty">
+          Inga aktiviteter matchar dina val.
+        </div>`;
+
+  document.getElementById("results").textContent=
+    `${filtered.length} av ${activities.length} aktiviteter visas`;
+}
+
+function toggleActivity(button){
+  const cardElement=button.closest(".card");
+
+  cardElement.classList.toggle("opened");
+
+  button.textContent=
+    cardElement.classList.contains("opened")
+      ?"Dölj aktiviteten"
+      :"Visa hela aktiviteten";
+}
+
+function markActivity(button,value){
+  const id=button.closest(".card").dataset.id;
+  const position=done.indexOf(id);
+
+  if(value&&position<0){
+    done.push(id);
+  }
+
+  if(!value&&position>=0){
+    done.splice(position,1);
+  }
+
+  localStorage.setItem(
+    "46-tal-done",
+    JSON.stringify(done)
+  );
+
+  render();
+}
+
+function printTeacher(button){
+  const cardElement=button.closest(".card");
+
+  cardElement.classList.add("printing");
+  window.print();
+
+  setTimeout(()=>{
+    cardElement.classList.remove("printing");
+  },400);
+}
+
+function printStudent(button){
+  const cardElement=button.closest(".card");
+
+  cardElement.classList.add(
+    "printing",
+    "student-mode"
+  );
+
+  window.print();
+
+  setTimeout(()=>{
+    cardElement.classList.remove(
+      "printing",
+      "student-mode"
+    );
+  },400);
+}
+
+document
+  .getElementById("search")
+  .addEventListener("input",render);
+
+document
+  .getElementById("place")
+  .addEventListener("change",render);
+
+document
+  .getElementById("form")
+  .addEventListener("change",render);
+
+document
+  .getElementById("state")
+  .addEventListener("change",render);
+
+render();
+</script>
+
+</body>
+</html>
