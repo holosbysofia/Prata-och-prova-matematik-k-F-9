@@ -3,171 +3,565 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matematik i praktiken F–9</title>
+  <meta name="description" content="Praktiska matematikaktiviteter för F–9 kopplade till Lgr22.">
+  <title>Praktisk matematik F–9</title>
+
   <style>
-    :root{--beige:#f4efe5;--paper:#fffdf8;--green:#496b5a;--green-dark:#29483b;--green-soft:#dfe8dd;--red:#a8665b;--ink:#2f3933;--muted:#68736d;--line:#d8d2c7}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--beige);color:var(--ink);font-family:Arial,sans-serif;line-height:1.6}button{font:inherit;cursor:pointer}
-    header{background:var(--green-dark);color:white;padding:20px 6%;display:flex;justify-content:space-between;align-items:center}header strong{font-size:20px}header span{color:#dbe7dc;font-size:14px}
-    .hero{padding:70px 6%;text-align:center;background:linear-gradient(145deg,var(--paper),#e6eadf)}.hero small{color:var(--green);font-weight:bold;letter-spacing:.14em}.hero h1{font-family:Georgia,serif;font-size:clamp(40px,7vw,72px);line-height:1.05;margin:15px 0;color:var(--green-dark)}.hero p{max-width:720px;margin:0 auto;color:var(--muted);font-size:18px}
-    .stages{max-width:1100px;margin:-25px auto 65px;padding:0 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.stage{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:26px;text-decoration:none;color:var(--ink);box-shadow:0 10px 30px #38514412}.stage b{display:block;font-family:Georgia,serif;font-size:30px;color:var(--green-dark)}.stage span{color:var(--muted);font-size:14px}.stage:hover{border-color:var(--green);transform:translateY(-3px)}
-    main{max-width:1100px;margin:auto;padding:0 20px 80px}.intro{text-align:center;margin-bottom:35px}.intro h2{font-family:Georgia,serif;font-size:38px;margin-bottom:8px}.intro p{color:var(--muted)}
-    .activity{background:var(--paper);border:1px solid var(--line);border-left:7px solid var(--green);border-radius:12px;padding:28px;margin:22px 0}.activity-top{display:flex;justify-content:space-between;gap:20px}.activity h2{font-family:Georgia,serif;font-size:30px;margin:0 0 7px;color:var(--green-dark)}.badge{display:inline-block;background:var(--green-soft);color:var(--green-dark);border-radius:30px;padding:5px 10px;font-size:12px;font-weight:bold;margin:3px}.summary{color:var(--muted);max-width:760px}.details{display:none;border-top:1px solid var(--line);margin-top:22px;padding-top:22px}.activity.open .details{display:block}.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:25px}.fact{background:#f2f0e9;border-radius:8px;padding:12px;font-size:13px}.fact b{display:block;color:var(--green);font-size:11px;text-transform:uppercase}.details h3{font-size:17px;color:var(--green-dark);margin:24px 0 8px}.steps{list-style:none;padding:0}.steps li{display:flex;gap:12px;margin:10px 0}.steps i{font-style:normal;flex:0 0 27px;height:27px;border-radius:50%;background:var(--green-dark);color:white;display:grid;place-items:center;font-size:13px;font-weight:bold}.talk{background:var(--green-soft);padding:18px 22px;border-radius:9px}.adapt{display:grid;grid-template-columns:1fr 1fr;gap:15px}.adapt div{background:#f2f0e9;padding:16px;border-radius:8px}
-    .actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.open-btn,.print-btn{border:0;border-radius:7px;padding:10px 15px;font-weight:bold}.open-btn{background:var(--green-dark);color:white}.print-btn{background:#e9e5dc;color:var(--ink)}.status{display:flex;gap:7px;margin-left:auto}.status button{border:1px solid;border-radius:7px;padding:9px 12px;font-size:12px;font-weight:bold;background:white}.not-done{color:var(--red);border-color:#cfa9a2!important}.done{color:var(--green);border-color:#9cb7a9!important}.not-done.active{background:var(--red);color:white}.done.active{background:var(--green);color:white}.activity.completed{border-left-color:var(--green-dark);box-shadow:0 0 0 2px #b9cbbb inset}
-    footer{text-align:center;background:var(--green-dark);color:#dce6df;padding:25px}
-    @media(max-width:750px){header span{display:none}.stages{grid-template-columns:1fr;margin-top:20px}.activity-top{display:block}.facts,.adapt{grid-template-columns:1fr 1fr}.status{width:100%;margin-top:8px}.hero{padding:55px 20px}}
-    @media(max-width:480px){.facts,.adapt{grid-template-columns:1fr}.actions>*{width:100%}.status{display:grid;grid-template-columns:1fr 1fr}.status button{width:auto}}
-    /* Mer liv – fortfarande lugnt och utskriftsvänligt */
-    .hero{padding:78px 6% 92px;position:relative;overflow:hidden}.hero h1,.hero p,.hero small{position:relative;z-index:2}.hero-mark{position:absolute;border-radius:50%;display:grid;place-items:center;font-family:Georgia,serif;font-weight:bold;color:var(--green-dark);opacity:.82;animation:float 5s ease-in-out infinite}.mark-one{width:115px;height:115px;background:#d9e4c6;left:7%;top:25%;font-size:38px;transform:rotate(-12deg)}.mark-two{width:85px;height:85px;background:#eadfce;right:9%;top:18%;font-size:30px;animation-delay:-2s}.mark-three{right:18%;bottom:8%;font-size:36px;animation-delay:-3s}.math-ring{position:absolute;width:190px;height:190px;border:1px dashed #6e8a79;border-radius:50%;left:16%;bottom:-105px}.dots{position:absolute;right:3%;bottom:4%;color:#769181;letter-spacing:10px;font-size:18px}@keyframes float{0%,100%{translate:0 0}50%{translate:0 -9px}}
-    .stages{margin-top:-38px;position:relative;z-index:3}.stage{border-radius:16px;padding:25px;transition:.25s;position:relative;overflow:hidden;box-shadow:0 12px 30px #38514418}.stage:after{content:'→';position:absolute;right:20px;bottom:17px;color:var(--green);font-size:22px}.stage-icon{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:var(--green-soft);font-size:24px;margin-bottom:13px}.stage:nth-child(2) .stage-icon{background:#e8dfcf}.stage:nth-child(3) .stage-icon{background:#d7e4de}.stage span{display:block;max-width:85%}.stage:hover{transform:translateY(-6px);box-shadow:0 18px 35px #38514425}
-    .activity{border-radius:14px;box-shadow:0 8px 25px #3851440d;transition:.25s}.activity:hover{box-shadow:0 14px 34px #38514418}.title-row{display:flex;align-items:center;gap:15px;margin:9px 0}.activity-icon{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--green-soft);font-size:26px;flex:0 0 52px}.title-row h2{margin:0}.activity:nth-of-type(3n) .activity-icon{background:#e9dfcf}.activity:nth-of-type(3n+1) .activity-icon{background:#d9e5de}.stage-heading{display:flex;align-items:center;gap:18px;margin:65px 0 20px;padding-bottom:14px;border-bottom:2px solid #bdcbbc}.stage-heading:first-of-type{margin-top:20px}.stage-heading span{width:58px;height:58px;border-radius:16px;background:var(--green-dark);color:white;display:grid;place-items:center;font-family:Georgia,serif;font-size:25px}.stage-heading h2{font-family:Georgia,serif;font-size:34px;margin:0;color:var(--green-dark)}.stage-heading p{margin:0;color:var(--muted)}
-    @media(max-width:750px){.mark-one{left:-45px}.mark-two{right:-30px}.mark-three,.dots{display:none}.hero{padding:65px 20px 60px}}
-    @media(prefers-reduced-motion:reduce){.hero-mark{animation:none}.stage,.activity{transition:none}}
-    @page{size:A4 portrait;margin:14mm}
-    .lgr-box{background:#edf2e9;border:1px solid #bdcdbd;border-radius:9px;padding:18px 20px;margin:20px 0}.lgr-box h3{margin-top:0}.lgr-box b{color:var(--green-dark)}.didactic-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.didactic-grid section{background:#f4f1e9;padding:16px;border-radius:8px}.student-sheet{display:none;border:2px solid var(--green);padding:12mm;min-height:245mm}.student-sheet h2{font-family:Georgia,serif;color:var(--green-dark);font-size:27px}.student-line{border-bottom:1px solid #777;height:30px;margin:10px 0}.student-box{border:1px solid #aab5ae;min-height:72px;margin:10px 0;padding:8px}.student-meta{display:flex;gap:30px;margin-bottom:25px}.student-btn{border:0;border-radius:7px;padding:10px 15px;font-weight:bold;background:#dfe8dd;color:var(--green-dark)}
-    @media print{body{background:white;-webkit-print-color-adjust:exact;print-color-adjust:exact}header,.hero,.stages,.intro,.stage-heading,footer,.open-btn,.print-btn,.student-btn,.status{display:none!important}main{max-width:none;padding:0}.activity{display:none!important}.activity.printing{display:block!important;border:0;border-left:6px solid var(--green);padding:8mm;margin:0}.activity.printing .details{display:block}.activity.student-print{border:0!important;padding:0!important}.activity.student-print>.activity-top,.activity.student-print>.actions,.activity.student-print>.details{display:none!important}.activity.student-print .student-sheet{display:block!important}.activity-top{display:block}.facts{grid-template-columns:repeat(4,1fr)}h2,h3{break-after:avoid}.talk,.adapt div,.fact,.lgr-box,.didactic-grid section{break-inside:avoid}.details section{break-inside:avoid}}
+    :root {
+      --beige: #f3eee3;
+      --paper: #fffdf8;
+      --green: #4e705e;
+      --dark: #29483b;
+      --soft: #dfe8dd;
+      --sand: #e8dece;
+      --ink: #2e3933;
+      --muted: #68746d;
+      --line: #d9d2c6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--beige);
+      color: var(--ink);
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    header {
+      min-height: 76px;
+      padding: 12px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+    }
+
+    .brand-icon {
+      width: 39px;
+      height: 39px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--dark);
+      color: #d9e6c7;
+      font-family: Georgia, serif;
+      font-size: 23px;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .hero {
+      min-height: 455px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      padding: 60px 7%;
+      background: linear-gradient(140deg, var(--paper), #e5eadf);
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      font-weight: bold;
+      color: var(--green);
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(48px, 7vw, 78px);
+      line-height: 1.02;
+      color: var(--dark);
+      margin: 12px 0 22px;
+      letter-spacing: -0.03em;
+    }
+
+    h1 em {
+      color: var(--green);
+      font-weight: normal;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 680px;
+    }
+
+    .hero-art {
+      height: 330px;
+      position: relative;
+    }
+
+    .ring {
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border: 1px dashed #7f9a89;
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .symbol {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      font-family: Georgia, serif;
+      font-weight: bold;
+      color: var(--dark);
+      box-shadow: 0 18px 35px #29483b20;
+    }
+
+    .one {
+      width: 115px;
+      height: 115px;
+      border-radius: 50%;
+      background: #dce7c8;
+      left: 30%;
+      top: 28%;
+      font-size: 42px;
+      transform: rotate(-9deg);
+    }
+
+    .two {
+      width: 92px;
+      height: 92px;
+      border-radius: 16px;
+      background: var(--sand);
+      right: 7%;
+      top: 10%;
+      font-size: 24px;
+      transform: rotate(8deg);
+    }
+
+    .three {
+      left: 10%;
+      bottom: 5%;
+      font-size: 60px;
+      box-shadow: none;
+    }
+
+    .intro {
+      text-align: center;
+      max-width: 730px;
+      margin: 0 auto;
+      padding: 70px 20px 30px;
+    }
+
+    .intro h2 {
+      font-family: Georgia, serif;
+      font-size: 40px;
+      color: var(--dark);
+      margin: 0 0 9px;
+    }
+
+    .intro p {
+      color: var(--muted);
+    }
+
+    .portal-grid {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 15px 20px 85px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .portal-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 25px;
+      text-decoration: none;
+      min-height: 235px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 9px 25px #29483b0d;
+      transition: 0.25s;
+    }
+
+    .portal-card:hover {
+      transform: translateY(-5px);
+      border-color: #94aa9d;
+      box-shadow: 0 17px 35px #29483b1a;
+    }
+
+    .card-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--soft);
+      font-size: 27px;
+      margin-bottom: 18px;
+    }
+
+    .portal-card:nth-child(2) .card-icon,
+    .portal-card:nth-child(5) .card-icon {
+      background: var(--sand);
+    }
+
+    .portal-card h2 {
+      font-family: Georgia, serif;
+      color: var(--dark);
+      font-size: 28px;
+      margin: 0 0 8px;
+    }
+
+    .portal-card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0 0 18px;
+    }
+
+    .open {
+      margin-top: auto;
+      color: var(--green);
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .open span {
+      float: right;
+      font-size: 20px;
+    }
+
+    .wide {
+      grid-column: span 2;
+      background: var(--dark);
+      color: white;
+    }
+
+    .wide h2 {
+      color: white;
+    }
+
+    .wide p {
+      color: #cbd7d1;
+    }
+
+    .wide .card-icon {
+      background: #ffffff18;
+    }
+
+    .wide .open {
+      color: #dce8ca;
+    }
+
+    .promise {
+      background: #dfe7d3;
+      padding: 55px 7%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .promise h2 {
+      font-family: Georgia, serif;
+      font-size: 38px;
+      color: var(--dark);
+      margin: 0;
+    }
+
+    .checks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .checks span {
+      background: #ffffff90;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    footer {
+      background: var(--dark);
+      color: #d9e3de;
+      padding: 28px 6%;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-art {
+        height: 230px;
+      }
+
+      .ring {
+        width: 210px;
+        height: 210px;
+      }
+
+      .portal-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .wide {
+        grid-column: span 2;
+      }
+
+      .promise {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      header {
+        padding: 12px 20px;
+      }
+
+      .tagline {
+        display: none;
+      }
+
+      .hero {
+        padding: 55px 22px;
+      }
+
+      .hero-art {
+        display: none;
+      }
+
+      .portal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wide {
+        grid-column: span 1;
+      }
+
+      .intro {
+        padding-top: 50px;
+      }
+
+      .checks {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .portal-card {
+        transition: none;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <header><strong>Matematik i praktiken F–9</strong><span>Prata · Pröva · Upptäck · Förstå</span></header>
-  <section class="hero"><span class="hero-mark mark-one">½</span><span class="hero-mark mark-two">x + 3</span><span class="hero-mark mark-three">△</span><span class="math-ring"></span><span class="dots">• • •</span><small>AKTIVITETSPORTAL</small><h1>Matematik i praktiken F–9</h1><p>Utförliga och lättanvända matematikaktiviteter för klassrummet, skolgården och stationsarbete.</p></section>
-  <nav class="stages">
-    <a class="stage" href="#f3"><i class="stage-icon">🧩</i><b>F–3</b><span>Upptäcka, samtala, sortera och bygga</span></a>
-    <a class="stage" href="#46"><i class="stage-icon">📏</i><b>4–6</b><span>Pröva strategier, undersöka och förklara</span></a>
-    <a class="stage" href="#79"><i class="stage-icon">📊</i><b>7–9</b><span>Analysera, generalisera och argumentera</span></a>
-  </nav>
-  <main>
-    <div class="intro"><h2>Testversion</h2><p>Öppna en aktivitet för att se hela lärarhandledningen.</p></div>
+  <header>
+    <div class="brand">
+      <span class="brand-icon">∑</span>
+      <span>Praktisk matematik F–9</span>
+    </div>
 
-    <div class="stage-heading" id="f3"><span>F–3</span><div><h2>Upptäck matematiken</h2><p>Prata, sortera, bygga och röra sig tillsammans.</p></div></div>
-    <article class="activity" data-id="f3-tallinje">
-      <div class="activity-top"><div><span class="badge">F–3</span><span class="badge">Klassrum</span><span class="badge">Helklass</span><div class="title-row"><span class="activity-icon">↔️</span><h2>Den levande tallinjen</h2></div><p class="summary">Eleverna använder sina kroppar för att skapa en tallinje och samtalar om talens placering och avstånd.</p></div></div>
-      <div class="actions"><button class="open-btn" onclick="toggle(this)">Visa hela aktiviteten</button><button class="print-btn" onclick="printActivity(this)">🖨 Skriv ut A4</button><div class="status"><button class="not-done active" onclick="mark(this,false)">● Inte klar</button><button class="done" onclick="mark(this,true)">✓ Klar</button></div></div>
-      <div class="details"><div class="facts"><div class="fact"><b>Tid</b>20–30 minuter</div><div class="fact"><b>Material</b>Talkort och snöre</div><div class="fact"><b>Område</b>Taluppfattning</div><div class="fact"><b>Förberedelse</b>Skriv tal på små lappar</div></div>
-        <section><h3>Syfte</h3><p>Eleverna utvecklar förståelse för talens ordning, grann­tal och avstånd mellan tal samt tränar på att förklara hur de tänker.</p></section>
-        <section><h3>Material</h3><ul><li>Ett långt snöre eller en tänkt linje på golvet</li><li>Små papperslappar med tal</li><li>Whiteboard och penna för uppföljningen</li></ul></section>
-        <section><h3>Gör så här – steg för steg</h3><ol class="steps"><li><i>1</i><span>Lägg snöret på golvet och markera tallinjens start och slut.</span></li><li><i>2</i><span>Dela ut ett talkort till varje elev. Eleverna får inte visa kortet direkt.</span></li><li><i>3</i><span>En elev i taget ställer sig på den plats där talet hör hemma.</span></li><li><i>4</i><span>Eleven förklarar sin placering. Klassen får ställa frågor och föreslå justeringar.</span></li><li><i>5</i><span>Byt kort och upprepa med nya tal eller ett nytt talområde.</span></li><li><i>6</i><span>Avsluta med att eleverna ritar tallinjen och skriver en egen förklaring.</span></li></ol></section>
-        <section class="talk"><h3>Matematiska samtalsfrågor</h3><ul><li>Hur vet du att talet ska stå just där?</li><li>Vilket tal kommer före och efter?</li><li>Vilka två tal har störst avstånd?</li><li>Var skulle ett tal mitt emellan placeras?</li></ul></section>
-        <div class="adapt"><div><h3>Stöd</h3><p>Använd talen 0–10, ha en färdig markerad tallinje och låt eleverna arbeta två och två.</p></div><div><h3>Utmaning</h3><p>Använd tiotal, enkla bråk, decimaltal eller negativa tal beroende på elevgrupp.</p></div></div>
-      </div>
-    </article>
+    <span class="tagline">
+      Prata · Pröva · Upptäck · Förstå
+    </span>
+  </header>
 
-    <article class="activity" data-id="f3-formjakt">
-      <div class="activity-top"><div><span class="badge">F–3</span><span class="badge">Klassrum</span><span class="badge">Par</span><div class="title-row"><span class="activity-icon">🔷</span><h2>Formjakten</h2></div><p class="summary">Eleverna letar, sorterar och beskriver geometriska former som redan finns i klassrummet.</p></div></div>
-      <div class="actions"><button class="open-btn" onclick="toggle(this)">Visa hela aktiviteten</button><button class="print-btn" onclick="printActivity(this)">🖨 Skriv ut A4</button><div class="status"><button class="not-done active" onclick="mark(this,false)">● Inte klar</button><button class="done" onclick="mark(this,true)">✓ Klar</button></div></div>
-      <div class="details"><div class="facts"><div class="fact"><b>Tid</b>25–35 minuter</div><div class="fact"><b>Material</b>Papper och penna</div><div class="fact"><b>Område</b>Geometri</div><div class="fact"><b>Förberedelse</b>Rita fyra former på tavlan</div></div><section><h3>Syfte</h3><p>Att känna igen, jämföra och beskriva tvådimensionella former med matematiska begrepp.</p></section><section><h3>Material</h3><ul><li>Papper, blyertspenna och färgpennor</li><li>Föremål som redan finns i klassrummet</li></ul></section><section><h3>Gör så här – steg för steg</h3><ol class="steps"><li><i>1</i><span>Repetera cirkel, triangel, kvadrat och rektangel.</span></li><li><i>2</i><span>Paren letar efter föremål som innehåller formerna.</span></li><li><i>3</i><span>Eleverna ritar tre fynd och skriver formens namn.</span></li><li><i>4</i><span>Paren sorterar fynden efter antal hörn och sidor.</span></li><li><i>5</i><span>Samla klassen och jämför vad eleverna hittade.</span></li></ol></section><section class="talk"><h3>Matematiska samtalsfrågor</h3><ul><li>Hur vet ni vilken form det är?</li><li>Vad är lika och vad är olika?</li><li>Kan ett föremål innehålla flera former?</li></ul></section><div class="adapt"><div><h3>Stöd</h3><p>Ge bildkort med form, namn och antal hörn.</p></div><div><h3>Utmaning</h3><p>Leta efter tredimensionella kroppar och beskriv deras ytor.</p></div></div></div>
-    </article>
+  <section class="hero">
+    <div>
+      <span class="eyebrow">
+        PRAKTISK AKTIVITETSPORTAL · LGR22
+      </span>
 
-    <article class="activity" data-id="f3-tiomaskin">
-      <div class="activity-top"><div><span class="badge">F–3</span><span class="badge">Station</span><span class="badge">Par</span><div class="title-row"><span class="activity-icon">🔟</span><h2>Bygg tiokompisar</h2></div><p class="summary">Eleverna bygger talpar med enkla föremål och förklarar hur de vet att summan är tio.</p></div></div>
-      <div class="actions"><button class="open-btn" onclick="toggle(this)">Visa hela aktiviteten</button><button class="print-btn" onclick="printActivity(this)">🖨 Skriv ut A4</button><div class="status"><button class="not-done active" onclick="mark(this,false)">● Inte klar</button><button class="done" onclick="mark(this,true)">✓ Klar</button></div></div>
-      <div class="details"><div class="facts"><div class="fact"><b>Tid</b>20 minuter</div><div class="fact"><b>Material</b>10 föremål och två muggar</div><div class="fact"><b>Område</b>Addition</div><div class="fact"><b>Förberedelse</b>Lägg material vid stationen</div></div><section><h3>Syfte</h3><p>Att automatisera talpar som tillsammans bildar tio och synliggöra sambandet mellan addition och subtraktion.</p></section><section><h3>Material</h3><ul><li>Tio knappar, klossar eller kapsyler</li><li>Två muggar och ett papper</li></ul></section><section><h3>Gör så här – steg för steg</h3><ol class="steps"><li><i>1</i><span>Lägg tio föremål mellan eleverna.</span></li><li><i>2</i><span>En elev fördelar föremålen i två muggar.</span></li><li><i>3</i><span>Den andra eleven säger och skriver additionen.</span></li><li><i>4</i><span>Byt roller och hitta en ny uppdelning.</span></li><li><i>5</i><span>Avsluta med att ordna alla tiokompisar systematiskt.</span></li></ol></section><section class="talk"><h3>Matematiska samtalsfrågor</h3><ul><li>Hur vet du vilket tal som saknas?</li><li>Har ni hittat alla möjligheter?</li><li>Vilket mönster ser ni?</li></ul></section><div class="adapt"><div><h3>Stöd</h3><p>Använd en tiokompisbild och låt föremålen ligga synliga.</p></div><div><h3>Utmaning</h3><p>Bygg talpar till 20 eller skriv motsvarande subtraktioner.</p></div></div></div>
-    </article>
+      <h1>
+        Matematik som<br>
+        <em>går att uppleva.</em>
+      </h1>
 
-    <div class="stage-heading" id="46"><span>4–6</span><div><h2>Pröva och förklara</h2><p>Undersök samband, jämför strategier och argumentera.</p></div></div>
-    <article class="activity" data-id="46-procent">
-      <div class="activity-top"><div><span class="badge">4–6</span><span class="badge">Klassrum</span><span class="badge">Grupp</span><div class="title-row"><span class="activity-icon">🔎</span><h2>Procent i vårt klassrum</h2></div><p class="summary">Eleverna undersöker verkliga andelar och visar resultatet som bråk, decimal och procent.</p></div></div>
-      <div class="actions"><button class="open-btn" onclick="toggle(this)">Visa hela aktiviteten</button><button class="print-btn" onclick="printActivity(this)">🖨 Skriv ut A4</button><div class="status"><button class="not-done active" onclick="mark(this,false)">● Inte klar</button><button class="done" onclick="mark(this,true)">✓ Klar</button></div></div>
-      <div class="details"><div class="facts"><div class="fact"><b>Tid</b>35–45 minuter</div><div class="fact"><b>Material</b>Papper och pennor</div><div class="fact"><b>Område</b>Bråk, decimal, procent</div><div class="fact"><b>Förberedelse</b>Ingen särskild</div></div>
-        <section><h3>Syfte</h3><p>Eleverna kopplar samman bråk, decimaltal och procent genom egna undersökningar av klassrummet.</p></section>
-        <section><h3>Material</h3><ul><li>Papper, penna och eventuellt miniräknare</li><li>Föremål som redan finns i klassrummet</li></ul></section>
-        <section><h3>Gör så här – steg för steg</h3><ol class="steps"><li><i>1</i><span>Dela in klassen i grupper om tre elever.</span></li><li><i>2</i><span>Varje grupp väljer en helhet, exempelvis stolar, böcker eller pennor.</span></li><li><i>3</i><span>Gruppen formulerar en fråga: Hur stor andel av stolarna är blå?</span></li><li><i>4</i><span>Eleverna räknar helheten och delen och skriver resultatet som bråk.</span></li><li><i>5</i><span>Bråket omvandlas till decimaltal och procent.</span></li><li><i>6</i><span>Grupperna presenterar sina resultat och jämför metoder.</span></li></ol></section>
-        <section class="talk"><h3>Matematiska samtalsfrågor</h3><ul><li>Vad är helheten och vad är delen?</li><li>Hur kontrollerar ni att procenten är rimlig?</li><li>När är bråk tydligare än procent?</li><li>Kan två grupper få olika svar och ändå ha rätt?</li></ul></section>
-        <div class="adapt"><div><h3>Stöd</h3><p>Använd helheter med 10, 20 eller 100 föremål och ge en färdig tabell.</p></div><div><h3>Utmaning</h3><p>Låt eleverna skapa ett jämförande diagram och formulera ett eget procentproblem.</p></div></div>
-      </div>
-    </article>
+      <p>
+        Praktiska matematikaktiviteter med enkla hjälpmedel –
+        i klassrummet, inne på skolan och utomhus.
+      </p>
+    </div>
 
-    <article class="activity" data-id="46-matning">
-      <div class="activity-top"><div><span class="badge">4–6</span><span class="badge">Klassrum</span><span class="badge">Grupp</span><div class="title-row"><span class="activity-icon">📐</span><h2>Mät utan linjal</h2></div><p class="summary">Grupperna uppskattar och mäter med informella enheter innan de kontrollerar med linjal eller måttband.</p></div></div>
-      <div class="actions"><button class="open-btn" onclick="toggle(this)">Visa hela aktiviteten</button><button class="print-btn" onclick="printActivity(this)">🖨 Skriv ut A4</button><div class="status"><button class="not-done active" onclick="mark(this,false)">● Inte klar</button><button class="done" onclick="mark(this,true)">✓ Klar</button></div></div>
-      <div class="details"><div class="facts"><div class="fact"><b>Tid</b>35 minuter</div><div class="fact"><b>Material</b>Gem, papper, linjal</div><div class="fact"><b>Område</b>Mätning</div><div class="fact"><b>Förberedelse</b>Lägg fram vardagsföremål</div></div><section><h3>Syfte</h3><p>Att förstå varför standardiserade enheter behövs och träna uppskattning, mätning och rimlighetsbedömning.</p></section><section><h3>Material</h3><ul><li>Gem, pennor eller pappersremsor</li><li>Linjal eller måttband för kontroll</li></ul></section><section><h3>Gör så här – steg för steg</h3><ol class="steps"><li><i>1</i><span>Välj tre föremål i klassrummet.</span></li><li><i>2</i><span>Uppskatta längden i gem och anteckna.</span></li><li><i>3</i><span>Mät med gem utan mellanrum eller överlappning.</span></li><li><i>4</i><span>Kontrollera längden i centimeter.</span></li><li><i>5</i><span>Jämför gruppernas resultat och förklara skillnader.</span></li></ol></section><section class="talk"><h3>Matematiska samtalsfrågor</h3><ul><li>Varför kan grupperna få olika svar?</li><li>Vad kännetecknar en bra mätenhet?</li><li>Hur nära var er uppskattning?</li></ul></section><div class="adapt"><div><h3>Stöd</h3><p>Markera tydlig startpunkt och visa hur enheterna läggs kant i kant.</p></div><div><h3>Utmaning</h3><p>Beräkna skillnaden mellan uppskattning och mätvärde i procent.</p></div></div></div>
-    </article>
+    <div class="hero-art" aria-hidden="true">
+      <span class="ring"></span>
+      <span class="symbol one">½</span>
+      <span class="symbol two">x + 3</span>
+      <span class="symbol three">△</span>
+    </div>
+  </section>
 
-    <article class="activity" data-id="46-medelvarde">
-      <div class="activity-top"><div><span class="badge">4–6</span><span class="badge">Station</span><span class="badge">Grupp</span><div class="title-row"><span class="activity-icon">🎯</span><h2>Träffa målet – undersök resultatet</h2></div><p class="summary">Eleverna kastar pappersbollar, samlar data och jämför medelvärde, median och typvärde.</p></div></div>
-      <div class="actions"><button class="open-btn" onclick="toggle(this)">Visa hela aktiviteten</button><button class="print-btn" onclick="printActivity(this)">🖨 Skriv ut A4</button><div class="status"><button class="not-done active" onclick="mark(this,false)">● Inte klar</button><button class="done" onclick="mark(this,true)">✓ Klar</button></div></div>
-      <div class="details"><div class="facts"><div class="fact"><b>Tid</b>40 minuter</div><div class="fact"><b>Material</b>Papper och måttband</div><div class="fact"><b>Område</b>Statistik</div><div class="fact"><b>Förberedelse</b>Markera en kastlinje</div></div><section><h3>Syfte</h3><p>Att samla och bearbeta data samt förstå vad olika lägesmått berättar om ett resultat.</p></section><section><h3>Material</h3><ul><li>En pappersboll per grupp</li><li>Måttband, papper och penna</li></ul></section><section><h3>Gör så här – steg för steg</h3><ol class="steps"><li><i>1</i><span>Varje elev gör fem kast från samma linje.</span></li><li><i>2</i><span>Mät varje kast i centimeter och skriv i tabell.</span></li><li><i>3</i><span>Ordna värdena i storleksordning.</span></li><li><i>4</i><span>Beräkna medelvärde och bestäm median och typvärde.</span></li><li><i>5</i><span>Välj vilket lägesmått som bäst beskriver gruppens kast.</span></li></ol></section><section class="talk"><h3>Matematiska samtalsfrågor</h3><ul><li>Påverkar ett mycket långt kast medelvärdet?</li><li>När saknas typvärde?</li><li>Vilket mått är mest rättvist här?</li></ul></section><div class="adapt"><div><h3>Stöd</h3><p>Ge en färdig tabell och använd fem enkla heltalsvärden.</p></div><div><h3>Utmaning</h3><p>Jämför två grupper och beräkna variationsbredd.</p></div></div></div>
-    </article>
+  <section class="intro">
+    <h2>Välj ingång</h2>
 
-    <div class="stage-heading" id="79"><span>7–9</span><div><h2>Analysera och generalisera</h2><p>Modellera, granska och motivera matematiska slutsatser.</p></div></div>
-    <article class="activity" data-id="79-linjart">
-      <div class="activity-top"><div><span class="badge">7–9</span><span class="badge">Klassrum</span><span class="badge">Par</span><div class="title-row"><span class="activity-icon">⚖️</span><h2>Vilket abonnemang lönar sig?</h2></div><p class="summary">Eleverna jämför två enkla prisalternativ med tabell, graf och algebraiska uttryck.</p></div></div>
-      <div class="actions"><button class="open-btn" onclick="toggle(this)">Visa hela aktiviteten</button><button class="print-btn" onclick="printActivity(this)">🖨 Skriv ut A4</button><div class="status"><button class="not-done active" onclick="mark(this,false)">● Inte klar</button><button class="done" onclick="mark(this,true)">✓ Klar</button></div></div>
-      <div class="details"><div class="facts"><div class="fact"><b>Tid</b>45–60 minuter</div><div class="fact"><b>Material</b>Papper, linjal, penna</div><div class="fact"><b>Område</b>Linjära samband</div><div class="fact"><b>Förberedelse</b>Skriv upp prisalternativen</div></div>
-        <section><h3>Syfte</h3><p>Eleverna undersöker linjära samband och jämför kostnader med tabell, graf och algebra.</p></section>
-        <section><h3>Material</h3><ul><li>Rutpapper, linjal och penna</li><li>Två prisalternativ på tavlan: A kostar 40 kr per gång. B kostar 100 kr i startavgift och 20 kr per gång.</li></ul></section>
-        <section><h3>Gör så här – steg för steg</h3><ol class="steps"><li><i>1</i><span>Låt eleverna först gissa vilket alternativ som är billigast.</span></li><li><i>2</i><span>Paren skapar en tabell för 0–10 tillfällen.</span></li><li><i>3</i><span>Resultaten markeras i ett koordinatsystem.</span></li><li><i>4</i><span>Eleverna skriver uttrycken A = 40x och B = 100 + 20x.</span></li><li><i>5</i><span>Paren bestämmer brytpunkten och förklarar vad den betyder.</span></li><li><i>6</i><span>Diskutera vilka antaganden som ligger bakom modellen.</span></li></ol></section>
-        <section class="talk"><h3>Matematiska samtalsfrågor</h3><ul><li>Vad betyder startavgiften i grafen?</li><li>Vad berättar linjernas lutning?</li><li>När kostar alternativen lika mycket?</li><li>Vilken representation visar jämförelsen tydligast?</li></ul></section>
-        <div class="adapt"><div><h3>Stöd</h3><p>Ge en påbörjad tabell och färdiggraderade koordinataxlar.</p></div><div><h3>Utmaning</h3><p>Lägg till ett tredje alternativ och låt eleverna formulera villkor för när varje alternativ är bäst.</p></div></div>
-      </div>
-    </article>
-    <article class="activity" data-id="79-sannolikhet">
-      <div class="activity-top"><div><span class="badge">7–9</span><span class="badge">Station</span><span class="badge">Grupp</span><div class="title-row"><span class="activity-icon">🎲</span><h2>Är spelet rättvist?</h2></div><p class="summary">Eleverna granskar ett enkelt tärningsspel genom beräkningar och praktiska försök.</p></div></div>
-      <div class="actions"><button class="open-btn" onclick="toggle(this)">Visa hela aktiviteten</button><button class="print-btn" onclick="printActivity(this)">🖨 Skriv ut A4</button><div class="status"><button class="not-done active" onclick="mark(this,false)">● Inte klar</button><button class="done" onclick="mark(this,true)">✓ Klar</button></div></div>
-      <div class="details"><div class="facts"><div class="fact"><b>Tid</b>45 minuter</div><div class="fact"><b>Material</b>Två tärningar</div><div class="fact"><b>Område</b>Sannolikhet</div><div class="fact"><b>Förberedelse</b>Skriv spelregeln på tavlan</div></div><section><h3>Syfte</h3><p>Att skilja mellan teoretisk och experimentell sannolikhet samt argumentera om rättvisa spel.</p></section><section><h3>Material</h3><ul><li>Två vanliga tärningar per grupp</li><li>Papper och penna</li></ul></section><section><h3>Gör så här – steg för steg</h3><ol class="steps"><li><i>1</i><span>Spelare A vinner vid summan 6, spelare B vid summan 7.</span></li><li><i>2</i><span>Eleverna gissar om spelet är rättvist och motiverar.</span></li><li><i>3</i><span>Genomför 40 kast och registrera summorna.</span></li><li><i>4</i><span>Lista alla möjliga utfall och beräkna sannolikheterna.</span></li><li><i>5</i><span>Jämför teori och försök och skriv en slutsats.</span></li></ol></section><section class="talk"><h3>Matematiska samtalsfrågor</h3><ul><li>Är alla summor lika sannolika?</li><li>Varför skiljer sig försöket från teorin?</li><li>Hur kan regeln göras rättvis?</li></ul></section><div class="adapt"><div><h3>Stöd</h3><p>Ge ett 6 × 6-schema där eleverna kan skriva alla summor.</p></div><div><h3>Utmaning</h3><p>Konstruera ett eget rättvist spel och bevisa rättvisan.</p></div></div></div>
-    </article>
+    <p>
+      Hitta aktiviteter efter stadium, matematiskt område,
+      plats, arbetsform och tidsåtgång.
+    </p>
+  </section>
 
-    <article class="activity" data-id="79-skala">
-      <div class="activity-top"><div><span class="badge">7–9</span><span class="badge">Klassrum</span><span class="badge">Par</span><div class="title-row"><span class="activity-icon">🗺️</span><h2>Rita klassrummet i skala</h2></div><p class="summary">Eleverna mäter klassrummet och skapar en användbar skalenlig planritning.</p></div></div>
-      <div class="actions"><button class="open-btn" onclick="toggle(this)">Visa hela aktiviteten</button><button class="print-btn" onclick="printActivity(this)">🖨 Skriv ut A4</button><div class="status"><button class="not-done active" onclick="mark(this,false)">● Inte klar</button><button class="done" onclick="mark(this,true)">✓ Klar</button></div></div>
-      <div class="details"><div class="facts"><div class="fact"><b>Tid</b>60 minuter</div><div class="fact"><b>Material</b>Måttband, linjal, papper</div><div class="fact"><b>Område</b>Skala och geometri</div><div class="fact"><b>Förberedelse</b>Bestäm vad som ska mätas</div></div><section><h3>Syfte</h3><p>Att använda skala, längdenheter och proportionalitet i en verklighetsnära situation.</p></section><section><h3>Material</h3><ul><li>Måttband eller meterstock</li><li>Rutpapper, linjal, blyertspenna och sudd</li></ul></section><section><h3>Gör så här – steg för steg</h3><ol class="steps"><li><i>1</i><span>Mät rummets längd och bredd samt viktiga föremål.</span></li><li><i>2</i><span>Välj en skala som gör att ritningen ryms på A4.</span></li><li><i>3</i><span>Omvandla alla verkliga mått till ritningsmått.</span></li><li><i>4</i><span>Rita väggar, dörrar, fönster och möbler.</span></li><li><i>5</i><span>Byt ritning med ett annat par och kontrollera skalan.</span></li></ol></section><section class="talk"><h3>Matematiska samtalsfrågor</h3><ul><li>Varför valde ni just den skalan?</li><li>Hur kontrollerar ni om ett mått stämmer?</li><li>Vad händer om skalan fördubblas?</li></ul></section><div class="adapt"><div><h3>Stöd</h3><p>Använd skala 1:100 och ge en omvandlingstabell.</p></div><div><h3>Utmaning</h3><p>Beräkna golvets area och föreslå en ny möblering med givna villkor.</p></div></div></div>
-    </article>
+  <main class="portal-grid">
+
+    <a class="portal-card" href="f-3.html">
+      <span class="card-icon">🧩</span>
+      <h2>F–3</h2>
+
+      <p>
+        Upptäck tal, former, mönster och samband genom att
+        bygga, sortera, mäta och röra sig.
+      </p>
+
+      <span class="open">
+        Öppna F–3 <span>→</span>
+      </span>
+    </a>
+
+    <a class="portal-card" href="4-6.html">
+      <span class="card-icon">📏</span>
+      <h2>Årskurs 4–6</h2>
+
+      <p>
+        Pröva strategier, undersök samband och förklara
+        matematiska idéer praktiskt.
+      </p>
+
+      <span class="open">
+        Öppna 4–6 <span>→</span>
+      </span>
+    </a>
+
+    <a class="portal-card" href="7-9.html">
+      <span class="card-icon">📊</span>
+      <h2>Årskurs 7–9</h2>
+
+      <p>
+        Modellera, analysera, generalisera och argumentera
+        i verklighetsnära uppdrag.
+      </p>
+
+      <span class="open">
+        Öppna 7–9 <span>→</span>
+      </span>
+    </a>
+
+    <a class="portal-card wide" href="hela-skolan.html">
+      <span class="card-icon">🏫</span>
+      <h2>Hela skolans matematikuppdrag</h2>
+
+      <p>
+        Gemensamma uppdrag för F–9 med progression för varje stadium.
+        Genomför som temadag, temavecka, hösttermin eller vårtermin.
+      </p>
+
+      <span class="open">
+        Se skoluppdragen <span>→</span>
+      </span>
+    </a>
+
+    <a class="portal-card" href="terminsuppdrag.html">
+      <span class="card-icon">🍂</span>
+      <h2>Termin och lov</h2>
+
+      <p>
+        Praktiska höst-, vår- och lovuppdrag utan krav på inköp.
+      </p>
+
+      <span class="open">
+        Välj period <span>→</span>
+      </span>
+    </a>
+
+    <a class="portal-card" href="utskriftsmaterial.html">
+      <span class="card-icon">🖨️</span>
+      <h2>Utskriftsmaterial</h2>
+
+      <p>
+        Lärarhandledningar, elevblad, uppdragskort,
+        stationer, protokoll och exit tickets.
+      </p>
+
+      <span class="open">
+        Öppna materialet <span>→</span>
+      </span>
+    </a>
+
+    <a class="portal-card" href="kunskapsuppdrag.html">
+      <span class="card-icon">🧭</span>
+      <h2>Kunskapsuppdrag</h2>
+
+      <p>
+        Enskilda praktiska avslutningsuppdrag efter varje område –
+        utan traditionell provkänsla.
+      </p>
+
+      <span class="open">
+        Visa vad du kan <span>→</span>
+      </span>
+    </a>
+
   </main>
-  <footer>Matematik i praktiken F–9 · Aktivitetsportal kopplad till Lgr22</footer>
-  <script>
-    const extras={
-      f3:[
-        {id:'f3-monster',icon:'🟩',title:'Bygg och fortsätt mönstret',place:'Station',form:'Par',time:'25 minuter',area:'Mönster och algebra',prep:'Samla lock eller klossar',summary:'Eleverna bygger, beskriver och fortsätter upprepade mönster med vardagsföremål.',purpose:'Att upptäcka regelbundenhet, beskriva en mönsterregel och förutsäga vad som kommer sedan.',material:'Kapsyler, klossar eller färgade pappersbitar samt papper och penna.',steps:['Bygg ett enkelt upprepat mönster med två eller tre delar.','Låt kamraten fortsätta mönstret och förklara regeln.','Byt roller och gör ett svårare mönster.','Rita mönstret och ringa in den del som upprepas.','Förutsäg vilken del som finns på plats 10.'],talk:['Vilken del upprepas?','Hur vet du vad som kommer sedan?','Kan samma regel byggas med andra föremål?'],support:'Börja med två färger och ge en påbörjad rad.',challenge:'Skapa ett växande mönster och beskriv hur antal delar förändras.'},
-        {id:'f3-mata-ute',icon:'🌿',title:'Mät på skolgården',place:'Utomhus',form:'Grupp',time:'35 minuter',area:'Mätning',prep:'Välj ett tryggt område',summary:'Eleverna uppskattar, jämför och mäter längder med steg, snöre och meter.',purpose:'Att utveckla känsla för längd, jämförelseord och behovet av gemensamma måttenheter.',material:'Snöre, krita, papper, penna och ett måttband per grupp.',steps:['Välj tre föremål som ska jämföras.','Uppskatta vilket som är längst och kortast.','Mät först med steg eller snöre.','Kontrollera sedan med måttband.','Ordna resultaten och presentera en slutsats.'],talk:['Varför blev antalet steg olika?','Vilken mätmetod var säkrast?','Hur nära var uppskattningen?'],support:'Ge bildkort för längre, kortare och lika lång.',challenge:'Mät i centimeter och meter och jämför enheterna.'}],
-      m46:[
-        {id:'46-brakremsa',icon:'✂️',title:'Bråk med pappersremsor',place:'Klassrum',form:'Par',time:'35 minuter',area:'Bråk',prep:'Klipp lika långa remsor',summary:'Eleverna viker pappersremsor och jämför bråk konkret innan de använder symboler.',purpose:'Att förstå bråk som del av helhet och jämföra likvärdiga bråk.',material:'Lika långa pappersremsor, färgpennor, sax och lim.',steps:['Behåll en remsa hel som referens.','Vik andra remsor i halvor, fjärdedelar och åttondelar.','Färglägg och märk varje del med bråkform.','Lägg remsorna under varandra och jämför.','Skriv minst tre likvärdiga bråk.'],talk:['Varför är en fjärdedel mindre än en halv?','Hur ser ni att två fjärdedelar är en halv?','Vad måste vara lika när bråk jämförs?'],support:'Använd färdiga vikmarkeringar.',challenge:'Lägg till tredjedelar och sjättedelar och hitta fler likvärdigheter.'},
-        {id:'46-prisjakt',icon:'🛒',title:'Jämförpris i klassrummet',place:'Klassrum',form:'Grupp',time:'45 minuter',area:'Proportionalitet',prep:'Skriv enkla priser på lappar',summary:'Grupperna jämför påhittade förpackningar och argumenterar för vilket köp som är bäst.',purpose:'Att använda division och proportionalitet för att beräkna och tolka jämförpris.',material:'Prislappar, papper, penna och eventuellt miniräknare.',steps:['Ge varje grupp tre pris- och mängdlappar.','Låt eleverna först gissa vilket alternativ som är billigast.','Beräkna pris per styck eller per 100 gram.','Rangordna alternativen.','Presentera metod och förklara om gissningen stämde.'],talk:['Varför räcker det inte att jämföra priset?','Vilken enhet gör jämförelsen rättvis?','När kan billigast ändå vara ett sämre köp?'],support:'Använd mängder som ger heltal och en färdig tabell.',challenge:'Lägg till rabatt eller olika stora förpackningar.'}],
-      m79:[
-        {id:'79-procentforandring',icon:'📈',title:'Priset ändras två gånger',place:'Klassrum',form:'Par',time:'40 minuter',area:'Procent',prep:'Skriv startpriser på kort',summary:'Eleverna undersöker varför en ökning och en lika stor minskning inte tar ut varandra.',purpose:'Att förstå procentuell förändring, förändringsfaktor och betydelsen av vilken helhet procenten beräknas på.',material:'Pris- och procentkort, papper, penna och miniräknare.',steps:['Dra ett startpris och ett procentkort.','Öka priset med angiven procent.','Minska det nya priset med samma procent.','Jämför slutpris och startpris.','Förklara resultatet med förändringsfaktorer.'],talk:['Varför blir priset inte detsamma?','Vilken helhet används i varje steg?','Hur kan beräkningen skrivas som en produkt?'],support:'Använd 100 kr och 10 procent först.',challenge:'Bestäm vilken ökning som krävs för att återställa priset efter en minskning.'},
-        {id:'79-pythagoras',icon:'📐',title:'Hitta den okända sträckan',place:'Utomhus',form:'Grupp',time:'50 minuter',area:'Geometri',prep:'Markera säkra mätplatser',summary:'Eleverna skapar räta trianglar ute och använder Pythagoras sats för att beräkna och kontrollera längder.',purpose:'Att använda Pythagoras sats i en praktisk situation och värdera mätresultat.',material:'Måttband, snöre, krita, papper och penna.',steps:['Skapa en rät vinkel med två uppmätta sträckor.','Rita triangeln och skriv in måtten.','Beräkna hypotenusan med Pythagoras sats.','Mät hypotenusan och jämför.','Analysera skillnader och möjliga felkällor.'],talk:['Hur vet ni att vinkeln är rät?','Varför blir mätning och beräkning inte exakt lika?','När kan metoden användas i verkligheten?'],support:'Använd måtten 3 m och 4 m och ge formeln.',challenge:'Konstruera en egen triangel och avgör om den är rätvinklig.'}]
-    };
 
-    function cardHTML(a,stage){return `<article class="activity" data-id="${a.id}"><div class="activity-top"><div><span class="badge">${stage}</span><span class="badge">${a.place}</span><span class="badge">${a.form}</span><div class="title-row"><span class="activity-icon">${a.icon}</span><h2>${a.title}</h2></div><p class="summary">${a.summary}</p></div></div><div class="actions"><button class="open-btn" onclick="toggle(this)">Visa hela aktiviteten</button><button class="print-btn" onclick="printActivity(this)">🖨 Lärarhandledning</button><button class="student-btn" onclick="printStudent(this)">📝 Elevblad</button><div class="status"><button class="not-done active" onclick="mark(this,false)">● Inte klar</button><button class="done" onclick="mark(this,true)">✓ Klar</button></div></div><div class="details"><div class="facts"><div class="fact"><b>Tid</b>${a.time}</div><div class="fact"><b>Material</b>${a.material.split(',')[0]}</div><div class="fact"><b>Område</b>${a.area}</div><div class="fact"><b>Förberedelse</b>${a.prep}</div></div><section><h3>Syfte</h3><p>${a.purpose}</p></section><section><h3>Material</h3><p>${a.material}</p></section><section><h3>Gör så här – steg för steg</h3><ol class="steps">${a.steps.map((s,i)=>`<li><i>${i+1}</i><span>${s}</span></li>`).join('')}</ol></section><section class="talk"><h3>Matematiska samtalsfrågor</h3><ul>${a.talk.map(q=>`<li>${q}</li>`).join('')}</ul></section><div class="adapt"><div><h3>Stöd</h3><p>${a.support}</p></div><div><h3>Utmaning</h3><p>${a.challenge}</p></div></div></div></article>`}
+  <section class="promise">
+    <div>
+      <span class="eyebrow">
+        DETTA FINNS I VARJE AKTIVITET
+      </span>
 
-    document.querySelector('[data-id="f3-tiomaskin"]').insertAdjacentHTML('afterend',extras.f3.map(a=>cardHTML(a,'F–3')).join(''));
-    document.querySelector('[data-id="46-medelvarde"]').insertAdjacentHTML('afterend',extras.m46.map(a=>cardHTML(a,'4–6')).join(''));
-    document.querySelector('[data-id="79-skala"]').insertAdjacentHTML('afterend',extras.m79.map(a=>cardHTML(a,'7–9')).join(''));
+      <h2>
+        Allt läraren behöver på samma plats
+      </h2>
+    </div>
 
-    const lgrPurpose={
-      'F–3':'förmåga att använda matematikens uttrycksformer, föra och följa matematiska resonemang samt välja metoder för att lösa uppgifter',
-      '4–6':'förmåga att formulera och lösa problem, använda lämpliga metoder samt kommunicera och argumentera matematiskt',
-      '7–9':'förmåga att formulera och lösa problem, värdera strategier, använda matematiska modeller samt föra väl underbyggda resonemang'
-    };
-    const central={
-      'Taluppfattning':'naturliga tal, deras egenskaper och hur talen kan delas upp och användas',
-      'Geometri':'geometriska objekt, deras egenskaper, konstruktion, mätning och jämförelse',
-      'Addition':'de fyra räknesättens innebörd, samband och användning i olika situationer',
-      'Mönster och algebra':'enkla mönster, hur de kan konstrueras, beskrivas och uttryckas',
-      'Mätning':'jämförelser och uppskattningar av matematiska storheter samt vanliga måttenheter',
-      'Bråk, decimal, procent':'tal i bråk- och decimalform samt deras användning i vardagliga situationer',
-      'Bråk':'rationella tal uttryckta som bråk och samband mellan olika uttrycksformer',
-      'Proportionalitet':'proportionalitet och procent samt metoder för beräkningar i vardagliga situationer',
-      'Statistik':'tabeller och diagram för att beskriva resultat samt lägesmått och spridning',
-      'Linjära samband':'funktioner och linjära samband samt hur de uttrycks med ord, tabell, graf och formel',
-      'Sannolikhet':'likformig sannolikhet, kombinatoriska principer och bedömning av resultat',
-      'Skala och geometri':'avbildning, skala, likformighet, mätning och geometriska beräkningar',
-      'Procent':'procentuella förändringar, förändringsfaktor och beräkningar i vardag och samhälle'
-    };
-    function enhance(){document.querySelectorAll('.activity').forEach(card=>{
-      const stage=[...card.querySelectorAll('.badge')].map(x=>x.textContent).find(x=>['F–3','4–6','7–9'].includes(x));
-      const facts=[...card.querySelectorAll('.fact')];const area=facts.find(x=>x.querySelector('b')?.textContent==='Område')?.childNodes[1]?.textContent?.trim()||'Problemlösning';
-      const details=card.querySelector('.details'),purpose=details.querySelector('section');
-      purpose.insertAdjacentHTML('afterend',`<section class="lgr-box"><h3>Koppling till Lgr22</h3><p><b>Förmågor:</b> Aktiviteten utvecklar elevernas ${lgrPurpose[stage]}.</p><p><b>Centralt innehåll:</b> ${central[area]||'matematiska metoder, problemlösning, resonemang och kommunikation inom det aktuella området'}.</p><p><b>Lärandemål:</b> Efter aktiviteten ska eleven kunna genomföra uppgiften, använda relevanta begrepp och förklara sin metod.</p></section>`);
-      details.insertAdjacentHTML('beforeend',`<div class="didactic-grid"><section><h3>Språk och begrepp</h3><p>${area}, metod, jämföra, förklara, resultat och rimlighet.</p></section><section><h3>Formativ bedömning</h3><p>Lyssna efter om eleven väljer en fungerande strategi, använder matematiska begrepp och motiverar sitt resultat.</p></section></div>`);
-      if(!card.querySelector('.student-btn')) card.querySelector('.print-btn').insertAdjacentHTML('afterend','<button class="student-btn" onclick="printStudent(this)">📝 Elevblad</button>');
-      const title=card.querySelector('h2').textContent,goal=purpose.querySelector('p').textContent,steps=[...details.querySelectorAll('.steps li span')].slice(0,5).map(x=>x.textContent);
-      card.insertAdjacentHTML('beforeend',`<section class="student-sheet"><h2>${title}</h2><div class="student-meta">Namn: ____________________ Datum: ____________</div><h3>Det här ska du träna på</h3><p>${goal}</p><h3>Ditt uppdrag</h3><ol>${steps.map(s=>`<li>${s}</li>`).join('')}</ol><h3>Dokumentera dina resultat</h3><div class="student-box"></div><div class="student-box"></div><h3>Förklara hur du tänkte</h3><div class="student-box"></div><h3>Min exit ticket</h3><p>En sak jag förstår bättre nu:</p><div class="student-line"></div><p>En fråga jag fortfarande har:</p><div class="student-line"></div></section>`);
-    })}
-    enhance();
-    function toggle(button){const card=button.closest('.activity');card.classList.toggle('open');button.textContent=card.classList.contains('open')?'Dölj aktiviteten':'Visa hela aktiviteten'}
-    function mark(button,isDone){const card=button.closest('.activity');card.classList.toggle('completed',isDone);card.querySelector('.not-done').classList.toggle('active',!isDone);card.querySelector('.done').classList.toggle('active',isDone);localStorage.setItem(card.dataset.id,isDone?'done':'not-done')}
-    function printActivity(button){const card=button.closest('.activity');card.classList.add('printing');window.print();setTimeout(()=>card.classList.remove('printing'),500)}
-    function printStudent(button){const card=button.closest('.activity');card.classList.add('printing','student-print');window.print();setTimeout(()=>card.classList.remove('printing','student-print'),500)}
-    document.querySelectorAll('.activity').forEach(card=>{if(localStorage.getItem(card.dataset.id)==='done'){card.classList.add('completed');card.querySelector('.not-done').classList.remove('active');card.querySelector('.done').classList.add('active')}})
-  </script>
+    <div class="checks">
+      <span>✓ Tydlig Lgr22-koppling</span>
+      <span>✓ Enkla hjälpmedel</span>
+      <span>✓ Steg-för-steg</span>
+      <span>✓ SVA- och NPF-stöd</span>
+      <span>✓ 🔴 Inte klar · 🟢 Klar</span>
+      <span>✓ Färgutskrift i A4</span>
+    </div>
+  </section>
+
+  <footer>
+    <strong>Praktisk matematik F–9</strong>
+    <span>En aktivitetsportal för undervisning enligt Lgr22</span>
+  </footer>
 </body>
 </html>
