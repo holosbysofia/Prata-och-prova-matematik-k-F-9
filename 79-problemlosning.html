@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Tolv praktiska aktiviteter om problemlösning för årskurs 7–9, kopplade till Lgr22.">
+<title>Problemlösning 7–9 | Praktisk matematik</title>
+<style>
+:root{--bg:#f3eee3;--paper:#fffdf8;--green:#4e705e;--dark:#29483b;--soft:#dfe8dd;--sand:#e8dece;--red:#a8665b;--ink:#2e3933;--muted:#68746d;--line:#d9d2c6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif;line-height:1.6}button,select,input{font:inherit}
+header{min-height:72px;padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--paper);border-bottom:1px solid var(--line)}header a{text-decoration:none;color:var(--dark);font-weight:bold}.back{color:var(--green);font-size:13px}
+.hero{padding:58px 7% 70px;background:linear-gradient(140deg,var(--paper),#e4eadf)}.hero small{color:var(--green);font-weight:bold;letter-spacing:.14em}.hero h1{max-width:1000px;margin:14px 0;color:var(--dark);font:clamp(40px,6vw,68px)/1.05 Georgia,serif}.hero p{max-width:800px;color:var(--muted);font-size:17px}
+.lgr{max-width:1080px;margin:-22px auto 35px;padding:22px;background:var(--dark);color:white;border-radius:12px}.lgr b{color:#dce8ca}.lgr p{margin:5px 0;font-size:13px}
+.tools{max-width:1080px;margin:auto;padding:20px;display:grid;grid-template-columns:1fr repeat(3,180px);gap:10px}.tools input,.tools select{padding:12px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px}.tools input:focus,.tools select:focus,button:focus-visible,a:focus-visible{outline:3px solid #e0b868;outline-offset:2px}
+.results{max-width:1080px;margin:5px auto 16px;padding:0 20px;color:var(--muted);font-size:13px}.list{max-width:1080px;margin:auto;padding:0 20px 75px}.card{margin:17px 0;padding:24px;background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--green);border-radius:13px;box-shadow:0 7px 20px #29483b0c}.card.done-card{border-left-color:var(--dark);box-shadow:0 0 0 2px #b8c9bc inset}
+.top{display:flex;gap:16px}.icon{width:52px;height:52px;flex:0 0 52px;display:grid;place-items:center;background:var(--soft);border-radius:14px;font-size:26px}.tags{display:flex;flex-wrap:wrap;gap:6px}.tag{padding:4px 9px;background:#ecefe8;border-radius:20px;font-size:10px;font-weight:bold}.card h2{margin:8px 0 5px;color:var(--dark);font:26px Georgia,serif}.summary{color:var(--muted);font-size:14px}
+.actions{margin-top:16px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}.actions button{padding:9px 12px;border:0;border-radius:7px;cursor:pointer;font-size:12px;font-weight:bold}.open{background:var(--dark);color:white}.print{background:#e7e3da;color:var(--ink)}.student{background:var(--soft);color:var(--dark)}.status{margin-left:auto;display:flex;gap:7px}.status button{background:white;border:1px solid}.red{color:var(--red);border-color:#cda7a0!important}.green{color:var(--green);border-color:#9db8aa!important}.red.active{background:var(--red);color:white}.green.active{background:var(--green);color:white}
+.details{display:none;margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}.card.opened .details{display:block}.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.fact{padding:11px;background:#f2efe8;border-radius:7px;font-size:12px}.fact b{display:block;color:var(--green);font-size:9px;text-transform:uppercase}.lgrbox{margin:18px 0;padding:16px;background:#edf2e9;border:1px solid #bdcdbd;border-radius:8px}.details h3{margin:20px 0 7px;color:var(--dark);font-size:16px}.steps{padding:0;list-style:none}.steps li{margin:9px 0;display:flex;gap:10px;font-size:13px}.steps i{width:25px;height:25px;flex:0 0 25px;display:grid;place-items:center;background:var(--dark);color:white;border-radius:50%;font-style:normal;font-weight:bold}.talk{padding:16px 20px;background:var(--soft);border-radius:8px}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:13px}.twocol>div{padding:15px;background:#f2efe8;border-radius:8px}
+.student-sheet{display:none;min-height:250mm;padding:12mm;border:2px solid var(--green)}.student-sheet h2{color:var(--dark);font-family:Georgia,serif}.box{min-height:70px;margin:10px 0;border:1px solid #9eaaa3}.line{height:28px;border-bottom:1px solid #777}.empty{padding:45px;background:var(--paper);border-radius:12px;text-align:center}footer{padding:25px 6%;display:flex;justify-content:space-between;gap:20px;background:var(--dark);color:#d9e3de;font-size:12px}
+@media(max-width:760px){.tools{grid-template-columns:1fr 1fr}.tools input{grid-column:span 2}.facts{grid-template-columns:1fr 1fr}.twocol{grid-template-columns:1fr}.status{width:100%;margin-left:0}.hero{padding:48px 22px 62px}}
+@media(max-width:480px){.tools{grid-template-columns:1fr}.tools input{grid-column:auto}.actions>button{width:100%}.status{display:grid;grid-template-columns:1fr 1fr}.top{display:block}.icon{margin-bottom:10px}footer{flex-direction:column}}
+@page{size:A4 portrait;margin:13mm}@media print{body{background:white;-webkit-print-color-adjust:exact;print-color-adjust:exact}header,.hero,.lgr,.tools,.results,footer,.no-print{display:none!important}.list{padding:0;max-width:none}.card{display:none}.card.printing{display:block;margin:0;padding:5mm;border:0;border-left:5px solid var(--green);box-shadow:none}.card.printing .details{display:block}.card.student-mode>.top,.card.student-mode>.actions,.card.student-mode>.details{display:none!important}.card.student-mode .student-sheet{display:block}.facts{grid-template-columns:repeat(4,1fr)}.details section,.lgrbox,.twocol>div{break-inside:avoid}h2,h3{break-after:avoid}}
+</style>
+</head>
+<body>
+<header><a href="index.html">∑ Praktisk matematik F–9</a><a class="back" href="7-9.html">← 7–9 områden</a></header>
+
+<section class="hero">
+<small>7–9 · PROBLEMLÖSNING · LGR22</small>
+<h1>Problemlösning i praktiken</h1>
+<p>Eleverna tolkar öppna situationer, formulerar matematiska frågor, väljer och jämför strategier, bygger modeller, prövar systematiskt och värderar lösningars rimlighet.</p>
+</section>
+
+<section class="lgr">
+<p><b>Syfte enligt Lgr22:</b> Utveckla kunskaper för att formulera och lösa problem samt reflektera över och värdera valda strategier, metoder, modeller och resultat.</p>
+<p><b>Centralt innehåll:</b> Strategier för problemlösning i olika situationer och inom olika ämnesområden samt värdering av valda strategier och metoder. Formulering av matematiska frågeställningar och användning av matematiska modeller.</p>
+</section>
+
+<section class="tools no-print" aria-label="Filtrera aktiviteter">
+<input id="search" type="search" placeholder="Sök aktivitet…" aria-label="Sök aktivitet">
+<select id="place" aria-label="Välj plats">
+<option>Alla platser</option>
+<option>Klassrum</option>
+<option>Inne på skolan</option>
+<option>Utomhus</option>
+<option>Inne och ute</option>
+</select>
+<select id="form" aria-label="Välj arbetsform">
+<option>Alla arbetsformer</option>
+<option>Enskilt</option>
+<option>Par</option>
+<option>Grupp</option>
+<option>Helklass</option>
+</select>
+<select id="state" aria-label="Välj status">
+<option>Alla statusar</option>
+<option>Inte klar</option>
+<option>Klar</option>
+</select>
+</section>
+
+<div class="results no-print" id="results" aria-live="polite"></div>
+<main class="list" id="list"></main>
+
+<footer>
+<strong>Praktisk matematik 7–9</strong>
+<span>12 aktiviteter · Enkla hjälpmedel · Lgr22 · A4-utskrift i färg</span>
+</footer>
+
+<script>
+const activities=[
+{id:"problemjagarna-79",icon:"🔎",title:"Problemjägarna",place:"Klassrum",form:"Grupp",time:"45 min",material:"Situationskort, frågekort, blädderblock och pennor",prep:"Förbered vardagliga situationer med mycket, lite och överflödig information",summary:"Grupperna skiljer problem från rutinuppgifter och formulerar egna matematiska frågor till samma situation.",goal:"identifiera ett matematiskt problem och formulera lösningsbara frågeställningar",content:"Matematisk formulering av frågeställningar utifrån vardagliga situationer och olika ämnesområden.",concepts:"problem, rutinuppgift, frågeställning, villkor, information, antagande, mål och lösning",assessment:"Observera om eleven formulerar en tydlig fråga, väljer relevant information och anger vad som behöver tas reda på.",steps:["Läs en situation utan färdig fråga.","Markera känd, okänd och överflödig information.","Formulera tre matematiska frågor med olika svårighetsgrad.","Välj en fråga, lös den och förklara varför den går att besvara."],talk:["När blir en uppgift ett problem för den som löser den?","Hur förändras lösningen när frågan förändras?"],support:"Använd frågestarter: Hur många, hur stor, hur lång tid och vilket alternativ.",challenge:"Skapa en fråga som kräver ett rimligt antagande och visa hur antagandet påverkar svaret."},
+
+{id:"strategiverkstaden-79",icon:"🧰",title:"Strategiverkstaden",place:"Klassrum",form:"Grupp",time:"55 min",material:"Problemkort, strategikort, whiteboard och dokumentationsmall",prep:"Välj problem som kan lösas på flera sätt",summary:"Eleverna löser samma problem med bild, tabell, ekvation och logiskt resonemang och jämför strategiernas styrkor.",goal:"välja, använda och värdera flera problemlösningsstrategier",content:"Strategier för problemlösning och värdering av valda strategier och metoder.",concepts:"strategi, representation, tabell, figur, ekvation, mönster, effektivitet och generalisering",assessment:"Lyssna efter om eleven förklarar varför en strategi fungerar och när en annan är tydligare eller effektivare.",steps:["Lös problemet med en självvald strategi.","Dra ett strategikort och lös problemet på ett nytt sätt.","Jämför lösningarna steg för steg.","Rangordna strategierna utifrån tydlighet, säkerhet och generaliserbarhet."],talk:["Är den kortaste lösningen alltid den bästa?","Vilken strategi gör resonemanget lättast att granska?"],support:"Ge fyra synliga strategikort med ett enkelt exempel på varje.",challenge:"Skriv en generell lösning och beskriv vilka delar som fungerar för liknande problem."},
+
+{id:"systematiskt-provande-79",icon:"🔐",title:"Kodlåset – systematiskt prövande",place:"Klassrum",form:"Par",time:"45 min",material:"Sifferkort, villkorskort, tabell och låtsaslås",prep:"Skapa kodproblem med tre eller fyra siffror och tydliga villkor",summary:"Paren hittar en okänd kod genom att ordna möjliga fall, utesluta alternativ och dokumentera alla prövningar.",goal:"använda systematiskt prövande utan att missa eller upprepa möjliga fall",content:"Strategier för problemlösning samt kombinatoriska resonemang.",concepts:"systematiskt prövande, villkor, möjligt fall, uteslutning, kombination, ordning och fullständighet",assessment:"Kontrollera om elevens tabell eller träddiagram visar en planerad ordning och om varje villkor används korrekt.",steps:["Läs alla villkor innan ni börjar pröva.","Bestäm en ordning för möjligheterna.","Dokumentera varje försök och stryk omöjliga fall.","Kontrollera slutkoden mot alla villkor och visa att den är unik."],talk:["Hur vet ni att inget möjligt fall saknas?","Vilket villkor ger mest information?"],support:"Använd tre siffror och en färdig tabell.",challenge:"Skapa ett eget kodproblem med exakt en lösning och testa det på ett annat par."},
+
+{id:"baklangesdetektiverna-79",icon:"↩️",title:"Baklängesdetektiverna",place:"Klassrum",form:"Par",time:"45 min",material:"Händelsekedjor, pilar, miniräknare och lösningsmall",prep:"Förbered flerstegsproblem där slutvärdet är känt",summary:"Eleverna startar vid resultatet och återställer en förändring i taget för att hitta det okända startvärdet.",goal:"lösa flerstegsproblem genom att arbeta baklänges med inversa operationer",content:"Strategier för problemlösning i vardagliga och matematiska situationer.",concepts:"arbeta baklänges, invers operation, startvärde, slutvärde, förändring, ordning och kontroll",assessment:"Se om eleven återställer stegen i omvänd ordning och använder rätt invers operation.",steps:["Rita händelsekedjan från start till slut.","Sätt en pil bakåt från det kända slutvärdet.","Återställ varje steg med motsatt operation.","Kontrollera genom att följa kedjan framåt."],talk:["Varför måste ordningen vändas?","Hur syns ett fel i kontrollen?"],support:"Använd två steg och färgkoda operation och invers operation.",challenge:"Lös ett problem med procentuell och fast förändring i samma kedja."},
+
+{id:"monsterjakten-79",icon:"🧩",title:"Mönsterjakten",place:"Klassrum",form:"Grupp",time:"50 min",material:"Stickor, brickor, rutpapper och tabellmall",prep:"Bygg de tre första figurerna i ett växande mönster",summary:"Grupperna söker struktur, formulerar en regel och använder den för att lösa ett problem långt fram i mönstret.",goal:"upptäcka, beskriva och generalisera mönster som problemlösningsstrategi",content:"Strategier för problemlösning, algebraiska uttryck och generalisering av mönster.",concepts:"mönster, figur, figurnummer, differens, variabel, uttryck, regel och generalisering",assessment:"Observera om eleven skiljer figurnummer från antal delar och kan motivera sin generella regel.",steps:["Bygg och rita de första fyra figurerna.","Registrera figurnummer och antal delar i en tabell.","Beskriv vad som förändras och vad som är konstant.","Skriv en generell regel och använd den för figur 25."],talk:["Hur ser ni regeln direkt i figuren?","Hur kan två uttryck beskriva samma mönster?"],support:"Färgkoda delen som tillkommer och delen som alltid finns.",challenge:"Bevisa att två olika uttryck för mönstret är ekvivalenta."},
+
+{id:"fermiutmaningen-79",icon:"🌍",title:"Fermiutmaningen",place:"Inne och ute",form:"Grupp",time:"55 min",material:"Måttband, klocka, faktakort och räknare",prep:"Välj stora frågor där exakt information saknas",summary:"Eleverna uppskattar stora eller svårmätta antal genom delproblem, rimliga antaganden och storleksordningar.",goal:"göra rimliga uppskattningar och bygga en beräkningskedja när exakta data saknas",content:"Problemlösning, uppskattning, rimlighetsbedömning och matematiska modeller.",concepts:"Fermiproblem, uppskattning, antagande, delproblem, referensvärde, storleksordning, intervall och rimlighet",assessment:"Bedöm om antagandena är synliga, om enheterna hänger ihop och om eleven diskuterar osäkerheten.",steps:["Välj en stor fråga, till exempel hur många steg skolan tar under en dag.","Dela frågan i mindre mätbara delar.","Gör och motivera nödvändiga antaganden.","Beräkna ett intervall och jämför med en annan grupps modell."],talk:["Vilket antagande påverkar svaret mest?","Är ett ungefärligt svar användbart?"],support:"Ge en modellkedja med tomma rutor för antal, tid och enhet.",challenge:"Gör en känslighetsanalys genom att ändra ett antagande i taget."},
+
+{id:"skolcafets-optimering-79",icon:"🥪",title:"Skolcafét – flera villkor",place:"Klassrum",form:"Grupp",time:"60 min",material:"Prislista, budgetkort, produktkort och kalkylblad",prep:"Förbered en realistisk budget och minst åtta varor",summary:"Grupperna planerar ett inköp som ska uppfylla budget, antal portioner, svinn och andra samtidiga villkor.",goal:"lösa ett öppet problem med flera villkor och motivera en optimal lösning",content:"Problemlösning, beräkningar, procent, proportionalitet och matematiska modeller.",concepts:"villkor, begränsning, budget, kostnad, intäkt, svinn, optimering, alternativ och beslutsunderlag",assessment:"Observera om eleven kontrollerar alla villkor och skiljer en möjlig lösning från en bäst motiverad lösning.",steps:["Lista alla villkor och markera vilka som är absoluta.","Skapa minst tre möjliga inköpsplaner.","Beräkna kostnad, antal portioner och möjligt svinn.","Välj lösning och försvara den med matematik och kontrollista."],talk:["Vad betyder bäst i det här problemet?","Kan två lösningar vara lika rimliga?"],support:"Minska antalet varor och ge en färdig kostnadstabell.",challenge:"Lägg till osäker efterfrågan och beräkna bästa och sämsta utfall."},
+
+{id:"modellera-skolvagen-79",icon:"🗺️",title:"Modellera skolvägen",place:"Inne och ute",form:"Par",time:"60 min",material:"Karta, måttband, tidtagare, tabell och digitalt kartverktyg",prep:"Välj säkra mätpunkter och anonymiserade resvägar",summary:"Paren bygger och granskar en modell för restid där avstånd, hastighet, väntetid och osäkerhet ingår.",goal:"skapa, använda och värdera en matematisk modell av en verklig situation",content:"Matematiska modeller och hur de kan användas i olika situationer.",concepts:"modell, variabel, parameter, antagande, avstånd, hastighet, väntetid, felkälla och giltighetsområde",assessment:"Se om eleven beskriver vad modellen tar med, vad den utelämnar och när resultatet kan användas.",steps:["Formulera frågan som modellen ska besvara.","Bestäm variabler och samla eller uppskatta data.","Skriv en beräkningsmodell och testa två scenarier.","Jämför modellens svar med verkligheten och förbättra modellen."],talk:["Vilken verklighet förenklar modellen bort?","När slutar modellen ge rimliga svar?"],support:"Ge modellen restid = gångtid + väntetid och färdiga data.",challenge:"Jämför gång, cykel och buss med olika startvillkor."},
+
+{id:"felanalyslabbet-79",icon:"🕵️",title:"Felanalyslabbet",place:"Klassrum",form:"Par",time:"45 min",material:"Anonyma lösningsförslag, markeringspennor och responsmall",prep:"Förbered korrekta, ofullständiga och felaktiga elevlösningar",summary:"Eleverna granskar lösningar, lokaliserar avgörande steg och ger återkoppling som för resonemanget framåt.",goal:"värdera lösningsstrategier, upptäcka fel och förbättra matematiska resonemang",content:"Värdering av strategier och metoder samt resonemang om resultatens rimlighet.",concepts:"felanalys, metodfel, beräkningsfel, antagande, motexempel, rimlighet, återkoppling och revidering",assessment:"Lyssna efter om eleven förklarar varför ett steg är fel i stället för att bara ange rätt svar.",steps:["Läs lösningen utan att först räkna om allt.","Markera första steget där resonemanget inte håller.","Förklara felet med ord, bild eller motexempel.","Skriv en förbättrad lösning och hjälpsam återkoppling."],talk:["Kan en korrekt metod ge ett orimligt svar?","Vilken återkoppling hjälper någon att tänka vidare?"],support:"Ge responsmallen: Jag ser …, detta fungerar eftersom …, pröva att …",challenge:"Skapa en trovärdig fellösning som visar en vanlig missuppfattning."},
+
+{id:"digital-simulering-79",icon:"💻",title:"Simulera och jämför",place:"Klassrum",form:"Par",time:"55 min",material:"Kalkylblad eller programmeringsmiljö, tärningar och dokumentationsmall",prep:"Förbered ett slump- eller tillväxtproblem som kan undersökas praktiskt och digitalt",summary:"Paren använder en simulering, jämför med beräkning och värderar modellens begränsningar.",goal:"använda digitala verktyg för att undersöka ett problem och tolka resultat",content:"Problemlösning med digitala verktyg, simuleringar och matematiska modeller.",concepts:"simulering, försök, slump, frekvens, parameter, algoritm, modell, variation och konvergens",assessment:"Kontrollera om eleven skiljer simulerat resultat från teoretiskt värde och förklarar variation.",steps:["Formulera en fråga som kan undersökas med upprepade försök.","Genomför 20 praktiska försök och registrera resultatet.","Kör en digital simulering med 100 och 1 000 försök.","Jämför, förklara variationen och värdera modellen."],talk:["Vad vinner vi på att simulera digitalt?","När räcker inte simulering som bevis?"],support:"Ge ett färdigt kalkylblad där eleven ändrar antal försök.",challenge:"Ändra en parameter och förutsäg resultatet innan simuleringen körs."},
+
+{id:"problemstationer-79",icon:"🚩",title:"Fem problemlösningsstationer",place:"Klassrum",form:"Grupp",time:"75 min",material:"Fem problemkuvert, strategikort och stationsprotokoll",prep:"Förbered stationer inom tal, algebra, geometri, sannolikhet och samband",summary:"Grupperna möter fem problem och tränar på att välja, byta och värdera strategi.",goal:"använda problemlösningsstrategier inom flera matematiska områden",content:"Strategier för problemlösning i olika situationer och ämnesområden.",concepts:"tolka, planera, genomföra, kontrollera, representation, strategi, modell, resonemang och rimlighet",assessment:"Följ om eleven tolkar villkor, väljer strategi, dokumenterar och kontrollerar.",steps:["Station 1: tal – sök mönster eller pröva systematiskt.","Station 2: algebra – använd tabell eller ekvation.","Station 3: geometri – rita figur och märk ut värden.","Station 4: sannolikhet – lista möjliga utfall.","Station 5: vardag – bygg och värdera en modell."],talk:["När behövde ni byta strategi?","Vilken kontroll gav starkast stöd?"],support:"Ge ett löst mini-exempel och begreppsbank vid varje station.",challenge:"Skriv ett nytt problem till en station och skapa facit."},
+
+{id:"kunskapsuppdrag-problemlosaren-79",icon:"🧭",title:"Kunskapsuppdraget – Problemlösaren 7–9",place:"Klassrum",form:"Enskilt",time:"75–90 min",material:"Problemhäfte, rutpapper, linjal, räknare och reflektionsblad",prep:"Förbered fem deluppdrag med olika strategiska krav",summary:"Eleven visar självständigt hur ett problem tolkas, representeras, löses, kontrolleras och värderas.",goal:"formulera och lösa problem samt värdera strategi, modell och resultat",content:"Problemlösningsstrategier, formulering av frågeställningar, matematiska modeller och rimlighetsbedömning enligt Lgr22.",concepts:"problem, frågeställning, strategi, representation, modell, antagande, metod, kontroll, generalisering och rimlighet",assessment:"Dokumentera elevens tolkning, strategival, genomförande, kommunikation, kontroll och värdering.",steps:["Formulera en matematisk fråga till en vardaglig situation.","Lös ett problem med systematiskt prövande eller baklängesstrategi.","Lös ett öppet problem och redovisa två strategier.","Bygg en matematisk modell och ange dess begränsningar.","Granska en lösning, rätta ett fel och värdera rimligheten."],talk:["Varför passar din strategi till problemet?","Hur vet du att lösningen är fullständig och rimlig?"],support:"Ge ett deluppdrag i taget, strategikort, begreppsbank och extra skrivtid.",challenge:"Generalisera en lösning och formulera ett nytt problem med samma idé."}
+];
+
+const done=JSON.parse(localStorage.getItem("79-problemlosning-done")||"[]");
+
+function listItems(items,numbered){
+  var tag=numbered?"ol":"ul";
+  return "<"+tag+">"+items.map(function(item){
+    return "<li>"+item+"</li>";
+  }).join("")+"</"+tag+">";
+}
+
+function stepItems(items){
+  return items.map(function(item,index){
+    return "<li><i>"+(index+1)+"</i><span>"+item+"</span></li>";
+  }).join("");
+}
+
+function card(a){
+  var isDone=done.includes(a.id);
+
+  var html='<article class="card '+(isDone?'done-card':'')+'" data-id="'+a.id+'" data-place="'+a.place+'" data-form="'+a.form+'">';
+  html+='<div class="top"><span class="icon" aria-hidden="true">'+a.icon+'</span><div>';
+  html+='<div class="tags"><span class="tag">7–9</span><span class="tag">'+a.place+'</span><span class="tag">'+a.form+'</span><span class="tag">'+a.time+'</span></div>';
+  html+='<h2>'+a.title+'</h2><p class="summary">'+a.summary+'</p></div></div>';
+
+  html+='<div class="actions no-print">';
+  html+='<button class="open" type="button" aria-expanded="false" onclick="toggleActivity(this)">Visa hela aktiviteten</button>';
+  html+='<button class="print" type="button" onclick="printTeacher(this)">🖨 Lärarhandledning</button>';
+  html+='<button class="student" type="button" onclick="printStudent(this)">📝 Elevblad</button>';
+  html+='<div class="status">';
+  html+='<button class="red '+(isDone?'':'active')+'" type="button" onclick="markActivity(this,false)">● Inte klar</button>';
+  html+='<button class="green '+(isDone?'active':'')+'" type="button" onclick="markActivity(this,true)">✓ Klar</button>';
+  html+='</div></div>';
+
+  html+='<div class="details">';
+  html+='<div class="facts">';
+  html+='<div class="fact"><b>Tid</b>'+a.time+'</div>';
+  html+='<div class="fact"><b>Plats</b>'+a.place+'</div>';
+  html+='<div class="fact"><b>Arbetsform</b>'+a.form+'</div>';
+  html+='<div class="fact"><b>Material</b>'+a.material+'</div>';
+  html+='</div>';
+
+  html+='<section class="lgrbox"><h3>Koppling till Lgr22</h3>';
+  html+='<p><b>Lärandemål:</b> Eleven ska kunna '+a.goal+'.</p>';
+  html+='<p><b>Centralt innehåll:</b> '+a.content+'</p>';
+  html+='<p><b>Förmågor:</b> Begrepp, metoder, problemlösning, resonemang och kommunikation.</p></section>';
+
+  html+='<section><h3>Förberedelser</h3><p>'+a.prep+'.</p></section>';
+  html+='<section><h3>Gör så här – steg för steg</h3><ol class="steps">'+stepItems(a.steps)+'</ol></section>';
+  html+='<section class="talk"><h3>Matematiska samtalsfrågor</h3>'+listItems(a.talk,false)+'</section>';
+
+  html+='<div class="twocol">';
+  html+='<div><h3>Språk och begrepp</h3><p>'+a.concepts+'.</p><p><b>Meningsstarter:</b> Jag tolkar problemet som … / Jag väljer strategin … eftersom … / Lösningen är rimlig eftersom …</p></div>';
+  html+='<div><h3>Formativ bedömning</h3><p>'+a.assessment+'</p></div>';
+  html+='<div><h3>Stöd</h3><p>'+a.support+'</p></div>';
+  html+='<div><h3>Utmaning</h3><p>'+a.challenge+'</p></div>';
+  html+='</div></div>';
+
+  html+='<section class="student-sheet">';
+  html+='<h2>'+a.title+'</h2>';
+  html+='<p>Namn: __________________________ Datum: ____________</p>';
+  html+='<p><b>Mitt mål:</b> Jag ska kunna '+a.goal+'.</p>';
+  html+='<h3>Mitt uppdrag</h3>'+listItems(a.steps,true);
+  html+='<h3>Min plan och matematiska dokumentation</h3><div class="box"></div><div class="box"></div>';
+  html+='<h3>Jag kontrollerar och värderar</h3><div class="box"></div>';
+  html+='<h3>Exit ticket</h3><p>Strategin som hjälpte mig mest var:</p><div class="line"></div>';
+  html+='<p>Nästa gång vill jag utveckla:</p><div class="line"></div>';
+  html+='</section></article>';
+
+  return html;
+}
+
+function render(){
+  var query=document.getElementById("search").value.toLowerCase();
+  var p=document.getElementById("place").value;
+  var f=document.getElementById("form").value;
+  var s=document.getElementById("state").value;
+
+  var filtered=activities.filter(function(a){
+    var searchable=(a.title+" "+a.summary+" "+a.concepts).toLowerCase();
+
+    return(!query||searchable.includes(query))
+      &&(p==="Alla platser"||a.place===p)
+      &&(f==="Alla arbetsformer"||a.form===f)
+      &&(s==="Alla statusar"
+        ||(s==="Klar"&&done.includes(a.id))
+        ||(s==="Inte klar"&&!done.includes(a.id)));
+  });
+
+  document.getElementById("list").innerHTML=filtered.length
+    ?filtered.map(card).join("")
+    :'<div class="empty">Inga aktiviteter matchar dina val.</div>';
+
+  document.getElementById("results").textContent=
+    filtered.length+" av "+activities.length+" aktiviteter visas";
+}
+
+function toggleActivity(button){
+  var c=button.closest(".card");
+  var open=c.classList.toggle("opened");
+  button.textContent=open?"Dölj aktiviteten":"Visa hela aktiviteten";
+  button.setAttribute("aria-expanded",String(open));
+}
+
+function markActivity(button,value){
+  var id=button.closest(".card").dataset.id;
+  var pos=done.indexOf(id);
+
+  if(value&&pos<0)done.push(id);
+  if(!value&&pos>=0)done.splice(pos,1);
+
+  localStorage.setItem("79-problemlosning-done",JSON.stringify(done));
+  render();
+}
+
+function clearPrintState(){
+  document.querySelectorAll(".printing").forEach(function(c){
+    c.classList.remove("printing","student-mode");
+  });
+}
+
+function printTeacher(button){
+  clearPrintState();
+  button.closest(".card").classList.add("printing");
+  window.print();
+}
+
+function printStudent(button){
+  clearPrintState();
+  button.closest(".card").classList.add("printing","student-mode");
+  window.print();
+}
+
+window.addEventListener("afterprint",clearPrintState);
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("place").addEventListener("change",render);
+document.getElementById("form").addEventListener("change",render);
+document.getElementById("state").addEventListener("change",render);
+render();
+</script>
+</body>
+</html>
