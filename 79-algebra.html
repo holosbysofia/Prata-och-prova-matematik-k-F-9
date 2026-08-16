@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Tolv praktiska aktiviteter om algebra för årskurs 7–9, kopplade till Lgr22.">
+<title>Algebra 7–9 | Praktisk matematik</title>
+
+<style>
+:root{--bg:#f3eee3;--paper:#fffdf8;--green:#4e705e;--dark:#29483b;--soft:#dfe8dd;--sand:#e8dece;--red:#a8665b;--ink:#2e3933;--muted:#68746d;--line:#d9d2c6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif;line-height:1.6}
+button,select,input{font:inherit}
+header{min-height:72px;padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--paper);border-bottom:1px solid var(--line)}
+header a{text-decoration:none;color:var(--dark);font-weight:bold}
+.back{color:var(--green);font-size:13px}
+.hero{padding:58px 7% 70px;background:linear-gradient(140deg,var(--paper),#e4eadf)}
+.hero small{color:var(--green);font-weight:bold;letter-spacing:.14em}
+.hero h1{max-width:1000px;margin:14px 0;color:var(--dark);font:clamp(40px,6vw,68px)/1.05 Georgia,serif}
+.hero p{max-width:800px;color:var(--muted);font-size:17px}
+.lgr{max-width:1080px;margin:-22px auto 35px;padding:22px;background:var(--dark);color:white;border-radius:12px}
+.lgr b{color:#dce8ca}
+.lgr p{margin:5px 0;font-size:13px}
+.tools{max-width:1080px;margin:auto;padding:20px;display:grid;grid-template-columns:1fr repeat(3,180px);gap:10px}
+.tools input,.tools select{padding:12px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px}
+.tools input:focus,.tools select:focus,button:focus-visible,a:focus-visible{outline:3px solid #e0b868;outline-offset:2px}
+.results{max-width:1080px;margin:5px auto 16px;padding:0 20px;color:var(--muted);font-size:13px}
+.list{max-width:1080px;margin:auto;padding:0 20px 75px}
+.card{margin:17px 0;padding:24px;background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--green);border-radius:13px;box-shadow:0 7px 20px #29483b0c}
+.card.done-card{border-left-color:var(--dark);box-shadow:0 0 0 2px #b8c9bc inset}
+.top{display:flex;gap:16px}
+.icon{width:52px;height:52px;flex:0 0 52px;display:grid;place-items:center;background:var(--soft);border-radius:14px;font-size:26px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{padding:4px 9px;background:#ecefe8;border-radius:20px;font-size:10px;font-weight:bold}
+.card h2{margin:8px 0 5px;color:var(--dark);font:26px Georgia,serif}
+.summary{color:var(--muted);font-size:14px}
+.actions{margin-top:16px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.actions button{padding:9px 12px;border:0;border-radius:7px;cursor:pointer;font-size:12px;font-weight:bold}
+.open{background:var(--dark);color:white}
+.print{background:#e7e3da;color:var(--ink)}
+.student{background:var(--soft);color:var(--dark)}
+.status{margin-left:auto;display:flex;gap:7px}
+.status button{background:white;border:1px solid}
+.red{color:var(--red);border-color:#cda7a0!important}
+.green{color:var(--green);border-color:#9db8aa!important}
+.red.active{background:var(--red);color:white}
+.green.active{background:var(--green);color:white}
+.details{display:none;margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+.card.opened .details{display:block}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.fact{padding:11px;background:#f2efe8;border-radius:7px;font-size:12px}
+.fact b{display:block;color:var(--green);font-size:9px;text-transform:uppercase}
+.lgrbox{margin:18px 0;padding:16px;background:#edf2e9;border:1px solid #bdcdbd;border-radius:8px}
+.details h3{margin:20px 0 7px;color:var(--dark);font-size:16px}
+.steps{padding:0;list-style:none}
+.steps li{margin:9px 0;display:flex;gap:10px;font-size:13px}
+.steps i{width:25px;height:25px;flex:0 0 25px;display:grid;place-items:center;background:var(--dark);color:white;border-radius:50%;font-style:normal;font-weight:bold}
+.talk{padding:16px 20px;background:var(--soft);border-radius:8px}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.twocol>div{padding:15px;background:#f2efe8;border-radius:8px}
+.student-sheet{display:none;min-height:250mm;padding:12mm;border:2px solid var(--green)}
+.student-sheet h2{color:var(--dark);font-family:Georgia,serif}
+.box{min-height:70px;margin:10px 0;border:1px solid #9eaaa3}
+.line{height:28px;border-bottom:1px solid #777}
+.empty{padding:45px;background:var(--paper);border-radius:12px;text-align:center}
+footer{padding:25px 6%;display:flex;justify-content:space-between;gap:20px;background:var(--dark);color:#d9e3de;font-size:12px}
+
+@media(max-width:760px){
+  .tools{grid-template-columns:1fr 1fr}
+  .tools input{grid-column:span 2}
+  .facts{grid-template-columns:1fr 1fr}
+  .twocol{grid-template-columns:1fr}
+  .status{width:100%;margin-left:0}
+  .hero{padding:48px 22px 62px}
+}
+
+@media(max-width:480px){
+  .tools{grid-template-columns:1fr}
+  .tools input{grid-column:auto}
+  .actions>button{width:100%}
+  .status{display:grid;grid-template-columns:1fr 1fr}
+  .top{display:block}
+  .icon{margin-bottom:10px}
+  footer{flex-direction:column}
+}
+
+@page{size:A4 portrait;margin:13mm}
+
+@media print{
+  body{background:white;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  header,.hero,.lgr,.tools,.results,footer,.no-print{display:none!important}
+  .list{padding:0;max-width:none}
+  .card{display:none}
+  .card.printing{display:block;margin:0;padding:5mm;border:0;border-left:5px solid var(--green);box-shadow:none}
+  .card.printing .details{display:block}
+  .card.student-mode>.top,.card.student-mode>.actions,.card.student-mode>.details{display:none!important}
+  .card.student-mode .student-sheet{display:block}
+  .facts{grid-template-columns:repeat(4,1fr)}
+  .details section,.lgrbox,.twocol>div{break-inside:avoid}
+  h2,h3{break-after:avoid}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">∑ Praktisk matematik F–9</a>
+  <a class="back" href="7-9.html">← 7–9 områden</a>
+</header>
+
+<section class="hero">
+  <small>7–9 · ALGEBRA · LGR22</small>
+  <h1>Algebra i praktiken</h1>
+  <p>Eleverna undersöker variabler, uttryck, ekvationer, formler, olikheter och algebraiska mönster genom balansmodeller, funktionsmaskiner, praktiska problem och generaliseringar.</p>
+</section>
+
+<section class="lgr">
+  <p><b>Syfte enligt Lgr22:</b> Utveckla förmågan att använda matematiska begrepp och metoder, formulera och lösa problem samt föra och följa matematiska resonemang.</p>
+  <p><b>Centralt innehåll:</b> Innebörden av variabelbegreppet och dess användning i algebraiska uttryck, formler och ekvationer. Metoder för ekvationslösning, algebraiska uttryck samt generella samband och mönster.</p>
+</section>
+
+<section class="tools no-print" aria-label="Filtrera aktiviteter">
+  <input id="search" type="search" placeholder="Sök aktivitet…" aria-label="Sök aktivitet">
+
+  <select id="place" aria-label="Välj plats">
+    <option>Alla platser</option>
+    <option>Klassrum</option>
+    <option>Inne på skolan</option>
+    <option>Utomhus</option>
+    <option>Inne och ute</option>
+  </select>
+
+  <select id="form" aria-label="Välj arbetsform">
+    <option>Alla arbetsformer</option>
+    <option>Enskilt</option>
+    <option>Par</option>
+    <option>Grupp</option>
+    <option>Helklass</option>
+  </select>
+
+  <select id="state" aria-label="Välj status">
+    <option>Alla statusar</option>
+    <option>Inte klar</option>
+    <option>Klar</option>
+  </select>
+</section>
+
+<div class="results no-print" id="results" aria-live="polite"></div>
+<main class="list" id="list"></main>
+
+<footer>
+  <strong>Praktisk matematik 7–9</strong>
+  <span>12 aktiviteter · Enkla hjälpmedel · Lgr22 · A4-utskrift i färg</span>
+</footer>
+
+<script>
+const activities=[
+{id:"variabelpasarna-79",icon:"🎒",title:"Variabelpåsarna",place:"Klassrum",form:"Par",time:"35 min",material:"Ogenomskinliga påsar, marker, variabelkort och miniwhiteboard",prep:"Lägg okänt antal marker i påsar och förbered ledtrådskort",summary:"Paren använder påsar som variabler och skriver uttryck för kända och okända mängder.",goal:"tolka en variabel som ett tal och översätta mellan konkret situation och algebraiskt uttryck",content:"Innebörden av variabelbegreppet och dess användning i algebraiska uttryck.",concepts:"variabel, konstant, uttryck, term, koefficient, värde och representation",assessment:"Observera om eleven skiljer variabeln från dess aktuella värde och kan förklara vad varje del i uttrycket betyder.",steps:["Välj en påse och kalla innehållet x.","Lägg till synliga marker och skriv ett uttryck för hela mängden.","Bygg två lika påsar och skriv ett nytt uttryck.","Dra ett värdekort för x och beräkna uttryckets värde.","Skapa en egen modell som ett annat par ska beskriva algebraiskt."],talk:["Vad betyder x i just den här situationen?","Vad är skillnaden mellan 3x och x + 3?","Kan samma uttryck beskriva flera konkreta situationer?"],support:"Använd en påse, positiva heltal och färgmarkera variabel och konstant.",challenge:"Använd två variabler, negativa tal och flera ekvivalenta uttryck."},
+
+{id:"uttrycksmaskinen-79",icon:"⚙️",title:"Uttrycksmaskinen",place:"Klassrum",form:"Grupp",time:"40 min",material:"Funktionsmaskin av kartong, in- och utkort samt regelkort",prep:"Förbered regler med en eller flera operationer",summary:"Grupperna skickar tal genom en fysisk maskin, beskriver regeln och skriver den som ett algebraiskt uttryck.",goal:"formulera och tolka algebraiska uttryck som beskriver en beräkningsregel",content:"Algebraiska uttryck och hur de kan användas för att beskriva samband.",concepts:"indata, utdata, variabel, regel, uttryck, operation och omvänd operation",assessment:"Lyssna efter om eleven håller samma regel för alla indata och använder korrekt prioriteringsordning.",steps:["Dra ett regelkort och bygg maskinen.","Skicka tre olika tal genom maskinen.","Dokumentera indata och utdata i en tabell.","Skriv regeln med variabeln x.","Byt bara utdata med en annan grupp och försök återskapa regeln."],talk:["Hur många talpar behövs för att vara säker på regeln?","Hur skiljer sig 2x + 3 från 2(x + 3)?","Hur kan den omvända maskinen beskrivas?"],support:"Använd en operation i taget och färdiga tabeller.",challenge:"Använd parenteser, bråkkoefficienter och två möjliga regler som måste skiljas åt."},
+
+{id:"termsorteringen-79",icon:"🧩",title:"Termsorteringen",place:"Klassrum",form:"Par",time:"40 min",material:"Termkort, färgmarkörer och förenklingsprotokoll",prep:"Förbered uttryck med liknande och oliknande termer",summary:"Paren sorterar fysiska termkort och härleder regler för att förenkla algebraiska uttryck.",goal:"förenkla uttryck genom att samla liknande termer och använda räknelagar",content:"Algebraiska uttryck och metoder för förenkling.",concepts:"term, liknande termer, koefficient, konstant, parentes, distributiva lagen och ekvivalens",assessment:"Kontrollera om eleven endast sammanför termer med samma variabeldel och kan motivera varje omskrivning.",steps:["Bygg ett uttryck med termkort.","Sortera termer med samma variabeldel.","Samla koefficienterna och skriv ett förenklat uttryck.","Kontrollera ekvivalensen genom att sätta in två värden.","Lägg till parenteser och använd distributiva lagen."],talk:["Varför kan 3x och 3 inte adderas till 6x?","Hur visar insättning att uttrycken är ekvivalenta?","Vad förändras när ett minustecken står framför en parentes?"],support:"Använd positiva koefficienter och en variabel först.",challenge:"Använd negativa termer, flera variabler och nästlade parenteser."},
+
+{id:"balansvagen-ekvationer",icon:"⚖️",title:"Balansvågen – lös ekvationen",place:"Klassrum",form:"Par",time:"45 min",material:"Balansvåg eller ritad balans, vikter, påsar och ekvationskort",prep:"Förbered linjära ekvationer i stigande svårighetsgrad",summary:"Paren modellerar ekvationer som balans och utför samma operation i båda leden.",goal:"lösa linjära ekvationer och motivera lösningsstegen med likhetsprincipen",content:"Metoder för ekvationslösning.",concepts:"ekvation, vänsterled, högerled, likhet, obekant, invers operation och lösning",assessment:"Observera om eleven bevarar likheten, redovisar delsteg och kontrollerar lösningen genom insättning.",steps:["Bygg en ekvation på balansvågen.","Ta bort eller lägg till lika mycket på båda sidor.","Dela båda sidor i lika stora grupper när det behövs.","Skriv varje förändring som ett algebraiskt steg.","Kontrollera lösningen i ursprungsekvationen."],talk:["Varför måste samma operation göras i båda leden?","Vad betyder det att isolera variabeln?","Kan en ekvation sakna lösning eller ha oändligt många lösningar?"],support:"Börja med x + a = b och heltalslösningar.",challenge:"Använd variabler i båda leden, parenteser och ekvationer med ingen eller oändligt många lösningar."},
+
+{id:"formelverkstaden-79",icon:"📐",title:"Formelverkstaden",place:"Inne och ute",form:"Grupp",time:"50 min",material:"Mätredskap, formelkort, figurer och protokoll",prep:"Välj formler för omkrets, area, hastighet, densitet eller temperatur",summary:"Grupperna mäter, använder formler och löser ut olika variabler utifrån verkliga värden.",goal:"tolka, använda och skriva om formler i praktiska situationer",content:"Formler och deras användning i algebraiska och vardagliga situationer.",concepts:"formel, variabel, enhet, insättning, lösa ut, proportionalitet och rimlighet",assessment:"Bedöm om eleven håller ordning på enheter, ersätter rätt variabel och kan förklara den omskrivna formeln.",steps:["Välj en storhet och samla nödvändiga mätvärden.","Skriv formeln och förklara varje variabel.","Sätt in värden och beräkna.","Välj en annan variabel som okänd och lös ut den.","Kontrollera den omskrivna formeln med mätvärdena."],talk:["Vad berättar varje variabel om situationen?","Hur påverkas formeln när en variabel löses ut?","Hur kan enheten avslöja ett fel?"],support:"Använd en formel med tre variabler och en stegmall.",challenge:"Kombinera två formler eller använd potenser och enhetsbyten."},
+
+{id:"monsterfabriken-79",icon:"🔷",title:"Mönsterfabriken",place:"Klassrum",form:"Grupp",time:"45 min",material:"Stickor, klossar, rutpapper, tabell och kameramall",prep:"Bygg första tre figurerna i flera växande mönster",summary:"Grupperna beskriver växande figurmönster med tabell, bild, ord och generell formel.",goal:"generalisera ett mönster och formulera ett uttryck för figur nummer n",content:"Generella samband och mönster samt hur de kan uttryckas algebraiskt.",concepts:"figurvärde, figurnummer, variabel, generell formel, konstant förändring, rekursiv regel och explicit regel",assessment:"Se om eleven skiljer figurnummer från antal delar och kan visa hur formeln syns i figuren.",steps:["Bygg figur 1–3 och räkna antalet delar.","Dokumentera värdena i en tabell.","Beskriv vad som växer och vad som är konstant.","Skriv en formel för figur n.","Pröva formeln på figur 10 och bygg en kontroll."],talk:["Var syns koefficienten i figuren?","Vad är skillnaden mellan rekursiv och explicit regel?","Kan olika figurer beskrivas av samma formel?"],support:"Använd linjära mönster och en tabell med färdiga rubriker.",challenge:"Jämför två mönster, hitta skärningsfigur och undersök ett kvadratiskt mönster."},
+
+{id:"ekvationssparet-79",icon:"🧭",title:"Ekvationsspåret genom skolan",place:"Inne på skolan",form:"Par",time:"50 min",material:"Uppdragskort, skrivunderlägg och kontrollkort",prep:"Placera textproblem som leder till linjära ekvationer på trygga platser",summary:"Paren översätter sammanhängande problemsituationer till ekvationer och använder lösningen för att hitta nästa station.",goal:"formulera och lösa ekvationer utifrån textproblem samt tolka lösningen",content:"Ekvationer i relevanta situationer och metoder för ekvationslösning.",concepts:"problemformulering, obekant, ekvation, modell, lösning, villkor och kontroll",assessment:"Observera om eleven definierar variabeln, använder all relevant information och tolkar svaret i situationen.",steps:["Läs uppdraget och skriv vad variabeln betyder.","Översätt villkoren till en ekvation.","Gör ett överslag av lösningen.","Lös och kontrollera i ursprungssituationen.","Använd svaret för att hitta nästa station."],talk:["Vilken storhet passar bäst som variabel?","Hur syns varje del av texten i ekvationen?","Kan en korrekt ekvationslösning vara orimlig i situationen?"],support:"Ge en modellmening och markera kända och okända storheter.",challenge:"Använd överflödig information, variabler i båda leden och problem med flera villkor."},
+
+{id:"olikhetslinjen-79",icon:"＜",title:"Olikhetslinjen",place:"Utomhus",form:"Helklass",time:"40 min",material:"Kritor, rep, olikhetskort och markörer",prep:"Rita en tallinje och förbered olikheter samt vardagsvillkor",summary:"Eleverna löser och visar lösningsmängder till olikheter på en fysisk tallinje.",goal:"tolka och lösa enkla olikheter samt representera lösningsmängden",content:"Algebraiska uttryck, olikheter och matematiska resonemang.",concepts:"olikhet, mindre än, större än, lösningsmängd, gränsvärde, intervall och teckenbyte",assessment:"Kontrollera om eleven skiljer en enskild lösning från en lösningsmängd och hanterar teckenbyte korrekt.",steps:["Dra ett vardagsvillkor och skriv det som en olikhet.","Lös olikheten stegvis.","Markera gränsvärdet på tallinjen.","Visa hela lösningsmängden med markörer.","Pröva ett värde som ingår och ett som inte ingår."],talk:["Vad är skillnaden mellan en ekvation och en olikhet?","När ska gränspunkten vara öppen eller fylld?","Varför vänds olikhetstecknet vid multiplikation med ett negativt tal?"],support:"Använd positiva koefficienter och heltalsgränser.",challenge:"Använd dubbla olikheter, negativa koefficienter och intervallnotation."},
+
+{id:"tva-villkor-mots",icon:"✚",title:"När två villkor möts",place:"Klassrum",form:"Grupp",time:"50 min",material:"Prislistor, tabeller, koordinatpapper och färgpennor",prep:"Förbered problem där två linjära villkor har en gemensam lösning",summary:"Grupperna löser enkla ekvationssystem med tabell, graf och algebra och jämför metoderna.",goal:"tolka och lösa problem med två obekanta och två linjära villkor",content:"Ekvationer, grafer och algebraiska modeller i problemsituationer.",concepts:"ekvationssystem, två obekanta, villkor, skärningspunkt, substitution och lösning",assessment:"Bedöm om eleven kopplar den gemensamma lösningen till båda villkoren och kan kontrollera i båda ekvationerna.",steps:["Definiera de två variablerna i situationen.","Skriv en ekvation för varje villkor.","Skapa en värdetabell och rita båda graferna.","Läs av skärningspunkten och kontrollera algebraiskt.","Jämför grafisk metod med substitution eller eliminering."],talk:["Varför måste lösningen uppfylla båda ekvationerna?","Vad betyder parallella linjer i situationen?","När är grafisk lösning tillräckligt exakt?"],support:"Använd heltalslösningar och färdiga koordinatsystem.",challenge:"Använd decimaler, samma linje eller system utan lösning."},
+
+{id:"algebrafeldetektiverna-79",icon:"🕵️",title:"Algebrafeldetektiverna",place:"Klassrum",form:"Grupp",time:"40 min",material:"Felaktiga lösningar, uttryck, formler och analysmall",prep:"Skapa realistiska fel om liknande termer, parenteser, ekvationer och formler",summary:"Eleverna hittar första felet, förklarar missuppfattningen och reparerar algebraiska resonemang.",goal:"granska algebraiska metoder och använda resonemang för att rätta fel",content:"Algebraiska uttryck, ekvationer, formler och matematiska resonemang.",concepts:"ekvivalens, metodfel, teckenfel, parentesfel, likhetsprincip, kontroll och återkoppling",assessment:"Lyssna efter om eleven anger varför omskrivningen inte är ekvivalent och skiljer första felet från följdfel.",steps:["Gör en egen uppskattning eller insättningskontroll.","Markera första raden som inte är ekvivalent med föregående.","Klassificera felet och förklara orsaken.","Rätta minsta möjliga del och slutför lösningen.","Skriv en återkopplingsfråga som leder vidare."],talk:["Hur kan insättning avslöja ett fel i ett uttryck?","Vilka senare fel är bara följder av det första?","Kan två olika algebraiska metoder båda vara korrekta?"],support:"Använd ett tydligt fel per lösning och en lista med felkategorier.",challenge:"Analysera lösningar med två oberoende fel eller en ovanlig men korrekt metod."},
+
+{id:"algebrastationer-79",icon:"🔄",title:"Fem praktiska algebrastationer",place:"Klassrum",form:"Grupp",time:"65 min",material:"Variabelpåsar, termkort, balansmodell, mönster, formelkort och protokoll",prep:"Förbered fem stationer med instruktion, stödkuvert och självkontroll",summary:"Eleverna tränar variabler, uttryck, ekvationer, formler och generaliseringar.",goal:"använda och förklara flera centrala algebraiska representationer och metoder",content:"Variabler, algebraiska uttryck, formler, ekvationer och generella mönster.",concepts:"variabel, uttryck, ekvation, formel, koefficient, ekvivalens, mönster och kontroll",assessment:"Använd protokollet för att synliggöra elevens representationer, metodval, begrepp och kontroller.",steps:["Station 1: bygg och tolka uttryck med variabelpåsar.","Station 2: förenkla uttryck med termkort.","Station 3: lös ekvationer med balansmodellen.","Station 4: mät, använd och skriv om en formel.","Station 5: generalisera ett figurmönster och granska ett metodfel."],talk:["Vilken representation gjorde variabeln tydligast?","När behövdes en oberoende kontroll?","Vilken algebraisk idé återkom på flera stationer?"],support:"Ge ett löst exempel per station och låt eleverna börja med tre stationer.",challenge:"Skapa ett nytt stationskort med facit, två metoder och en vanlig fallgrop."},
+
+{id:"kunskapsuppdrag-algebraexperten-79",icon:"🧭",title:"Kunskapsuppdraget – Algebraexperten 7–9",place:"Inne och ute",form:"Enskilt",time:"65–85 min",material:"Variabelpåsar, termkort, balansmodell, mönster, formelkort, felanalys och protokoll",prep:"Placera sex uppdrag längs en trygg slinga och förbered stödkuvert",summary:"Eleven visar självständigt förståelse för variabler, uttryck, ekvationer, formler och generaliseringar.",goal:"formulera, förenkla och använda algebra samt motivera metod och kontroll",content:"Variabelbegreppet, algebraiska uttryck, formler, ekvationer och generella samband enligt Lgr22.",concepts:"variabel, term, koefficient, uttryck, ekvation, formel, generalisering och ekvivalens",assessment:"Dokumentera elevens begreppsanvändning, säkerhet i metoder, problemlösning, resonemang och självständiga kontroll.",steps:["Översätt en konkret modell till ett algebraiskt uttryck.","Förenkla ett uttryck och kontrollera genom insättning.","Formulera och lös en linjär ekvation.","Använd och skriv om en formel.","Generalisera ett växande mönster med figur nummer n.","Hitta ett metodfel och förklara en lösning muntligt eller skriftligt."],talk:["Vad betyder variabeln i din lösning?","Varför bevarar dina steg ekvivalensen?","Hur kan resultatet kontrolleras med en annan representation?"],support:"Ge ett uppdrag i taget, begreppslista, modellmaterial och möjlighet till muntlig förklaring.",challenge:"Kombinera två variabler, olikhet, ekvationssystem och ett icke-linjärt mönster."}
+];
+
+const done=JSON.parse(
+  localStorage.getItem("79-algebra-done")||"[]"
+);
+
+function card(a){
+  const isDone=done.includes(a.id);
+
+  return `
+  <article
+    class="card ${isDone?"done-card":""}"
+    data-id="${a.id}"
+    data-place="${a.place}"
+    data-form="${a.form}"
+  >
+    <div class="top">
+      <span class="icon" aria-hidden="true">${a.icon}</span>
+
+      <div>
+        <div class="tags">
+          <span class="tag">7–9</span>
+          <span class="tag">${a.place}</span>
+          <span class="tag">${a.form}</span>
+          <span class="tag">${a.time}</span>
+        </div>
+
+        <h2>${a.title}</h2>
+        <p class="summary">${a.summary}</p>
+      </div>
+    </div>
+
+    <div class="actions no-print">
+      <button
+        class="open"
+        type="button"
+        aria-expanded="false"
+        onclick="toggleActivity(this)"
+      >
+        Visa hela aktiviteten
+      </button>
+
+      <button
+        class="print"
+        type="button"
+        onclick="printTeacher(this)"
+      >
+        🖨 Lärarhandledning
+      </button>
+
+      <button
+        class="student"
+        type="button"
+        onclick="printStudent(this)"
+      >
+        📝 Elevblad
+      </button>
+
+      <div class="status" aria-label="Aktivitetsstatus">
+        <button
+          class="red ${isDone?"":"active"}"
+          type="button"
+          onclick="markActivity(this,false)"
+        >
+          ● Inte klar
+        </button>
+
+        <button
+          class="green ${isDone?"active":""}"
+          type="button"
+          onclick="markActivity(this,true)"
+        >
+          ✓ Klar
+        </button>
+      </div>
+    </div>
+
+    <div class="details">
+      <div class="facts">
+        <div class="fact">
+          <b>Tid</b>
+          ${a.time}
+        </div>
+
+        <div class="fact">
+          <b>Plats</b>
+          ${a.place}
+        </div>
+
+        <div class="fact">
+          <b>Arbetsform</b>
+          ${a.form}
+        </div>
+
+        <div class="fact">
+          <b>Material</b>
+          ${a.material}
+        </div>
+      </div>
+
+      <section class="lgrbox">
+        <h3>Koppling till Lgr22</h3>
+        <p><b>Lärandemål:</b> Eleven ska kunna ${a.goal}.</p>
+        <p><b>Centralt innehåll:</b> ${a.content}</p>
+        <p><b>Förmågor:</b> Begrepp, metoder, problemlösning, resonemang och kommunikation.</p>
+      </section>
+
+      <section>
+        <h3>Förberedelser</h3>
+        <p>${a.prep}.</p>
+      </section>
+
+      <section>
+        <h3>Gör så här – steg för steg</h3>
+
+        <ol class="steps">
+          ${a.steps.map((step,index)=>`
+            <li>
+              <i>${index+1}</i>
+              <span>${step}</span>
+            </li>
+          `).join("")}
+        </ol>
+      </section>
+
+      <section class="talk">
+        <h3>Matematiska samtalsfrågor</h3>
+
+        <ul>
+          ${a.talk.map(question=>`
+            <li>${question}</li>
+          `).join("")}
+        </ul>
+      </section>
+
+      <div class="twocol">
+        <div>
+          <h3>Språk och begrepp</h3>
+          <p>${a.concepts}.</p>
+          <p><b>Meningsstarter:</b> Jag vet att … eftersom … / Min representation visar … / Svaret är rimligt eftersom …</p>
+        </div>
+
+        <div>
+          <h3>Formativ bedömning</h3>
+          <p>${a.assessment}</p>
+        </div>
+
+        <div>
+          <h3>Stöd</h3>
+          <p>${a.support}</p>
+        </div>
+
+        <div>
+          <h3>Utmaning</h3>
+          <p>${a.challenge}</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="student-sheet">
+      <h2>${a.title}</h2>
+
+      <p>
+        Namn: __________________________
+        Datum: ____________
+      </p>
+
+      <p>
+        <b>Mitt mål:</b>
+        Jag ska kunna ${a.goal}.
+      </p>
+
+      <h3>Mitt uppdrag</h3>
+
+      <ol>
+        ${a.steps.map(step=>`
+          <li>${step}</li>
+        `).join("")}
+      </ol>
+
+      <h3>Min matematiska dokumentation</h3>
+      <div class="box"></div>
+      <div class="box"></div>
+
+      <h3>Jag motiverar och kontrollerar</h3>
+      <div class="box"></div>
+
+      <h3>Exit ticket</h3>
+
+      <p>Det här förstår jag nu:</p>
+      <div class="line"></div>
+
+      <p>Det här behöver jag undersöka vidare:</p>
+      <div class="line"></div>
+    </section>
+  </article>
+  `;
+}
+
+function render(){
+  const query=
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase();
+
+  const selectedPlace=
+    document
+      .getElementById("place")
+      .value;
+
+  const selectedForm=
+    document
+      .getElementById("form")
+      .value;
+
+  const selectedState=
+    document
+      .getElementById("state")
+      .value;
+
+  const filtered=activities.filter(a=>{
+    const searchable=
+      `${a.title} ${a.summary} ${a.concepts}`
+        .toLowerCase();
+
+    return(
+      (!query||searchable.includes(query))
+      &&
+      (
+        selectedPlace==="Alla platser"
+        ||
+        a.place===selectedPlace
+      )
+      &&
+      (
+        selectedForm==="Alla arbetsformer"
+        ||
+        a.form===selectedForm
+      )
+      &&
+      (
+        selectedState==="Alla statusar"
+        ||
+        (
+          selectedState==="Klar"
+          &&
+          done.includes(a.id)
+        )
+        ||
+        (
+          selectedState==="Inte klar"
+          &&
+          !done.includes(a.id)
+        )
+      )
+    );
+  });
+
+  document.getElementById("list").innerHTML=
+    filtered.length
+      ?filtered.map(card).join("")
+      :`<div class="empty">Inga aktiviteter matchar dina val.</div>`;
+
+  document.getElementById("results").textContent=
+    `${filtered.length} av ${activities.length} aktiviteter visas`;
+}
+
+function toggleActivity(button){
+  const cardElement=
+    button.closest(".card");
+
+  const isOpen=
+    cardElement.classList.toggle("opened");
+
+  button.textContent=
+    isOpen
+      ?"Dölj aktiviteten"
+      :"Visa hela aktiviteten";
+
+  button.setAttribute(
+    "aria-expanded",
+    String(isOpen)
+  );
+}
+
+function markActivity(button,value){
+  const id=
+    button.closest(".card").dataset.id;
+
+  const position=
+    done.indexOf(id);
+
+  if(value&&position<0){
+    done.push(id);
+  }
+
+  if(!value&&position>=0){
+    done.splice(position,1);
+  }
+
+  localStorage.setItem(
+    "79-algebra-done",
+    JSON.stringify(done)
+  );
+
+  render();
+}
+
+function clearPrintState(){
+  document
+    .querySelectorAll(".printing")
+    .forEach(cardElement=>
+      cardElement.classList.remove(
+        "printing",
+        "student-mode"
+      )
+    );
+}
+
+function printTeacher(button){
+  clearPrintState();
+
+  button
+    .closest(".card")
+    .classList.add("printing");
+
+  window.print();
+}
+
+function printStudent(button){
+  clearPrintState();
+
+  button
+    .closest(".card")
+    .classList.add(
+      "printing",
+      "student-mode"
+    );
+
+  window.print();
+}
+
+window.addEventListener(
+  "afterprint",
+  clearPrintState
+);
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    render
+  );
+
+document
+  .getElementById("place")
+  .addEventListener(
+    "change",
+    render
+  );
+
+document
+  .getElementById("form")
+  .addEventListener(
+    "change",
+    render
+  );
+
+document
+  .getElementById("state")
+  .addEventListener(
+    "change",
+    render
+  );
+
+render();
+</script>
+
+</body>
+</html>
