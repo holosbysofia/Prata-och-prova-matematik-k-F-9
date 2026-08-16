@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Tolv praktiska aktiviteter om samband och förändring för årskurs 7–9, kopplade till Lgr22.">
+<title>Samband och förändring 7–9 | Praktisk matematik</title>
+<style>
+:root{--bg:#f3eee3;--paper:#fffdf8;--green:#4e705e;--dark:#29483b;--soft:#dfe8dd;--sand:#e8dece;--red:#a8665b;--ink:#2e3933;--muted:#68746d;--line:#d9d2c6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif;line-height:1.6}
+button,select,input{font:inherit}
+header{min-height:72px;padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--paper);border-bottom:1px solid var(--line)}
+header a{text-decoration:none;color:var(--dark);font-weight:bold}
+.back{color:var(--green);font-size:13px}
+.hero{padding:58px 7% 70px;background:linear-gradient(140deg,var(--paper),#e4eadf)}
+.hero small{color:var(--green);font-weight:bold;letter-spacing:.14em}
+.hero h1{max-width:1000px;margin:14px 0;color:var(--dark);font:clamp(40px,6vw,68px)/1.05 Georgia,serif}
+.hero p{max-width:800px;color:var(--muted);font-size:17px}
+.lgr{max-width:1080px;margin:-22px auto 35px;padding:22px;background:var(--dark);color:white;border-radius:12px}
+.lgr b{color:#dce8ca}
+.lgr p{margin:5px 0;font-size:13px}
+.tools{max-width:1080px;margin:auto;padding:20px;display:grid;grid-template-columns:1fr repeat(3,180px);gap:10px}
+.tools input,.tools select{padding:12px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px}
+.tools input:focus,.tools select:focus,button:focus-visible,a:focus-visible{outline:3px solid #e0b868;outline-offset:2px}
+.results{max-width:1080px;margin:5px auto 16px;padding:0 20px;color:var(--muted);font-size:13px}
+.list{max-width:1080px;margin:auto;padding:0 20px 75px}
+.card{margin:17px 0;padding:24px;background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--green);border-radius:13px;box-shadow:0 7px 20px #29483b0c}
+.card.done-card{border-left-color:var(--dark);box-shadow:0 0 0 2px #b8c9bc inset}
+.top{display:flex;gap:16px}
+.icon{width:52px;height:52px;flex:0 0 52px;display:grid;place-items:center;background:var(--soft);border-radius:14px;font-size:26px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{padding:4px 9px;background:#ecefe8;border-radius:20px;font-size:10px;font-weight:bold}
+.card h2{margin:8px 0 5px;color:var(--dark);font:26px Georgia,serif}
+.summary{color:var(--muted);font-size:14px}
+.actions{margin-top:16px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.actions button{padding:9px 12px;border:0;border-radius:7px;cursor:pointer;font-size:12px;font-weight:bold}
+.open{background:var(--dark);color:white}
+.print{background:#e7e3da;color:var(--ink)}
+.student{background:var(--soft);color:var(--dark)}
+.status{margin-left:auto;display:flex;gap:7px}
+.status button{background:white;border:1px solid}
+.red{color:var(--red);border-color:#cda7a0!important}
+.green{color:var(--green);border-color:#9db8aa!important}
+.red.active{background:var(--red);color:white}
+.green.active{background:var(--green);color:white}
+.details{display:none;margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+.card.opened .details{display:block}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.fact{padding:11px;background:#f2efe8;border-radius:7px;font-size:12px}
+.fact b{display:block;color:var(--green);font-size:9px;text-transform:uppercase}
+.lgrbox{margin:18px 0;padding:16px;background:#edf2e9;border:1px solid #bdcdbd;border-radius:8px}
+.details h3{margin:20px 0 7px;color:var(--dark);font-size:16px}
+.steps{padding:0;list-style:none}
+.steps li{margin:9px 0;display:flex;gap:10px;font-size:13px}
+.steps i{width:25px;height:25px;flex:0 0 25px;display:grid;place-items:center;background:var(--dark);color:white;border-radius:50%;font-style:normal;font-weight:bold}
+.talk{padding:16px 20px;background:var(--soft);border-radius:8px}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.twocol>div{padding:15px;background:#f2efe8;border-radius:8px}
+.student-sheet{display:none;min-height:250mm;padding:12mm;border:2px solid var(--green)}
+.student-sheet h2{color:var(--dark);font-family:Georgia,serif}
+.box{min-height:70px;margin:10px 0;border:1px solid #9eaaa3}
+.line{height:28px;border-bottom:1px solid #777}
+.empty{padding:45px;background:var(--paper);border-radius:12px;text-align:center}
+footer{padding:25px 6%;display:flex;justify-content:space-between;gap:20px;background:var(--dark);color:#d9e3de;font-size:12px}
+
+@media(max-width:760px){
+.tools{grid-template-columns:1fr 1fr}
+.tools input{grid-column:span 2}
+.facts{grid-template-columns:1fr 1fr}
+.twocol{grid-template-columns:1fr}
+.status{width:100%;margin-left:0}
+.hero{padding:48px 22px 62px}
+}
+
+@media(max-width:480px){
+.tools{grid-template-columns:1fr}
+.tools input{grid-column:auto}
+.actions>button{width:100%}
+.status{display:grid;grid-template-columns:1fr 1fr}
+.top{display:block}
+.icon{margin-bottom:10px}
+footer{flex-direction:column}
+}
+
+@page{size:A4 portrait;margin:13mm}
+
+@media print{
+body{background:white;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+header,.hero,.lgr,.tools,.results,footer,.no-print{display:none!important}
+.list{padding:0;max-width:none}
+.card{display:none}
+.card.printing{display:block;margin:0;padding:5mm;border:0;border-left:5px solid var(--green);box-shadow:none}
+.card.printing .details{display:block}
+.card.student-mode>.top,.card.student-mode>.actions,.card.student-mode>.details{display:none!important}
+.card.student-mode .student-sheet{display:block}
+.facts{grid-template-columns:repeat(4,1fr)}
+.details section,.lgrbox,.twocol>div{break-inside:avoid}
+h2,h3{break-after:avoid}
+}
+</style>
+</head>
+<body>
+
+<header>
+<a href="index.html">∑ Praktisk matematik F–9</a>
+<a class="back" href="7-9.html">← 7–9 områden</a>
+</header>
+
+<section class="hero">
+<small>7–9 · SAMBAND OCH FÖRÄNDRING · LGR22</small>
+<h1>Samband och förändring i praktiken</h1>
+<p>Eleverna undersöker hur storheter hänger samman och förändras genom proportionalitet, förhållanden, skala, hastighet, procent, tabeller, grafer, funktioner och räta linjens ekvation.</p>
+</section>
+
+<section class="lgr">
+<p><b>Syfte enligt Lgr22:</b> Utveckla förmågan att formulera och lösa problem, använda matematiska begrepp och metoder samt beskriva och analysera samband med olika representationer.</p>
+<p><b>Centralt innehåll:</b> Procentuell förändring och förändringsfaktor. Funktioner och räta linjens ekvation samt hur funktioner kan användas, med och utan digitala verktyg, för att undersöka förändring, förändringstakt och andra samband.</p>
+</section>
+
+<section class="tools no-print" aria-label="Filtrera aktiviteter">
+<input id="search" type="search" placeholder="Sök aktivitet…" aria-label="Sök aktivitet">
+
+<select id="place" aria-label="Välj plats">
+<option>Alla platser</option>
+<option>Klassrum</option>
+<option>Inne på skolan</option>
+<option>Utomhus</option>
+<option>Inne och ute</option>
+</select>
+
+<select id="form" aria-label="Välj arbetsform">
+<option>Alla arbetsformer</option>
+<option>Enskilt</option>
+<option>Par</option>
+<option>Grupp</option>
+<option>Helklass</option>
+</select>
+
+<select id="state" aria-label="Välj status">
+<option>Alla statusar</option>
+<option>Inte klar</option>
+<option>Klar</option>
+</select>
+</section>
+
+<div class="results no-print" id="results" aria-live="polite"></div>
+<main class="list" id="list"></main>
+
+<footer>
+<strong>Praktisk matematik 7–9</strong>
+<span>12 aktiviteter · Enkla hjälpmedel · Lgr22 · A4-utskrift i färg</span>
+</footer>
+
+<script>
+const activities=[
+{
+id:"proportionalitetslabbet-79",
+icon:"⚖️",
+title:"Proportionalitetslabbet",
+place:"Klassrum",
+form:"Grupp",
+time:"45 min",
+material:"Mätglas, våg, ingredienskort och tabeller",
+prep:"Förbered blandningar eller recept som kan förstoras",
+summary:"Grupperna undersöker vad som måste vara konstant för att ett samband ska vara proportionellt.",
+goal:"identifiera och beskriva proportionella samband",
+content:"Proportionalitet i vardagliga och matematiska situationer.",
+concepts:"proportionalitet, proportion, kvot, konstant, dubbelt, hälften och origo",
+assessment:"Observera om eleven använder konstant kvot och kan skilja proportionalitet från enbart ökning.",
+steps:[
+"Bygg en grundblandning.",
+"Förstora och förminska mängderna med samma faktor.",
+"Fyll i en tabell och beräkna kvoten.",
+"Rita grafen och förklara varför den går genom origo."
+],
+talk:[
+"Är alla växande samband proportionella?",
+"Vad visar proportionalitetskonstanten?"
+],
+support:"Använd heltalsfaktorer och färdig tabell.",
+challenge:"Bestäm formeln y=kx och tolka k i situationen."
+},
+{
+id:"forhallandelabbet-79",
+icon:"🥤",
+title:"Förhållandelabbet",
+place:"Klassrum",
+form:"Par",
+time:"45 min",
+material:"Färgkort, receptkort, mått och analysmall",
+prep:"Förbered blandningar med olika förhållanden",
+summary:"Paren jämför, förenklar och skalar förhållanden i konkreta blandningar.",
+goal:"använda förhållanden för att jämföra och skala mängder",
+content:"Förhållanden, proportionalitet och matematiska modeller.",
+concepts:"förhållande, del, helhet, kvot, förenkling, ekvivalent förhållande och skalfaktor",
+assessment:"Kontrollera om eleven håller ordningen mellan storheterna och skalar båda leden.",
+steps:[
+"Bygg ett förhållande med två färger.",
+"Skriv och förenkla förhållandet.",
+"Skapa ett ekvivalent förhållande.",
+"Jämför två blandningar och motivera vilken som är starkast."
+],
+talk:[
+"Vad betyder 2:3 konkret?",
+"När beskriver två olika tal samma förhållande?"
+],
+support:"Använd färgade brickor och små heltal.",
+challenge:"Bestäm en saknad mängd när totalen och förhållandet är kända."
+},
+{
+id:"jamforprisjakten-79",
+icon:"🛒",
+title:"Jämförprisjakten",
+place:"Inne på skolan",
+form:"Par",
+time:"45 min",
+material:"Förpackningsbilder, prisetiketter och räknare",
+prep:"Förbered varor med olika mängd och pris",
+summary:"Paren beräknar jämförpris och granskar när den billigaste förpackningen faktiskt är bäst.",
+goal:"använda kvoter och proportionalitet för att jämföra priser",
+content:"Proportionalitet och beräkningar i vardagliga situationer.",
+concepts:"jämförpris, styckpris, kilopris, literpris, kvot, enhet och proportionalitet",
+assessment:"Se om eleven väljer samma jämförelseenhet och tolkar resultatet i situationen.",
+steps:[
+"Anteckna pris och mängd.",
+"Välj en gemensam enhet.",
+"Beräkna jämförpriset.",
+"Värdera pris, behov, hållbarhet och svinn."
+],
+talk:[
+"Är lägst jämförpris alltid bästa köp?",
+"Hur påverkar enheten jämförelsen?"
+],
+support:"Ge en formelmall med enheter.",
+challenge:"Jämför flerpack, rabatt och ordinarie jämförpris."
+},
+{
+id:"skalexpeditionen-79",
+icon:"🗺️",
+title:"Skalexpeditionen",
+place:"Inne och ute",
+form:"Grupp",
+time:"50 min",
+material:"Kartor, ritningar, linjal och måttband",
+prep:"Välj en karta eller planritning med tydlig skala",
+summary:"Grupperna går mellan verklighet, ritning och skala och kontrollerar resultat genom mätning.",
+goal:"använda skala som ett proportionellt samband",
+content:"Skala, proportionalitet och problemlösning.",
+concepts:"skala, verklig längd, bildlängd, skalfaktor, enhetsbyte och förstoring",
+assessment:"Kontrollera om eleven använder samma enhet före beräkningen och tolkar skalans riktning.",
+steps:[
+"Tolka skalangivelsen.",
+"Mät en sträcka på kartan eller ritningen.",
+"Beräkna verklig längd.",
+"Kontrollera en möjlig sträcka praktiskt."
+],
+talk:[
+"Vad betyder skala 1:500?",
+"Hur förändras area när längdskalan ändras?"
+],
+support:"Använd skala 1:100 och hela centimeter.",
+challenge:"Undersök längd-, area- och volymskala."
+},
+{
+id:"hastighetsgrafen-79",
+icon:"🏃",
+title:"Hastighetsgrafen",
+place:"Utomhus",
+form:"Grupp",
+time:"55 min",
+material:"Måttband, tidtagare, koner och grafpapper",
+prep:"Mät upp en säker bana med delsträckor",
+summary:"Eleverna samlar rörelsedata och kopplar sträcka, tid, hastighet och grafens lutning.",
+goal:"använda sambandet mellan hastighet, sträcka och tid",
+content:"Förändringstakt och samband mellan storheter.",
+concepts:"sträcka, tid, hastighet, medelhastighet, förändringstakt, lutning och enhet",
+assessment:"Observera om eleven tolkar lutning som förändring per tidsenhet.",
+steps:[
+"Mät och markera delsträckor.",
+"Registrera passerad sträcka vid flera tider.",
+"Rita en sträcka–tid-graf.",
+"Beräkna och jämför lutning och medelhastighet."
+],
+talk:[
+"Vad betyder en brant graf?",
+"Hur syns stillastående i grafen?"
+],
+support:"Ge markerade axlar och jämna tidsintervall.",
+challenge:"Skapa och tolka en styckvis linjär rörelse."
+},
+{
+id:"forandringsfaktorbutiken-79",
+icon:"🏷️",
+title:"Förändringsfaktorbutiken",
+place:"Klassrum",
+form:"Par",
+time:"45 min",
+material:"Prislappar, rabattkort och räknare",
+prep:"Förbered prisförändringar mellan 5 och 40 procent",
+summary:"Paren kopplar procentuell ökning och minskning till multiplikation med förändringsfaktor.",
+goal:"beräkna förändringar med förändringsfaktor",
+content:"Procentuell förändring och förändringsfaktor.",
+concepts:"ursprungligt värde, nytt värde, procentuell förändring, ökning, minskning och förändringsfaktor",
+assessment:"Kontrollera om eleven väljer 1+p vid ökning och 1−p vid minskning.",
+steps:[
+"Skriv procenten i decimalform.",
+"Bestäm förändringsfaktorn.",
+"Multiplicera ursprungsvärdet.",
+"Kontrollera om det nya värdet borde vara större eller mindre."
+],
+talk:[
+"Varför är 20 procents rabatt faktor 0,80?",
+"Hur hittar man procenten från faktorn?"
+],
+support:"Använd en tvåkolumnstabell för ökning och minskning.",
+challenge:"Bestäm ursprungsvärdet utifrån nytt värde och faktor."
+},
+{
+id:"forandringskedjan-79",
+icon:"⛓️",
+title:"Förändringskedjan",
+place:"Klassrum",
+form:"Grupp",
+time:"45 min",
+material:"Förändringskort, räknare och kedjemall",
+prep:"Förbered situationer med flera på varandra följande förändringar",
+summary:"Grupperna undersöker varför procentuella förändringar i följd inte kan adderas direkt.",
+goal:"beräkna och tolka upprepade procentuella förändringar",
+content:"Procentuell förändring och förändringsfaktor i flera steg.",
+concepts:"sammansatt förändring, förändringsfaktor, procentuell ökning, procentuell minskning, basvärde och återställning",
+assessment:"Se om eleven multiplicerar förändringsfaktorer och förstår att basvärdet ändras.",
+steps:[
+"Bestäm en faktor för varje förändring.",
+"Multiplicera faktorerna till en total faktor.",
+"Beräkna slutvärdet.",
+"Jämför med att felaktigt addera procentsatserna."
+],
+talk:[
+"Återställer en ökning med 20 procent en minskning med 20 procent?",
+"Vad är basen i varje steg?"
+],
+support:"Använd hundrarutor och två steg.",
+challenge:"Bestäm den förändring som krävs för att återgå till startvärdet."
+},
+{
+id:"representationstrappan-79",
+icon:"🔢",
+title:"Tabell – graf – formel – text",
+place:"Klassrum",
+form:"Grupp",
+time:"50 min",
+material:"Sambandskort, koordinatsystem och whiteboard",
+prep:"Förbered linjära och icke-linjära samband",
+summary:"Eleverna översätter samma samband mellan fyra representationer och granskar vad varje form visar.",
+goal:"växla mellan tabell, graf, formel och verbal beskrivning",
+content:"Funktioner och representationer av samband.",
+concepts:"tabell, koordinat, graf, formel, variabel, funktionsvärde, definitionsmängd och representation",
+assessment:"Observera om samma talpar, förändring och startvärde bevaras mellan representationerna.",
+steps:[
+"Läs en verbal beskrivning.",
+"Skapa en värdetabell.",
+"Markera punkter och rita grafen.",
+"Skriv en formel och tolka den tillbaka i text."
+],
+talk:[
+"Vilken representation visar förändringstakten tydligast?",
+"Vilken information syns direkt i formeln?"
+],
+support:"Använd färgkodning för x och y.",
+challenge:"Lägg till en rimlig definitionsmängd för situationen."
+},
+{
+id:"taxifunktionerna-79",
+icon:"🚕",
+title:"Taxifunktionerna",
+place:"Klassrum",
+form:"Par",
+time:"50 min",
+material:"Prislistor, grafpapper och digitalt grafverktyg",
+prep:"Skapa tre prisplaner med startavgift och kilometerpris",
+summary:"Paren modellerar prisplaner med räta linjer och avgör när varje plan är mest fördelaktig.",
+goal:"tolka och använda räta linjens ekvation",
+content:"Funktioner och räta linjens ekvation.",
+concepts:"y=kx+m, k-värde, m-värde, lutning, startvärde, skärningspunkt och kostnad",
+assessment:"Kontrollera om eleven kopplar k till pris per enhet och m till fast avgift.",
+steps:[
+"Identifiera fast och rörlig kostnad.",
+"Skriv en formel för varje plan.",
+"Gör tabell och graf.",
+"Bestäm skärningspunkter och rekommendera plan för olika sträckor."
+],
+talk:[
+"Vad betyder m-värdet i situationen?",
+"Vad berättar skärningspunkten?"
+],
+support:"Använd hela kronor och markerade koordinatsystem.",
+challenge:"Bestäm skärningspunkten algebraiskt och grafiskt."
+},
+{
+id:"linjara-detektiverna-79",
+icon:"🕵️",
+title:"Linjära sambandsdetektiverna",
+place:"Klassrum",
+form:"Par",
+time:"45 min",
+material:"Grafer, tabeller, formler och analyskort",
+prep:"Förbered proportionella, linjära och icke-linjära exempel",
+summary:"Paren sorterar samband och motiverar vilka som är proportionella, linjära eller icke-linjära.",
+goal:"klassificera och beskriva olika typer av samband",
+content:"Funktioner, linjära samband och proportionalitet.",
+concepts:"linjärt samband, proportionellt samband, icke-linjärt samband, konstant förändring, differens, kvot och startvärde",
+assessment:"Lyssna efter om eleven använder konstant differens för linjäritet och konstant kvot för proportionalitet.",
+steps:[
+"Matcha graf, tabell, formel och text.",
+"Beräkna differenser och kvoter.",
+"Klassificera sambandet.",
+"Motivera med minst två representationer."
+],
+talk:[
+"Kan ett linjärt samband vara icke-proportionellt?",
+"Hur avslöjar tabellen ett icke-linjärt samband?"
+],
+support:"Ge tydliga exempel med små tal.",
+challenge:"Skapa en fälla där grafen ser nästan linjär ut."
+},
+{
+id:"sambandsstationer-79",
+icon:"🔄",
+title:"Fem praktiska sambandsstationer",
+place:"Klassrum",
+form:"Grupp",
+time:"70 min",
+material:"Mätdata, kartor, prislistor, grafer och räknare",
+prep:"Förbered fem stationer och rotationsschema",
+summary:"Eleverna tränar proportionalitet, skala, förändringsfaktor, grafer och linjära funktioner.",
+goal:"använda och förklara centrala metoder för samband och förändring",
+content:"Proportionalitet, procentuell förändring, funktioner och förändringstakt.",
+concepts:"kvot, skala, förändringsfaktor, tabell, graf, funktion, lutning och startvärde",
+assessment:"Använd stationsprotokollet för att följa representation, metodval och tolkning.",
+steps:[
+"Station 1: proportionalitet och jämförpris.",
+"Station 2: skala.",
+"Station 3: hastighet och förändringstakt.",
+"Station 4: procentuell förändring.",
+"Station 5: linjär funktion och skärningspunkt."
+],
+talk:[
+"Vilken representation hjälpte mest?",
+"När behövde ni kontrollera enheten?"
+],
+support:"Ge begreppsbank och ett löst exempel per station.",
+challenge:"Skapa en sjätte station med facit och en vanlig missuppfattning."
+},
+{
+id:"kunskapsuppdrag-sambandsexperten-79",
+icon:"🧭",
+title:"Kunskapsuppdraget – Sambandsexperten 7–9",
+place:"Klassrum",
+form:"Enskilt",
+time:"75–90 min",
+material:"Tabeller, grafer, kartor, prisdata och räknare",
+prep:"Förbered sex fristående deluppdrag",
+summary:"Eleven visar självständigt hur samband modelleras, representeras, beräknas och värderas.",
+goal:"analysera och modellera samband och förändring",
+content:"Procentuell förändring, förändringsfaktor, funktioner, räta linjens ekvation och förändringstakt enligt Lgr22.",
+concepts:"proportionalitet, förhållande, skala, förändringsfaktor, funktion, graf, k-värde, m-värde och förändringstakt",
+assessment:"Dokumentera elevens representationer, metodval, enheter, beräkningar och tolkningar.",
+steps:[
+"Lös ett proportionalitets- eller jämförprisproblem.",
+"Använd en skala.",
+"Analysera sträcka, tid och hastighet.",
+"Beräkna en procentuell förändring med faktor.",
+"Översätt mellan tabell, graf och formel.",
+"Jämför två linjära funktioner och tolka deras skärningspunkt."
+],
+talk:[
+"Hur syns sambandet i varje representation?",
+"Vilka begränsningar har din modell?"
+],
+support:"Ge ett deluppdrag i taget, formelstöd och markerade axlar.",
+challenge:"Modellera en ny situation och värdera när den linjära modellen slutar vara rimlig."
+}
+];
+
+const done=JSON.parse(localStorage.getItem("79-samband-forandring-done")||"[]");
+
+function card(a){
+const isDone=done.includes(a.id);
+
+return `<article class="card ${isDone?"done-card":""}" data-id="${a.id}" data-place="${a.place}" data-form="${a.form}">
+<div class="top">
+<span class="icon" aria-hidden="true">${a.icon}</span>
+<div>
+<div class="tags">
+<span class="tag">7–9</span>
+<span class="tag">${a.place}</span>
+<span class="tag">${a.form}</span>
+<span class="tag">${a.time}</span>
+</div>
+<h2>${a.title}</h2>
+<p class="summary">${a.summary}</p>
+</div>
+</div>
+
+<div class="actions no-print">
+<button class="open" type="button" aria-expanded="false" onclick="toggleActivity(this)">Visa hela aktiviteten</button>
+<button class="print" type="button" onclick="printTeacher(this)">🖨 Lärarhandledning</button>
+<button class="student" type="button" onclick="printStudent(this)">📝 Elevblad</button>
+
+<div class="status" aria-label="Aktivitetsstatus">
+<button class="red ${isDone?"":"active"}" type="button" onclick="markActivity(this,false)">● Inte klar</button>
+<button class="green ${isDone?"active":""}" type="button" onclick="markActivity(this,true)">✓ Klar</button>
+</div>
+</div>
+
+<div class="details">
+<div class="facts">
+<div class="fact"><b>Tid</b>${a.time}</div>
+<div class="fact"><b>Plats</b>${a.place}</div>
+<div class="fact"><b>Arbetsform</b>${a.form}</div>
+<div class="fact"><b>Material</b>${a.material}</div>
+</div>
+
+<section class="lgrbox">
+<h3>Koppling till Lgr22</h3>
+<p><b>Lärandemål:</b> Eleven ska kunna ${a.goal}.</p>
+<p><b>Centralt innehåll:</b> ${a.content}</p>
+<p><b>Förmågor:</b> Begrepp, metoder, problemlösning, resonemang och kommunikation.</p>
+</section>
+
+<section>
+<h3>Förberedelser</h3>
+<p>${a.prep}.</p>
+</section>
+
+<section>
+<h3>Gör så här – steg för steg</h3>
+<ol class="steps">
+${a.steps.map((step,index)=>`<li><i>${index+1}</i><span>${step}</span></li>`).join("")}
+</ol>
+</section>
+
+<section class="talk">
+<h3>Matematiska samtalsfrågor</h3>
+<ul>${a.talk.map(question=>`<li>${question}</li>`).join("")}</ul>
+</section>
+
+<div class="twocol">
+<div>
+<h3>Språk och begrepp</h3>
+<p>${a.concepts}.</p>
+<p><b>Meningsstarter:</b> Jag vet att … eftersom … / Min representation visar … / Svaret är rimligt eftersom …</p>
+</div>
+
+<div>
+<h3>Formativ bedömning</h3>
+<p>${a.assessment}</p>
+</div>
+
+<div>
+<h3>Stöd</h3>
+<p>${a.support}</p>
+</div>
+
+<div>
+<h3>Utmaning</h3>
+<p>${a.challenge}</p>
+</div>
+</div>
+</div>
+
+<section class="student-sheet">
+<h2>${a.title}</h2>
+<p>Namn: __________________________ Datum: ____________</p>
+<p><b>Mitt mål:</b> Jag ska kunna ${a.goal}.</p>
+
+<h3>Mitt uppdrag</h3>
+<ol>${a.steps.map(step=>`<li>${step}</li>`).join("")}</ol>
+
+<h3>Min matematiska dokumentation</h3>
+<div class="box"></div>
+<div class="box"></div>
+
+<h3>Jag motiverar och kontrollerar</h3>
+<div class="box"></div>
+
+<h3>Exit ticket</h3>
+<p>Det här förstår jag nu:</p>
+<div class="line"></div>
+
+<p>Det här behöver jag undersöka vidare:</p>
+<div class="line"></div>
+</section>
+</article>`;
+}
+
+function render(){
+const query=document.getElementById("search").value.toLowerCase();
+const selectedPlace=document.getElementById("place").value;
+const selectedForm=document.getElementById("form").value;
+const selectedState=document.getElementById("state").value;
+
+const filtered=activities.filter(a=>{
+const searchable=`${a.title} ${a.summary} ${a.concepts}`.toLowerCase();
+
+return(!query||searchable.includes(query))&&
+(selectedPlace==="Alla platser"||a.place===selectedPlace)&&
+(selectedForm==="Alla arbetsformer"||a.form===selectedForm)&&
+(selectedState==="Alla statusar"||
+(selectedState==="Klar"&&done.includes(a.id))||
+(selectedState==="Inte klar"&&!done.includes(a.id)));
+});
+
+document.getElementById("list").innerHTML=filtered.length
+?filtered.map(card).join("")
+:`<div class="empty">Inga aktiviteter matchar dina val.</div>`;
+
+document.getElementById("results").textContent=
+`${filtered.length} av ${activities.length} aktiviteter visas`;
+}
+
+function toggleActivity(button){
+const cardElement=button.closest(".card");
+const isOpen=cardElement.classList.toggle("opened");
+button.textContent=isOpen?"Dölj aktiviteten":"Visa hela aktiviteten";
+button.setAttribute("aria-expanded",String(isOpen));
+}
+
+function markActivity(button,value){
+const id=button.closest(".card").dataset.id;
+const position=done.indexOf(id);
+
+if(value&&position<0)done.push(id);
+if(!value&&position>=0)done.splice(position,1);
+
+localStorage.setItem("79-samband-forandring-done",JSON.stringify(done));
+render();
+}
+
+function clearPrintState(){
+document.querySelectorAll(".printing").forEach(cardElement=>{
+cardElement.classList.remove("printing","student-mode");
+});
+}
+
+function printTeacher(button){
+clearPrintState();
+button.closest(".card").classList.add("printing");
+window.print();
+}
+
+function printStudent(button){
+clearPrintState();
+button.closest(".card").classList.add("printing","student-mode");
+window.print();
+}
+
+window.addEventListener("afterprint",clearPrintState);
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("place").addEventListener("change",render);
+document.getElementById("form").addEventListener("change",render);
+document.getElementById("state").addEventListener("change",render);
+render();
+</script>
+</body>
+</html>
