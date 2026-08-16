@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Praktiska matematikuppdrag för terminer, årstider och skollov i F–9.">
+<title>Termin och lov | Praktisk matematik F–9</title>
+<style>
+:root{--bg:#f3eee3;--paper:#fffdf8;--green:#4e705e;--dark:#29483b;--soft:#dfe8dd;--sand:#e8dece;--red:#a8665b;--gold:#d5aa50;--ink:#2e3933;--muted:#68746d;--line:#d9d2c6}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif;line-height:1.6}
+button,input,select{font:inherit}
+a{color:inherit}
+
+header{
+  min-height:72px;
+  padding:12px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+header a{
+  text-decoration:none;
+  color:var(--dark);
+  font-weight:bold;
+}
+
+.back{
+  font-size:13px;
+  color:var(--green);
+}
+
+.hero{
+  padding:60px 7% 72px;
+  background:linear-gradient(140deg,var(--paper),#e5eadf);
+}
+
+.hero small{
+  color:var(--green);
+  font-weight:bold;
+  letter-spacing:.15em;
+}
+
+.hero h1{
+  max-width:900px;
+  margin:13px 0 18px;
+  color:var(--dark);
+  font:clamp(42px,6vw,70px)/1.04 Georgia,serif;
+}
+
+.hero p{
+  max-width:820px;
+  color:var(--muted);
+  font-size:18px;
+}
+
+.overview{
+  max-width:1080px;
+  margin:-27px auto 35px;
+  padding:0 20px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  position:relative;
+}
+
+.overview div{
+  padding:17px;
+  background:var(--dark);
+  color:white;
+  border-radius:10px;
+  text-align:center;
+}
+
+.overview b{
+  display:block;
+  color:#dce8ca;
+  font-size:22px;
+}
+
+.overview span{font-size:11px}
+
+.notice{
+  max-width:1040px;
+  margin:30px auto;
+  padding:18px 22px;
+  background:#efe6d4;
+  border:1px solid #d8c8ae;
+  border-radius:10px;
+  font-size:13px;
+}
+
+.intro{
+  max-width:820px;
+  margin:45px auto 12px;
+  padding:0 20px;
+  text-align:center;
+}
+
+.intro h2{
+  margin:0;
+  color:var(--dark);
+  font:36px Georgia,serif;
+}
+
+.intro p{color:var(--muted)}
+
+.tools{
+  max-width:1080px;
+  margin:auto;
+  padding:20px;
+  display:grid;
+  grid-template-columns:1fr repeat(3,190px);
+  gap:10px;
+}
+
+.tools input,.tools select{
+  padding:12px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:8px;
+  color:var(--ink);
+}
+
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{
+  outline:3px solid var(--gold);
+  outline-offset:2px;
+}
+
+.results{
+  max-width:1080px;
+  margin:0 auto 12px;
+  padding:0 20px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.list{
+  max-width:1080px;
+  margin:auto;
+  padding:0 20px 75px;
+}
+
+.task{
+  margin:17px 0;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-left:6px solid var(--green);
+  border-radius:14px;
+  box-shadow:0 8px 22px #29483b0d;
+  overflow:hidden;
+}
+
+.task.done{
+  border-left-color:var(--dark);
+  box-shadow:0 0 0 2px #b8c9bc inset;
+}
+
+.head{
+  padding:24px;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:16px;
+}
+
+.icon{
+  width:56px;
+  height:56px;
+  display:grid;
+  place-items:center;
+  background:var(--soft);
+  border-radius:15px;
+  font-size:28px;
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+.tag{
+  padding:4px 9px;
+  background:#ecefe8;
+  border-radius:20px;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.task h2{
+  margin:8px 0 5px;
+  color:var(--dark);
+  font:27px Georgia,serif;
+}
+
+.summary{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.actions{
+  padding:0 24px 20px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px;
+}
+
+.actions button{
+  padding:9px 12px;
+  border:0;
+  border-radius:7px;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.open{
+  background:var(--dark);
+  color:white;
+}
+
+.print{
+  background:var(--soft);
+  color:var(--dark);
+}
+
+.status{
+  margin-left:auto;
+  display:flex;
+  gap:7px;
+}
+
+.status button{
+  background:white;
+  border:1px solid;
+}
+
+.red{
+  color:var(--red);
+  border-color:#cda7a0!important;
+}
+
+.green{
+  color:var(--green);
+  border-color:#9db8aa!important;
+}
+
+.red.active{
+  background:var(--red);
+  color:white;
+}
+
+.green.active{
+  background:var(--green);
+  color:white;
+}
+
+.details{
+  display:none;
+  padding:22px 24px 26px;
+  border-top:1px solid var(--line);
+}
+
+.task.opened .details{display:block}
+
+.facts{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.fact{
+  padding:11px;
+  background:#f2efe8;
+  border-radius:8px;
+  font-size:12px;
+}
+
+.fact b{
+  display:block;
+  color:var(--green);
+  font-size:9px;
+  text-transform:uppercase;
+}
+
+.goal{
+  margin:18px 0;
+  padding:16px;
+  background:#edf2e9;
+  border:1px solid #bdcdbd;
+  border-radius:9px;
+}
+
+.details h3{
+  margin:21px 0 8px;
+  color:var(--dark);
+  font-size:17px;
+}
+
+.steps{
+  padding:0;
+  list-style:none;
+}
+
+.steps li{
+  margin:9px 0;
+  display:flex;
+  gap:10px;
+  font-size:13px;
+}
+
+.steps i{
+  width:25px;
+  height:25px;
+  flex:0 0 25px;
+  display:grid;
+  place-items:center;
+  background:var(--dark);
+  color:white;
+  border-radius:50%;
+  font-style:normal;
+  font-weight:bold;
+}
+
+.levels{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.level{
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:#faf8f1;
+}
+
+.level:nth-child(2){background:#f0f3eb}
+.level:nth-child(3){background:#ece7dc}
+
+.level h3{margin:0 0 7px}
+
+.level ul{
+  padding-left:18px;
+  font-size:13px;
+}
+
+.twocol{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.twocol>div{
+  padding:15px;
+  background:#f2efe8;
+  border-radius:8px;
+}
+
+.empty{
+  padding:45px;
+  background:var(--paper);
+  text-align:center;
+  border-radius:12px;
+}
+
+footer{
+  padding:27px 6%;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  background:var(--dark);
+  color:#d9e3de;
+  font-size:12px;
+}
+
+@media(max-width:820px){
+  .overview{grid-template-columns:1fr 1fr}
+  .tools{grid-template-columns:1fr 1fr}
+  .tools input{grid-column:span 2}
+  .levels{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr 1fr}
+  .twocol{grid-template-columns:1fr}
+}
+
+@media(max-width:520px){
+  header{padding:12px 20px}
+  .hero{padding:50px 22px 65px}
+  .tools{grid-template-columns:1fr}
+  .tools input{grid-column:auto}
+  .overview{margin-top:18px}
+  .notice{margin:20px}
+  .head{grid-template-columns:1fr}
+  .status{
+    width:100%;
+    margin-left:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+  .actions>button{width:100%}
+  footer{flex-direction:column}
+}
+
+@page{
+  size:A4 portrait;
+  margin:12mm;
+}
+
+@media print{
+  body{
+    background:white;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  header,.hero,.overview,.notice,.intro,.tools,.results,footer,.no-print{
+    display:none!important;
+  }
+
+  .list{
+    padding:0;
+    max-width:none;
+  }
+
+  .task{display:none}
+
+  .task.printing{
+    display:block;
+    margin:0;
+    border:0;
+    border-left:5px solid var(--green);
+    box-shadow:none;
+  }
+
+  .task.printing .details{display:block}
+  .head{padding:4mm 5mm 2mm}
+  .details{padding:3mm 5mm}
+  .levels{grid-template-columns:repeat(3,1fr)}
+  .facts{grid-template-columns:repeat(4,1fr)}
+  .level,.goal,.twocol>div{break-inside:avoid}
+  h2,h3{break-after:avoid}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html">∑ Praktisk matematik F–9</a>
+  <a class="back" href="index.html">← Startsidan</a>
+</header>
+
+<section class="hero">
+  <small>TERMIN · ÅRSTID · LOV · F–9</small>
+  <h1>Matematik genom skolåret</h1>
+  <p>Tolv praktiska uppdrag som skapar variation och sammanhang vid skolstart, under höst och vinter, inför lov, under våren och vid skolavslutningen.</p>
+</section>
+
+<section class="overview">
+  <div><b>12</b><span>terminsuppdrag</span></div>
+  <div><b>F–9</b><span>tre nivåer</span></div>
+  <div><b>0 kr</b><span>inga inköp krävs</span></div>
+  <div><b>A4</b><span>utskriftsklart</span></div>
+</section>
+
+<aside class="notice">
+  <b>Observera:</b> Lovveckor och terminstider varierar mellan kommuner och skolor. Uppdragen innehåller därför inga fasta lovdatum utan kan placeras där de passar i den lokala planeringen.
+</aside>
+
+<section class="intro">
+  <h2>Välj period och uppdrag</h2>
+  <p>Uppdragen kan genomföras i en klass, på ett stadium eller gemensamt i hela skolan. Alla använder enkla material som redan brukar finnas.</p>
+</section>
+
+<section class="tools no-print">
+  <input id="search" type="search" placeholder="Sök uppdrag…" aria-label="Sök uppdrag">
+
+  <select id="period" aria-label="Välj period">
+    <option>Alla perioder</option>
+    <option>Skolstart</option>
+    <option>Hösttermin</option>
+    <option>Höstlov</option>
+    <option>Vinter</option>
+    <option>Vårtermin</option>
+    <option>Sportlov</option>
+    <option>Påsklov</option>
+    <option>Skolavslutning</option>
+  </select>
+
+  <select id="scope" aria-label="Välj omfattning">
+    <option>Alla omfattningar</option>
+    <option>Klass</option>
+    <option>Stadium</option>
+    <option>Hela skolan</option>
+  </select>
+
+  <select id="state" aria-label="Välj status">
+    <option>Alla statusar</option>
+    <option>Inte klar</option>
+    <option>Klar</option>
+  </select>
+</section>
+
+<div class="results no-print" id="results" aria-live="polite"></div>
+<main class="list" id="list"></main>
+
+<footer>
+  <strong>Termin och lov</strong>
+  <span>12 uppdrag · F–9 · Enkla material · A4</span>
+</footer>
+
+<script>
+const tasks=[
+{
+  id:"klassen-i-tal",
+  icon:"👋",
+  title:"Vår klass i tal",
+  period:"Skolstart",
+  scope:"Klass",
+  time:"2 lektioner",
+  place:"Klassrum",
+  material:"Post-it-lappar, papper, måttband och pennor",
+  summary:"Klassen lär känna varandra genom ofarliga gruppdata, uppskattningar, mätningar och matematiska presentationer.",
+  goal:"samla och presentera anonyma klassdata utan att värdera eller rangordna individer",
+  steps:[
+    "Välj trygga frågor som inte rör känsliga personuppgifter.",
+    "Gör en gemensam uppskattning före datainsamlingen.",
+    "Samla endast anonyma gruppsvar.",
+    "Bearbeta resultatet på rätt nivå.",
+    "Skapa klassens första matematikaffisch."
+  ],
+  f3:[
+    "Räkna och sortera favoritformer, färger eller skolaktiviteter.",
+    "Bygga konkreta staplar.",
+    "Använda fler, färre och lika många."
+  ],
+  m46:[
+    "Skapa frekvenstabell och diagram.",
+    "Beräkna typvärde och enkla andelar.",
+    "Skriva tre slutsatser som data stödjer."
+  ],
+  m79:[
+    "Diskutera urval, frågekonstruktion och felkällor.",
+    "Beräkna lägesmått och spridning där det passar.",
+    "Granska vilka slutsatser som inte kan dras."
+  ],
+  assessment:"Följ hur eleven skiljer observation, beräkning och slutsats.",
+  support:"Ge färdiga trygga frågor och en tabellmall.",
+  challenge:"Jämför två representationer och analysera vilken som kommunicerar bäst."
+},
+{
+  id:"skolstartens-matematikjakt",
+  icon:"🧭",
+  title:"Skolstartens matematikjakt",
+  period:"Skolstart",
+  scope:"Stadium",
+  time:"Halv dag",
+  place:"Inne och ute",
+  material:"Uppdragskort, kritor, linjal, måttband och protokoll",
+  summary:"Eleverna lär känna skolmiljön genom en matematisk stationsjakt med rörelse, samtal och samarbete.",
+  goal:"orientera sig, lösa praktiska problem och använda matematiska begrepp tillsammans",
+  steps:[
+    "Välj säkra platser i skolmiljön.",
+    "Skapa stationer med tre nivåer.",
+    "Fördela roller i grupperna.",
+    "Genomför jakten och dokumentera lösningar.",
+    "Samlas och jämför strategier."
+  ],
+  f3:[
+    "Hitta former, antal och enkla mönster.",
+    "Följa lägesord och riktningar.",
+    "Mäta med steg och jämföra."
+  ],
+  m46:[
+    "Använda skala, omkrets, area och uppskattning.",
+    "Lösa ledtrådar med de fyra räknesätten.",
+    "Dokumentera en kontroll."
+  ],
+  m79:[
+    "Modellera en sträcka eller kostnad.",
+    "Lösa flerledade logiska ledtrådar.",
+    "Värdera metod och felkälla."
+  ],
+  assessment:"Observera begrepp, samarbete, strategival och kontroll.",
+  support:"Använd bildkort, kortare bana och vuxenledd startstation.",
+  challenge:"Låt grupper skapa en ny station för en annan årskurs."
+},
+{
+  id:"hostens-matspaning",
+  icon:"🍂",
+  title:"Höstens matematikspaning",
+  period:"Hösttermin",
+  scope:"Klass",
+  time:"2–3 lektioner",
+  place:"Utomhus",
+  material:"Naturmaterial, rutpapper, måttband och sorteringsunderlag",
+  summary:"Höstmiljön används för sortering, mönster, mätning, geometri, statistik och modellering.",
+  goal:"undersöka och beskriva matematiska strukturer i närmiljön",
+  steps:[
+    "Bestäm ett tydligt undersökningsområde.",
+    "Samla eller fotografera endast sådant som får användas.",
+    "Sortera, mäta och dokumentera.",
+    "Bearbeta resultaten på rätt nivå.",
+    "Skapa en gemensam höstrepresentation."
+  ],
+  f3:[
+    "Sortera blad och naturföremål efter synliga egenskaper.",
+    "Skapa och fortsätta mönster.",
+    "Jämföra längd och antal."
+  ],
+  m46:[
+    "Skapa tabell och diagram över kategorier.",
+    "Mäta längd, omkrets eller area.",
+    "Undersöka symmetri och geometriska former."
+  ],
+  m79:[
+    "Planera urval och analysera variation.",
+    "Skapa en matematisk modell av ett naturmönster.",
+    "Värdera felkällor och generaliserbarhet."
+  ],
+  assessment:"Följ klassificering, mätning, representation och resonemang.",
+  support:"Ge sorteringskategorier och färdiga mätrutor.",
+  challenge:"Skapa en regel som beskriver ett observerat mönster och testa den."
+},
+{
+  id:"hostterminens-budget",
+  icon:"🧾",
+  title:"Höstterminens aktivitetsbudget",
+  period:"Hösttermin",
+  scope:"Stadium",
+  time:"2–4 lektioner",
+  place:"Klassrum",
+  material:"Påhittade prislistor, räknare, budgetmall och kalkylblad",
+  summary:"Eleverna planerar en kostnadsfri låtsasaktivitet under givna ekonomiska och praktiska villkor.",
+  goal:"använda beräkningar och ekonomiska resonemang för att fatta motiverade beslut",
+  steps:[
+    "Presentera aktivitetens budget och villkor.",
+    "Jämför möjliga val.",
+    "Skapa minst två planer.",
+    "Kontrollera att alla villkor uppfylls.",
+    "Rekommendera och motivera en plan."
+  ],
+  f3:[
+    "Välja mellan aktiviteter med enkla bildpriser.",
+    "Räkna totalsumma med låtsaspengar.",
+    "Jämföra billigare och dyrare."
+  ],
+  m46:[
+    "Planera budget och beräkna kostnad per person.",
+    "Använda rabatt, bråk och procent där det passar.",
+    "Redovisa alternativ i tabell."
+  ],
+  m79:[
+    "Bygga kostnadsmodell med fasta och rörliga kostnader.",
+    "Analysera bästa och sämsta scenario.",
+    "Optimera under flera begränsningar."
+  ],
+  assessment:"Bedöm beräkningar, villkorskontroll och beslutets motivering.",
+  support:"Använd hela kronor, få alternativ och en färdig tabell.",
+  challenge:"Lägg till osäker deltagarnivå och gör känslighetsanalys."
+},
+{
+  id:"hostlovskoden",
+  icon:"🔐",
+  title:"Höstlovskoden",
+  period:"Höstlov",
+  scope:"Klass",
+  time:"1–2 lektioner",
+  place:"Klassrum",
+  material:"Kuvert, sifferkort, symboler och lösningsprotokoll",
+  summary:"En kodkedja avslutar perioden med mönster, logik, tal och systematiskt prövande.",
+  goal:"lösa och förklara matematiska koder med en genomtänkt strategi",
+  steps:[
+    "Presentera berättelsen och slutkoden.",
+    "Lös ledtrådarna i valfri eller bestämd ordning.",
+    "Dokumentera prövningar och uteslutningar.",
+    "Kontrollera slutkoden.",
+    "Skapa en egen kort kod till en kamrat."
+  ],
+  f3:[
+    "Fortsätta bild- och talmönster.",
+    "Matcha antal och symbol.",
+    "Bygga lösningen konkret."
+  ],
+  m46:[
+    "Lösa flerstegskoder med räknesätt och mönster.",
+    "Använda tabell för möjliga fall.",
+    "Skapa en kod med unik lösning."
+  ],
+  m79:[
+    "Lösa algebraiska och kombinatoriska ledtrådar.",
+    "Analysera överflödiga och nödvändiga villkor.",
+    "Bevisa att lösningen är unik."
+  ],
+  assessment:"Följ systematik, användning av villkor och förklaring.",
+  support:"Ge en ledtråd i taget och använd färgkodning.",
+  challenge:"Skapa en självrättande kod där varje svar används i nästa steg."
+},
+{
+  id:"vintermonster",
+  icon:"❄️",
+  title:"Vinterns mönsterlaboratorium",
+  period:"Vinter",
+  scope:"Klass",
+  time:"2 lektioner",
+  place:"Klassrum",
+  material:"Vitt papper, rutpapper, sax, speglar och digitalt ritverktyg",
+  summary:"Eleverna undersöker symmetri, geometriska mönster, talföljder och generalisering utan krav på snö.",
+  goal:"skapa, beskriva och generalisera geometriska och numeriska mönster",
+  steps:[
+    "Studera exempel på symmetriska vintermönster.",
+    "Skapa ett eget mönster efter givna villkor.",
+    "Beskriv transformations- eller talregeln.",
+    "Byt och fortsätt en annan elevs mönster.",
+    "Jämför olika sätt att beskriva samma struktur."
+  ],
+  f3:[
+    "Vika och klippa enkla symmetriska former.",
+    "Fortsätta färg- och formmönster.",
+    "Använda orden lika, spegel och upprepning."
+  ],
+  m46:[
+    "Skapa rotations- och spegelsymmetri.",
+    "Koppla figur till talföljd.",
+    "Beskriva regeln med ord och tabell."
+  ],
+  m79:[
+    "Använda koordinater och transformationer.",
+    "Skriva generellt uttryck för växande mönster.",
+    "Bevisa egenskaper eller skapa motexempel."
+  ],
+  assessment:"Bedöm samband mellan mönster, representation och regel.",
+  support:"Ge halvfärdiga mönster och symmetrilinje.",
+  challenge:"Skapa ett mönster med två samtidiga regler."
+},
+{
+  id:"nytt-ar-i-siffror",
+  icon:"📅",
+  title:"Nytt år i siffror",
+  period:"Vårtermin",
+  scope:"Klass",
+  time:"2 lektioner",
+  place:"Klassrum",
+  material:"Kalender, talkort, räknare och tidslinje",
+  summary:"Årets tal och kalender används för taluppfattning, tid, mönster, statistik och matematiska frågor.",
+  goal:"undersöka tal och tidsstrukturer och formulera egna matematiska frågor",
+  steps:[
+    "Studera årets tal och kalenderstruktur.",
+    "Samla möjliga matematiska frågor.",
+    "Välj frågor för respektive nivå.",
+    "Lös och kontrollera.",
+    "Skapa en gemensam årstidslinje."
+  ],
+  f3:[
+    "Bygga årets tal med olika material.",
+    "Räkna dagar och månader i enkla situationer.",
+    "Hitta talmönster i kalendern."
+  ],
+  m46:[
+    "Undersöka delbarhet, faktorer och siffersumma.",
+    "Beräkna tidsintervall.",
+    "Skapa kalenderproblem med flera steg."
+  ],
+  m79:[
+    "Undersöka primtal, faktorisering och kongruensidéer.",
+    "Modellera tidsintervall och återkommande händelser.",
+    "Generalisera kalendermönster."
+  ],
+  assessment:"Följ hur eleven formulerar frågor och använder talens egenskaper.",
+  support:"Ge kalender med markerade veckor och konkreta talkort.",
+  challenge:"Bevisa ett återkommande kalendersamband."
+},
+{
+  id:"sportlovsutmaningen",
+  icon:"⛸️",
+  title:"Sportlovets rörelseutmaning",
+  period:"Sportlov",
+  scope:"Stadium",
+  time:"1–3 lektioner",
+  place:"Inne och ute",
+  material:"Koner, måttband, tidtagare och anonymt grupprotokoll",
+  summary:"Matematik och rörelse kombineras utan tävling mellan individer och utan krav på särskild sportutrustning.",
+  goal:"mäta, jämföra och analysera rörelse med lämpliga enheter",
+  steps:[
+    "Välj tillgängliga rörelser som alla kan delta i eller anpassa.",
+    "Gör uppskattningar före mätningen.",
+    "Mät endast gruppresultat utan namn.",
+    "Bearbeta data.",
+    "Reflektera över variation och mätfel."
+  ],
+  f3:[
+    "Räkna rörelser och jämföra antal.",
+    "Mäta korta sträckor med steg och meter.",
+    "Bygga konkret stapeldiagram."
+  ],
+  m46:[
+    "Mäta tid och sträcka.",
+    "Beräkna medelvärde och jämföra resultat.",
+    "Skapa tabell och diagram."
+  ],
+  m79:[
+    "Beräkna hastighet och förändringstakt.",
+    "Analysera spridning och mätosäkerhet.",
+    "Jämföra två matematiska modeller."
+  ],
+  assessment:"Bedöm enhetsval, databehandling och försiktig tolkning.",
+  support:"Erbjud sittande alternativ och tydliga mätroller.",
+  challenge:"Analysera hur metodvalet påverkar resultatet."
+},
+{
+  id:"pi-dagen",
+  icon:"🥧",
+  title:"Cirkel- och π-laboratoriet",
+  period:"Vårtermin",
+  scope:"Hela skolan",
+  time:"1–3 lektioner",
+  place:"Inne och ute",
+  material:"Runda föremål, snöre, linjal, måttband och tabell",
+  summary:"Runda föremål blir utgångspunkt för cirklar, mätning, förhållanden, approximation och historiska matematiska idéer.",
+  goal:"undersöka cirkelns egenskaper och sambandet mellan omkrets och diameter",
+  steps:[
+    "Samla runda föremål i olika storlek.",
+    "Gör uppskattningar.",
+    "Mät diameter och omkrets.",
+    "Jämför resultaten på rätt nivå.",
+    "Skapa en gemensam cirkelutställning."
+  ],
+  f3:[
+    "Sortera cirklar efter storlek.",
+    "Jämföra runt, större och mindre.",
+    "Mäta med snöre och vardagliga enheter."
+  ],
+  m46:[
+    "Mäta omkrets och diameter.",
+    "Beräkna kvoten och jämföra föremål.",
+    "Använda π vid beräkningar."
+  ],
+  m79:[
+    "Analysera mätvärden och approximationer av π.",
+    "Beräkna relativt fel.",
+    "Undersöka härledning eller historiska approximationsmetoder."
+  ],
+  assessment:"Följ mätmetod, samband, enheter och rimlighet.",
+  support:"Ge förmarkerad diameter och en tabellmall.",
+  challenge:"Jämför flera approximationer av π och deras fel."
+},
+{
+  id:"varteckensdata",
+  icon:"🌱",
+  title:"Vårteckensdata",
+  period:"Vårtermin",
+  scope:"Stadium",
+  time:"2–4 veckor",
+  place:"Utomhus",
+  material:"Observationsprotokoll, termometer där sådan finns, linjal och diagrammall",
+  summary:"Eleverna följer förändring över tid genom återkommande observationer och mätningar i närmiljön.",
+  goal:"samla tidsseriedata och beskriva förändring med lämpliga representationer",
+  steps:[
+    "Välj en säker plats och en mätbar observation.",
+    "Bestäm samma tid och metod för varje mättillfälle.",
+    "Samla data utan att skada naturen.",
+    "Presentera förändringen.",
+    "Diskutera felkällor och vad data visar."
+  ],
+  f3:[
+    "Räkna och jämföra synliga vårtecken.",
+    "Mäta enkel längdförändring.",
+    "Skapa bildtidslinje."
+  ],
+  m46:[
+    "Samla data i tabell och linjediagram.",
+    "Beräkna skillnad och medelvärde.",
+    "Beskriva förändring över tid."
+  ],
+  m79:[
+    "Analysera förändringstakt och trend.",
+    "Jämföra datakällor och mätosäkerhet.",
+    "Skapa och värdera en enkel prognosmodell."
+  ],
+  assessment:"Bedöm konsekvent datainsamling, representation och tolkning.",
+  support:"Använd en observation per gång och färdigt protokoll.",
+  challenge:"Jämför två tidsserier och analysera möjliga samband utan att påstå orsak."
+},
+{
+  id:"pasklovets-problemlabb",
+  icon:"🧩",
+  title:"Påsklovets problemlabb",
+  period:"Påsklov",
+  scope:"Klass",
+  time:"1–2 lektioner",
+  place:"Klassrum",
+  material:"Färgade pappersformer, problemkort, rutpapper och pennor",
+  summary:"Ett neutralt vår- och lovtema används för öppna problem om kombinationer, mönster, geometri och optimering.",
+  goal:"välja och värdera strategier i öppna problem med flera möjliga lösningar",
+  steps:[
+    "Presentera tre öppna problem.",
+    "Låt eleverna välja representation.",
+    "Dokumentera minst två försök.",
+    "Jämför lösningar.",
+    "Förbättra en lösning efter respons."
+  ],
+  f3:[
+    "Bygga figurer under enkla villkor.",
+    "Hitta flera sätt att dela eller sortera.",
+    "Rita och berätta lösningen."
+  ],
+  m46:[
+    "Lista kombinationer systematiskt.",
+    "Lösa area- och omkretsproblem.",
+    "Jämföra två strategier."
+  ],
+  m79:[
+    "Modellera och optimera under flera villkor.",
+    "Generalisera antalet möjliga lösningar.",
+    "Värdera fullständighet och effektivitet."
+  ],
+  assessment:"Följ tolkning, strategi, representation, kontroll och responsarbete.",
+  support:"Ge konkret material och ett problem i taget.",
+  challenge:"Skapa ett nytt problem med lösningsanalys."
+},
+{
+  id:"aret-i-matematik",
+  icon:"🎓",
+  title:"Året i matematik",
+  period:"Skolavslutning",
+  scope:"Klass",
+  time:"2–3 lektioner",
+  place:"Klassrum",
+  material:"Elevdokumentation, papper, färgpennor och reflektionsmall",
+  summary:"Eleverna synliggör årets utveckling genom exempel, strategier, begrepp och ett eget avslutande matematikuppdrag.",
+  goal:"reflektera över matematiskt lärande och kommunicera en egen lösning",
+  steps:[
+    "Välj ett arbete från början och ett från slutet av året.",
+    "Identifiera vad som utvecklats.",
+    "Skapa ett eget matematikuppdrag.",
+    "Lös och förbättra uppdraget efter respons.",
+    "Bygg klassens matematiska årsgalleri."
+  ],
+  f3:[
+    "Visa något eleven nu kan göra.",
+    "Rita eller bygga en favoritidé.",
+    "Berätta med meningsstarten Jag har lärt mig …"
+  ],
+  m46:[
+    "Jämföra två lösningsstrategier från året.",
+    "Använda centrala begrepp i en förklaring.",
+    "Skapa ett uppdrag med facit."
+  ],
+  m79:[
+    "Analysera hur en metod eller modell utvecklats.",
+    "Värdera en tidigare lösning och revidera den.",
+    "Skapa ett öppet problem med bedömningsanvisning."
+  ],
+  assessment:"Använd elevens valda belägg som underlag för framåtsyftande återkoppling, inte som enda betygsunderlag.",
+  support:"Ge valbara reflektionsfrågor och möjlighet till muntlig redovisning.",
+  challenge:"Skriv ett brev till nästa års elev med strategiska råd och matematiska exempel."
+}
+];
+
+const done=JSON.parse(localStorage.getItem("terminsuppdrag-done")||"[]");
+
+function bullets(items){
+  return "<ul>"+items.map(function(x){
+    return "<li>"+x+"</li>";
+  }).join("")+"</ul>";
+}
+
+function numbered(items){
+  return items.map(function(x,i){
+    return "<li><i>"+(i+1)+"</i><span>"+x+"</span></li>";
+  }).join("");
+}
+
+function taskCard(t){
+  var ready=done.includes(t.id);
+
+  var h='<article class="task '+(ready?"done":"")+'" data-id="'+t.id+'">';
+  h+='<div class="head"><span class="icon">'+t.icon+'</span><div>';
+  h+='<div class="tags"><span class="tag">'+t.period+'</span><span class="tag">'+t.scope+'</span><span class="tag">'+t.place+'</span></div>';
+  h+='<h2>'+t.title+'</h2><p class="summary">'+t.summary+'</p></div></div>';
+
+  h+='<div class="actions no-print">';
+  h+='<button class="open" onclick="toggleTask(this)" aria-expanded="false">Visa hela uppdraget</button>';
+  h+='<button class="print" onclick="printTask(this)">🖨 Skriv ut planeringen</button>';
+  h+='<div class="status">';
+  h+='<button class="red '+(ready?"":"active")+'" onclick="markTask(this,false)">● Inte klar</button>';
+  h+='<button class="green '+(ready?"active":"")+'" onclick="markTask(this,true)">✓ Klar</button>';
+  h+='</div></div>';
+
+  h+='<div class="details">';
+  h+='<div class="facts">';
+  h+='<div class="fact"><b>Period</b>'+t.period+'</div>';
+  h+='<div class="fact"><b>Tid</b>'+t.time+'</div>';
+  h+='<div class="fact"><b>Omfattning</b>'+t.scope+'</div>';
+  h+='<div class="fact"><b>Material</b>'+t.material+'</div>';
+  h+='</div>';
+
+  h+='<section class="goal"><h3>Mål</h3><p>Eleverna ska '+t.goal+'.</p></section>';
+  h+='<section><h3>Gör så här</h3><ol class="steps">'+numbered(t.steps)+'</ol></section>';
+
+  h+='<section class="levels">';
+  h+='<div class="level"><h3>F–3</h3>'+bullets(t.f3)+'</div>';
+  h+='<div class="level"><h3>Årskurs 4–6</h3>'+bullets(t.m46)+'</div>';
+  h+='<div class="level"><h3>Årskurs 7–9</h3>'+bullets(t.m79)+'</div>';
+  h+='</section>';
+
+  h+='<div class="twocol">';
+  h+='<div><h3>Formativ bedömning</h3><p>'+t.assessment+'</p></div>';
+  h+='<div><h3>Stöd</h3><p>'+t.support+'</p></div>';
+  h+='<div><h3>Utmaning</h3><p>'+t.challenge+'</p></div>';
+  h+='<div><h3>Exit ticket</h3><p>Det här upptäckte jag …<br>Min strategi fungerade eftersom …<br>Nästa gång vill jag pröva …</p></div>';
+  h+='</div></div></article>';
+
+  return h;
+}
+
+function render(){
+  var q=document.getElementById("search").value.toLowerCase();
+  var p=document.getElementById("period").value;
+  var o=document.getElementById("scope").value;
+  var s=document.getElementById("state").value;
+
+  var filtered=tasks.filter(function(t){
+    var text=(t.title+" "+t.summary+" "+t.period).toLowerCase();
+
+    return(!q||text.includes(q))
+      &&(p==="Alla perioder"||t.period===p)
+      &&(o==="Alla omfattningar"||t.scope===o)
+      &&(s==="Alla statusar"
+        ||(s==="Klar"&&done.includes(t.id))
+        ||(s==="Inte klar"&&!done.includes(t.id)));
+  });
+
+  document.getElementById("list").innerHTML=filtered.length
+    ?filtered.map(taskCard).join("")
+    :'<div class="empty">Inga uppdrag matchar dina val.</div>';
+
+  document.getElementById("results").textContent=
+    filtered.length+" av "+tasks.length+" uppdrag visas";
+}
+
+function toggleTask(button){
+  var card=button.closest(".task");
+  var open=card.classList.toggle("opened");
+
+  button.textContent=open
+    ?"Dölj uppdraget"
+    :"Visa hela uppdraget";
+
+  button.setAttribute("aria-expanded",String(open));
+}
+
+function markTask(button,value){
+  var id=button.closest(".task").dataset.id;
+  var p=done.indexOf(id);
+
+  if(value&&p<0)done.push(id);
+  if(!value&&p>=0)done.splice(p,1);
+
+  localStorage.setItem("terminsuppdrag-done",JSON.stringify(done));
+  render();
+}
+
+function clearPrint(){
+  document.querySelectorAll(".printing").forEach(function(x){
+    x.classList.remove("printing");
+  });
+}
+
+function printTask(button){
+  clearPrint();
+  button.closest(".task").classList.add("printing");
+  window.print();
+}
+
+window.addEventListener("afterprint",clearPrint);
+
+["search","period","scope","state"].forEach(function(id){
+  document.getElementById(id).addEventListener(
+    id==="search"?"input":"change",
+    render
+  );
+});
+
+render();
+</script>
+</body>
+</html>
