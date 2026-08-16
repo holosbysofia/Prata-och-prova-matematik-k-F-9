@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Tolv praktiska aktiviteter om decimaltal för årskurs 7–9, kopplade till Lgr22.">
+<title>Decimaltal 7–9 | Praktisk matematik</title>
+
+<style>
+:root{--bg:#f3eee3;--paper:#fffdf8;--green:#4e705e;--dark:#29483b;--soft:#dfe8dd;--sand:#e8dece;--red:#a8665b;--ink:#2e3933;--muted:#68746d;--line:#d9d2c6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif;line-height:1.6}
+button,select,input{font:inherit}
+header{min-height:72px;padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--paper);border-bottom:1px solid var(--line)}
+header a{text-decoration:none;color:var(--dark);font-weight:bold}
+.back{color:var(--green);font-size:13px}
+.hero{padding:58px 7% 70px;background:linear-gradient(140deg,var(--paper),#e4eadf)}
+.hero small{color:var(--green);font-weight:bold;letter-spacing:.14em}
+.hero h1{max-width:1000px;margin:14px 0;color:var(--dark);font:clamp(40px,6vw,68px)/1.05 Georgia,serif}
+.hero p{max-width:800px;color:var(--muted);font-size:17px}
+.lgr{max-width:1080px;margin:-22px auto 35px;padding:22px;background:var(--dark);color:white;border-radius:12px}
+.lgr b{color:#dce8ca}
+.lgr p{margin:5px 0;font-size:13px}
+.tools{max-width:1080px;margin:auto;padding:20px;display:grid;grid-template-columns:1fr repeat(3,180px);gap:10px}
+.tools input,.tools select{padding:12px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px}
+.tools input:focus,.tools select:focus,button:focus-visible,a:focus-visible{outline:3px solid #e0b868;outline-offset:2px}
+.results{max-width:1080px;margin:5px auto 16px;padding:0 20px;color:var(--muted);font-size:13px}
+.list{max-width:1080px;margin:auto;padding:0 20px 75px}
+.card{margin:17px 0;padding:24px;background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--green);border-radius:13px;box-shadow:0 7px 20px #29483b0c}
+.card.done-card{border-left-color:var(--dark);box-shadow:0 0 0 2px #b8c9bc inset}
+.top{display:flex;gap:16px}
+.icon{width:52px;height:52px;flex:0 0 52px;display:grid;place-items:center;background:var(--soft);border-radius:14px;font-size:26px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{padding:4px 9px;background:#ecefe8;border-radius:20px;font-size:10px;font-weight:bold}
+.card h2{margin:8px 0 5px;color:var(--dark);font:26px Georgia,serif}
+.summary{color:var(--muted);font-size:14px}
+.actions{margin-top:16px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.actions button{padding:9px 12px;border:0;border-radius:7px;cursor:pointer;font-size:12px;font-weight:bold}
+.open{background:var(--dark);color:white}
+.print{background:#e7e3da;color:var(--ink)}
+.student{background:var(--soft);color:var(--dark)}
+.status{margin-left:auto;display:flex;gap:7px}
+.status button{background:white;border:1px solid}
+.red{color:var(--red);border-color:#cda7a0!important}
+.green{color:var(--green);border-color:#9db8aa!important}
+.red.active{background:var(--red);color:white}
+.green.active{background:var(--green);color:white}
+.details{display:none;margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+.card.opened .details{display:block}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.fact{padding:11px;background:#f2efe8;border-radius:7px;font-size:12px}
+.fact b{display:block;color:var(--green);font-size:9px;text-transform:uppercase}
+.lgrbox{margin:18px 0;padding:16px;background:#edf2e9;border:1px solid #bdcdbd;border-radius:8px}
+.details h3{margin:20px 0 7px;color:var(--dark);font-size:16px}
+.steps{padding:0;list-style:none}
+.steps li{margin:9px 0;display:flex;gap:10px;font-size:13px}
+.steps i{width:25px;height:25px;flex:0 0 25px;display:grid;place-items:center;background:var(--dark);color:white;border-radius:50%;font-style:normal;font-weight:bold}
+.talk{padding:16px 20px;background:var(--soft);border-radius:8px}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.twocol>div{padding:15px;background:#f2efe8;border-radius:8px}
+.student-sheet{display:none;min-height:250mm;padding:12mm;border:2px solid var(--green)}
+.student-sheet h2{color:var(--dark);font-family:Georgia,serif}
+.box{min-height:70px;margin:10px 0;border:1px solid #9eaaa3}
+.line{height:28px;border-bottom:1px solid #777}
+.empty{padding:45px;background:var(--paper);border-radius:12px;text-align:center}
+footer{padding:25px 6%;display:flex;justify-content:space-between;gap:20px;background:var(--dark);color:#d9e3de;font-size:12px}
+
+@media(max-width:760px){
+  .tools{grid-template-columns:1fr 1fr}
+  .tools input{grid-column:span 2}
+  .facts{grid-template-columns:1fr 1fr}
+  .twocol{grid-template-columns:1fr}
+  .status{width:100%;margin-left:0}
+  .hero{padding:48px 22px 62px}
+}
+
+@media(max-width:480px){
+  .tools{grid-template-columns:1fr}
+  .tools input{grid-column:auto}
+  .actions>button{width:100%}
+  .status{display:grid;grid-template-columns:1fr 1fr}
+  .top{display:block}
+  .icon{margin-bottom:10px}
+  footer{flex-direction:column}
+}
+
+@page{size:A4 portrait;margin:13mm}
+
+@media print{
+  body{background:white;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  header,.hero,.lgr,.tools,.results,footer,.no-print{display:none!important}
+  .list{padding:0;max-width:none}
+  .card{display:none}
+  .card.printing{display:block;margin:0;padding:5mm;border:0;border-left:5px solid var(--green);box-shadow:none}
+  .card.printing .details{display:block}
+  .card.student-mode>.top,.card.student-mode>.actions,.card.student-mode>.details{display:none!important}
+  .card.student-mode .student-sheet{display:block}
+  .facts{grid-template-columns:repeat(4,1fr)}
+  .details section,.lgrbox,.twocol>div{break-inside:avoid}
+  h2,h3{break-after:avoid}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">∑ Praktisk matematik F–9</a>
+  <a class="back" href="7-9.html">← 7–9 områden</a>
+</header>
+
+<section class="hero">
+  <small>7–9 · DECIMALTAL · LGR22</small>
+  <h1>Decimaltal i praktiken</h1>
+  <p>Eleverna undersöker positionsvärde, negativa decimaltal, täthet mellan tal, beräkningsmetoder, periodiska decimaler, precision, avrundningsfel och rimlighet genom praktiska modeller och verklighetsnära problem.</p>
+</section>
+
+<section class="lgr">
+  <p><b>Syfte enligt Lgr22:</b> Utveckla förmågan att använda matematiska begrepp och metoder, lösa problem, värdera resultat samt föra och följa matematiska resonemang.</p>
+  <p><b>Centralt innehåll:</b> Rationella tal och deras egenskaper samt centrala metoder för beräkningar med tal i decimalform vid huvudräkning, överslagsräkning, skriftliga metoder och digital teknik. Metodernas användning, precision och rimlighetsbedömning.</p>
+</section>
+
+<section class="tools no-print" aria-label="Filtrera aktiviteter">
+  <input id="search" type="search" placeholder="Sök aktivitet…" aria-label="Sök aktivitet">
+
+  <select id="place" aria-label="Välj plats">
+    <option>Alla platser</option>
+    <option>Klassrum</option>
+    <option>Inne på skolan</option>
+    <option>Utomhus</option>
+    <option>Inne och ute</option>
+  </select>
+
+  <select id="form" aria-label="Välj arbetsform">
+    <option>Alla arbetsformer</option>
+    <option>Enskilt</option>
+    <option>Par</option>
+    <option>Grupp</option>
+    <option>Helklass</option>
+  </select>
+
+  <select id="state" aria-label="Välj status">
+    <option>Alla statusar</option>
+    <option>Inte klar</option>
+    <option>Klar</option>
+  </select>
+</section>
+
+<div class="results no-print" id="results" aria-live="polite"></div>
+
+<main class="list" id="list"></main>
+
+<footer>
+  <strong>Praktisk matematik 7–9</strong>
+  <span>12 aktiviteter · Enkla hjälpmedel · Lgr22 · A4-utskrift i färg</span>
+</footer>
+
+<script>
+const activities=[
+{id:"positionsmikroskopet",icon:"🔬",title:"Positionsmikroskopet",place:"Klassrum",form:"Par",time:"35 min",material:"Positionsmatta, sifferkort, decimaltecken och tiopotenskort",prep:"Märk positioner från tusental till miljondelar",summary:"Paren flyttar siffror mellan positioner och beskriver hur talets värde förändras med faktorerna 10, 100 och 1 000.",goal:"använda positionssystemet för att tolka och förändra mycket stora och små decimaltal",content:"Rationella tal, positionsvärde och tal i decimalform.",concepts:"positionsvärde, decimaltecken, tiondel, hundradel, tusendel, miljondel och tiopotens",assessment:"Observera om eleven skiljer siffrans namn från dess värde och använder multiplikativa samband.",steps:["Bygg ett tal med sifferkort på positionsmattan.","Läs talet och ange varje siffras värde.","Flytta en siffra två positioner och beskriv förändringen.","Multiplicera eller dividera hela talet med 10, 100 och 1 000.","Skapa två olika tal där samma siffra har olika värde."],talk:["Varför blir värdet hundra gånger mindre efter två steg åt höger?","Vad är skillnaden mellan siffran 5 och värdet 0,005?","Hur hjälper tiopotenser oss att beskriva positionerna?"],support:"Använd färgkodade positioner och börja med ental till tusendelar.",challenge:"Ta med negativa tal, miljondelar och skriv positionerna med tiopotenser."},
+
+{id:"levande-decimaltallinjen-79",icon:"↔️",title:"Den levande decimaltallinjen",place:"Utomhus",form:"Helklass",time:"35 min",material:"Kritor, rep och decimalkort",prep:"Rita en tallinje från −2 till 2 utan färdiga delstreck",summary:"Eleverna placerar positiva och negativa decimaltal med olika antal decimaler och motiverar avstånd.",goal:"jämföra och placera decimaltal på en tallinje med lämpliga referenspunkter",content:"Rationella tal och deras egenskaper.",concepts:"negativt decimaltal, storleksordning, avstånd, intervall, referenspunkt och absolutbelopp",assessment:"Lyssna efter om eleven jämför hela taldelen först och hanterar negativa tal korrekt.",steps:["Markera heltalen och noll på tallinjen.","Dela ut kort som −1,25, −0,8, 0,075, 0,7 och 1,05.","Eleverna placerar sig utan färdiga delstreck.","Granska ordningen och uppskatta avstånden.","Lägg till ett tal mitt emellan två valda kort."],talk:["Varför är −0,8 större än −1,25?","Vilka referenspunkter använde du?","Hur kan mittpunkten beräknas exakt?"],support:"Använd först tiondelar mellan −1 och 1 och markera varje tiondel.",challenge:"Använd tal med olika antal decimaler och mycket små intervall."},
+
+{id:"tal-mellan-talen",icon:"∞",title:"Alltid fler tal emellan",place:"Klassrum",form:"Par",time:"35 min",material:"Decimalkort, förstorade tallinjer och pennor",prep:"Förbered intervall som 0,4–0,5 och 1,203–1,204",summary:"Paren zoomar in på intervall och upptäcker att det alltid går att skapa fler decimaltal mellan två givna tal.",goal:"förstå tätheten hos rationella tal och konstruera tal i givna intervall",content:"Rationella tal och deras egenskaper.",concepts:"täthet, intervall, mittpunkt, ändlig decimal, rationellt tal och precision",assessment:"Kontrollera om eleven verifierar att de konstruerade talen verkligen ligger strikt mellan ändpunkterna.",steps:["Dra ett intervallkort.","Skriv fem olika decimaltal mellan ändpunkterna.","Placera talen på en förstorad tallinje.","Beräkna mittpunkten i intervallet.","Zooma in mellan två av de nya talen och upprepa."],talk:["Finns det ett närmaste decimaltal efter 0,4?","Hur kan mittpunkten alltid ge ett nytt tal?","Vad händer när intervallet blir mycket litet?"],support:"Använd intervall på en tiondel och färdiga positionsrutor.",challenge:"Skapa tal mellan två negativa decimaler eller inom ett intervall på en miljondel."},
+
+{id:"periodiska-decimallabbet",icon:"⅓",title:"Periodiska decimallabbet",place:"Klassrum",form:"Grupp",time:"40 min",material:"Bråkkort, miniräknare, divisionsprotokoll och färgpennor",prep:"Förbered bråk som ger både avslutande och periodiska decimaler",summary:"Grupperna undersöker mönster i decimalutveckling och skiljer exakta värden från avrundade visningar.",goal:"växla mellan bråk- och decimalform samt identifiera avslutande och periodiska decimaler",content:"Tal i bråk- och decimalform samt digital teknik.",concepts:"decimalutveckling, avslutande decimal, periodisk decimal, period, exakt värde och närmevärde",assessment:"Observera om eleven tolkar räknarens begränsade display som en visning och inte alltid som ett exakt värde.",steps:["Dra ett bråkkort och gör divisionen för hand några steg.","Fortsätt digitalt och dokumentera decimalutvecklingen.","Sortera bråken som avslutande eller periodiska.","Markera perioden i återkommande decimaler.","Jämför exakt bråkform med ett valt decimalnärmevärde."],talk:["Varför är 0,333… inte samma sak som 0,33?","Vilka nämnare verkar ge avslutande decimaler?","När är bråkform mer exakt och användbar?"],support:"Börja med nämnarna 2, 4, 5, 8 och 10.",challenge:"Formulera en regel utifrån nämnarens primtalsfaktorer i enklaste form."},
+
+{id:"decimalmetodlabbet",icon:"➗",title:"Decimalmetodlabbet",place:"Klassrum",form:"Par",time:"45 min",material:"Positionsmatta, beräkningskort, miniwhiteboard och miniräknare",prep:"Förbered uppgifter för alla fyra räknesätten med positiva och negativa decimaltal",summary:"Paren jämför huvudräkning, skriftliga metoder och digital teknik för beräkningar med decimaltal.",goal:"välja och använda effektiva metoder för de fyra räknesätten med decimaltal",content:"Centrala metoder för beräkningar med tal i decimalform.",concepts:"summa, differens, produkt, kvot, positionsvärde, metodval och kontroll",assessment:"Se om eleven gör ett rimligt överslag och kan förklara decimaltecknets placering.",steps:["Dra ett beräkningskort och gör ett överslag.","Välj huvudräkning eller skriftlig metod och lös uppgiften.","Visa hur positionsvärdet styr metoden.","Kontrollera med en annan metod eller digitalt verktyg.","Jämför två lösningar och värdera vilken som är tydligast."],talk:["Vilka tal kan omformas för enklare huvudräkning?","Hur avslöjar överslaget ett felplacerat decimaltecken?","När är digital teknik ett bra metodval?"],support:"Använd tal med högst två decimaler och en uppställningsmall.",challenge:"Kombinera negativa tal, flera operationer och periodiska kvoter."},
+
+{id:"avrundningskedjan",icon:"🎯",title:"Avrundningskedjan",place:"Inne på skolan",form:"Grupp",time:"40 min",material:"Mätvärden, miniräknare, kedjekort och protokoll",prep:"Skapa flerstegsberäkningar där mellanresultat kan avrundas",summary:"Grupperna jämför att avrunda i varje steg med att behålla full precision till slutet.",goal:"analysera hur tidig avrundning påverkar ett slutresultat",content:"Rimlighetsbedömning, närmevärden och metodernas användning i olika situationer.",concepts:"avrundning, mellanresultat, slutresultat, precision, avrundningsfel och felmarginal",assessment:"Bedöm om eleven kan identifiera när avrundning bör skjutas upp och motivera lämplig precision.",steps:["Läs en kedja med tre beräkningssteg.","Lös den en gång och avrunda efter varje steg.","Lös igen med full precision till slutet.","Jämför slutresultaten och beräkna skillnaden.","Formulera en regel för när avrundning bör göras."],talk:["Varför växer ibland ett litet avrundningsfel?","När spelar skillnaden praktisk roll?","Hur många extra decimaler bör behållas i mellanresultat?"],support:"Använd två steg och tydligt angiven avrundningsnivå.",challenge:"Beräkna relativt fel och jämför flera avrundningsstrategier."},
+
+{id:"matprecision",icon:"📏",title:"Mätprecision i verkligheten",place:"Utomhus",form:"Grupp",time:"45 min",material:"Måttband, linjal, våg, tidtagare och protokoll",prep:"Välj storheter som kan mätas med olika redskap och noggrannhet",summary:"Eleverna undersöker hur mätredskapets upplösning styr antal rimliga decimaler och slutsatser.",goal:"välja och kommunicera lämplig precision utifrån mätning och situation",content:"Rimlighetsbedömning vid uppskattningar och beräkningar inom andra ämnesområden.",concepts:"precision, noggrannhet, upplösning, mätosäkerhet, decimaler och rimlighet",assessment:"Observera om eleven undviker att redovisa fler decimaler än mätningen stödjer.",steps:["Uppskatta en vald storhet.","Mät med två redskap eller två upplösningar.","Dokumentera värdena med enhet.","Bestäm hur många decimaler som är rimliga att redovisa.","Förklara varför fler decimaler inte alltid betyder högre kvalitet."],talk:["Vad begränsar precisionen i vår mätning?","Kan två olika mätvärden båda vara rimliga?","Hur bör resultatet avrundas för olika mottagare?"],support:"Ge en tabell för uppskattning, mätvärde, redskap och vald precision.",challenge:"Beräkna absolut och relativ skillnad mellan mätningarna."},
+
+{id:"displaykontrollen",icon:"⌨️",title:"Vad döljer displayen?",place:"Klassrum",form:"Par",time:"35 min",material:"Miniräknare eller dator, inmatningskort och skärmbilder",prep:"Förbered beräkningar med långa och periodiska decimaler",summary:"Paren granskar avrundning, avkortning och begränsningar i digitala visningar.",goal:"tolka digitalt presenterade decimaler och kontrollera om värdet är exakt eller avrundat",content:"Beräkningar med digital teknik och rimlighetsbedömning.",concepts:"display, avrundning, avkortning, exakt värde, lagrat värde, inmatning och felkälla",assessment:"Kontrollera om eleven skiljer mellan vad verktyget lagrar och vad displayen visar.",steps:["Gör ett överslag av beräkningen.","Mata in uttrycket och dokumentera displayen.","Ändra visat antal decimaler om verktyget tillåter.","Använd det visade värdet och sedan det lagrade värdet i en ny beräkning.","Förklara skillnaden mellan resultaten."],talk:["Är alla siffror på displayen meningsfulla?","Vad är skillnaden mellan avkortning och avrundning?","Hur kan ett digitalt svar kontrolleras oberoende?"],support:"Använd korta divisionsuppgifter och färdiga skärmbilder.",challenge:"Jämför två digitala verktyg och analysera hur de hanterar precision och bråkform."},
+
+{id:"valutalabbet",icon:"💱",title:"Valutalabbet",place:"Klassrum",form:"Grupp",time:"50 min",material:"Fiktiva växelkurser, prislistor, budgetkort och miniräknare",prep:"Skapa en påhittad resa med stabila exempelkurser så att inga aktuella priser behövs",summary:"Grupperna omvandlar priser, hanterar decimaler och avgör när avrundning ska göras i en budget.",goal:"använda decimaltal i proportionella beräkningar och redovisa en rimlig ekonomisk precision",content:"Tal i decimalform och beräkningsmetoder i vardagliga situationer.",concepts:"växelkurs, omvandling, enhetspris, budget, avrundning, marginal och överslag",assessment:"Bedöm om eleven väljer rätt operation, håller ordning på enheter och avrundar vid lämpligt tillfälle.",steps:["Läs den fiktiva växelkursen och gör ett snabbt överslag.","Omvandla tre priser till den nya valutan.","Beräkna total kostnad utan tidig avrundning.","Avrunda enligt valutans minsta enhet.","Kontrollera om budgeten räcker och ange marginal."],talk:["Varför bör växelkursen inte avrundas för tidigt?","Hur visar enheten vilken operation som behövs?","Vilket överslag avslöjar ett orimligt svar?"],support:"Ge en omvandlingsmall och enkla kurser nära heltal.",challenge:"Jämför två fiktiva växlingsalternativ med avgift och olika kurser."},
+
+{id:"decimalfeldetektiverna",icon:"🕵️",title:"Decimalfeldetektiverna",place:"Klassrum",form:"Grupp",time:"40 min",material:"Felaktiga lösningar, markeringspennor och analysmall",prep:"Skapa realistiska fel om positionsvärde, decimaltecken, avrundning och digital inmatning",summary:"Eleverna hittar första felet, förklarar missuppfattningen och rättar lösningen med stöd av överslag.",goal:"granska metoder med decimaltal och använda resonemang för att rätta fel",content:"Metodernas användning och rimlighetsbedömning vid decimalberäkningar.",concepts:"positionsfel, metodfel, avrundningsfel, inmatningsfel, överslag och återkoppling",assessment:"Lyssna efter om eleven beskriver orsaken till felet och inte bara skriver rätt svar.",steps:["Gör ett överslag över var svaret bör ligga.","Markera första raden där lösningen blir fel.","Klassificera felet och förklara orsaken.","Rätta minsta möjliga del och slutför lösningen.","Skriv en fråga som hjälper den ursprungliga eleven att tänka vidare."],talk:["Hur avslöjar överslaget felet?","Vad skiljer ett positionsfel från ett räknefel?","Kan ett felaktigt delsteg råka ge rätt slutsvar?"],support:"Använd ett tydligt fel per lösning och en lista med felkategorier.",challenge:"Analysera lösningar med två oberoende fel eller orimlig precision."},
+
+{id:"decimalstationer-79",icon:"🔄",title:"Fem praktiska decimalstationer",place:"Klassrum",form:"Grupp",time:"65 min",material:"Positionsmatta, tallinje, bråkkort, mätredskap, miniräknare, felkort och protokoll",prep:"Förbered fem stationer med instruktion, stödkuvert och självkontroll",summary:"Eleverna tränar positionsvärde, täthet, beräkningar, precision och digital kontroll.",goal:"använda och förklara centrala representationer och metoder för decimaltal",content:"Rationella tal, beräkningsmetoder, digital teknik och rimlighetsbedömning.",concepts:"positionsvärde, negativt decimaltal, täthet, periodisk decimal, precision, metod och rimlighet",assessment:"Använd protokollet för att synliggöra elevens representationer, metodval, precision och kontrollstrategier.",steps:["Station 1: bygg och förändra tal på positionsmattan.","Station 2: placera negativa tal och skapa tal i små intervall.","Station 3: växla mellan bråkform och decimalform.","Station 4: välj metod för de fyra räknesätten.","Station 5: analysera mätprecision, digital display och ett metodfel."],talk:["Vilken representation gjorde talets storlek tydligast?","När blev avrundning en viktig del av metoden?","Vilken kontroll var oberoende av ursprungsmetoden?"],support:"Ge ett löst exempel per station och låt eleverna börja med tre stationer.",challenge:"Skapa ett nytt stationskort med facit, rimlighetskontroll och vanlig fallgrop."},
+
+{id:"kunskapsuppdrag-decimalexperten-79",icon:"🧭",title:"Kunskapsuppdraget – Decimalexperten 7–9",place:"Inne och ute",form:"Enskilt",time:"65–85 min",material:"Positionsmatta, tallinje, beräkningskort, mätredskap, miniräknare, felanalys och protokoll",prep:"Placera sex uppdrag längs en trygg slinga och förbered stödkuvert",summary:"Eleven visar självständigt förståelse för decimaltals storlek, beräkningar, representationer, precision och rimlighet.",goal:"representera, jämföra och beräkna med decimaltal samt motivera precision och rimlighet",content:"Rationella tal och centrala metoder för beräkningar med tal i decimalform enligt Lgr22.",concepts:"positionsvärde, rationellt tal, periodisk decimal, metod, precision, avrundning och rimlighet",assessment:"Dokumentera elevens begrepp, säkerhet i beräkning, metodval, digitala kontroll och kommunikation.",steps:["Bygg ett decimaltal och förklara varje siffras värde.","Placera och jämför positiva och negativa decimaltal.","Skapa tre tal i ett givet litet intervall.","Växla mellan bråk- och decimalform och bedöm exakthet.","Genomför en flerstegsberäkning och analysera avrundning.","Granska ett metodfel och motivera ett rimligt slutsvar."],talk:["Hur visar du talets storlek med en annan representation?","När bör full precision behållas?","Hur kan svaret kontrolleras utan att upprepa samma metod?"],support:"Ge ett uppdrag i taget, positionsmatta, begreppslista och möjlighet till muntlig förklaring.",challenge:"Använd mycket små tal, periodiska decimaler och beräkna relativt avrundningsfel."}
+];
+
+const done=JSON.parse(
+  localStorage.getItem("79-decimaltal-done")||"[]"
+);
+
+function card(a){
+  const isDone=done.includes(a.id);
+
+  return `
+  <article
+    class="card ${isDone?"done-card":""}"
+    data-id="${a.id}"
+    data-place="${a.place}"
+    data-form="${a.form}"
+  >
+    <div class="top">
+      <span class="icon" aria-hidden="true">${a.icon}</span>
+
+      <div>
+        <div class="tags">
+          <span class="tag">7–9</span>
+          <span class="tag">${a.place}</span>
+          <span class="tag">${a.form}</span>
+          <span class="tag">${a.time}</span>
+        </div>
+
+        <h2>${a.title}</h2>
+        <p class="summary">${a.summary}</p>
+      </div>
+    </div>
+
+    <div class="actions no-print">
+      <button
+        class="open"
+        type="button"
+        aria-expanded="false"
+        onclick="toggleActivity(this)"
+      >
+        Visa hela aktiviteten
+      </button>
+
+      <button
+        class="print"
+        type="button"
+        onclick="printTeacher(this)"
+      >
+        🖨 Lärarhandledning
+      </button>
+
+      <button
+        class="student"
+        type="button"
+        onclick="printStudent(this)"
+      >
+        📝 Elevblad
+      </button>
+
+      <div class="status" aria-label="Aktivitetsstatus">
+        <button
+          class="red ${isDone?"":"active"}"
+          type="button"
+          onclick="markActivity(this,false)"
+        >
+          ● Inte klar
+        </button>
+
+        <button
+          class="green ${isDone?"active":""}"
+          type="button"
+          onclick="markActivity(this,true)"
+        >
+          ✓ Klar
+        </button>
+      </div>
+    </div>
+
+    <div class="details">
+      <div class="facts">
+        <div class="fact">
+          <b>Tid</b>
+          ${a.time}
+        </div>
+
+        <div class="fact">
+          <b>Plats</b>
+          ${a.place}
+        </div>
+
+        <div class="fact">
+          <b>Arbetsform</b>
+          ${a.form}
+        </div>
+
+        <div class="fact">
+          <b>Material</b>
+          ${a.material}
+        </div>
+      </div>
+
+      <section class="lgrbox">
+        <h3>Koppling till Lgr22</h3>
+        <p><b>Lärandemål:</b> Eleven ska kunna ${a.goal}.</p>
+        <p><b>Centralt innehåll:</b> ${a.content}</p>
+        <p><b>Förmågor:</b> Begrepp, metoder, problemlösning, resonemang och kommunikation.</p>
+      </section>
+
+      <section>
+        <h3>Förberedelser</h3>
+        <p>${a.prep}.</p>
+      </section>
+
+      <section>
+        <h3>Gör så här – steg för steg</h3>
+
+        <ol class="steps">
+          ${a.steps.map((step,index)=>`
+            <li>
+              <i>${index+1}</i>
+              <span>${step}</span>
+            </li>
+          `).join("")}
+        </ol>
+      </section>
+
+      <section class="talk">
+        <h3>Matematiska samtalsfrågor</h3>
+
+        <ul>
+          ${a.talk.map(question=>`
+            <li>${question}</li>
+          `).join("")}
+        </ul>
+      </section>
+
+      <div class="twocol">
+        <div>
+          <h3>Språk och begrepp</h3>
+          <p>${a.concepts}.</p>
+          <p><b>Meningsstarter:</b> Jag vet att … eftersom … / Min representation visar … / Svaret är rimligt eftersom …</p>
+        </div>
+
+        <div>
+          <h3>Formativ bedömning</h3>
+          <p>${a.assessment}</p>
+        </div>
+
+        <div>
+          <h3>Stöd</h3>
+          <p>${a.support}</p>
+        </div>
+
+        <div>
+          <h3>Utmaning</h3>
+          <p>${a.challenge}</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="student-sheet">
+      <h2>${a.title}</h2>
+
+      <p>
+        Namn: __________________________
+        Datum: ____________
+      </p>
+
+      <p>
+        <b>Mitt mål:</b>
+        Jag ska kunna ${a.goal}.
+      </p>
+
+      <h3>Mitt uppdrag</h3>
+
+      <ol>
+        ${a.steps.map(step=>`
+          <li>${step}</li>
+        `).join("")}
+      </ol>
+
+      <h3>Min matematiska dokumentation</h3>
+      <div class="box"></div>
+      <div class="box"></div>
+
+      <h3>Jag motiverar och kontrollerar</h3>
+      <div class="box"></div>
+
+      <h3>Exit ticket</h3>
+
+      <p>Det här förstår jag nu:</p>
+      <div class="line"></div>
+
+      <p>Det här behöver jag undersöka vidare:</p>
+      <div class="line"></div>
+    </section>
+  </article>
+  `;
+}
+
+function render(){
+  const query=
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase();
+
+  const selectedPlace=
+    document
+      .getElementById("place")
+      .value;
+
+  const selectedForm=
+    document
+      .getElementById("form")
+      .value;
+
+  const selectedState=
+    document
+      .getElementById("state")
+      .value;
+
+  const filtered=activities.filter(a=>{
+    const searchable=
+      `${a.title} ${a.summary} ${a.concepts}`
+        .toLowerCase();
+
+    return(
+      (!query||searchable.includes(query))
+      &&
+      (
+        selectedPlace==="Alla platser"
+        ||
+        a.place===selectedPlace
+      )
+      &&
+      (
+        selectedForm==="Alla arbetsformer"
+        ||
+        a.form===selectedForm
+      )
+      &&
+      (
+        selectedState==="Alla statusar"
+        ||
+        (
+          selectedState==="Klar"
+          &&
+          done.includes(a.id)
+        )
+        ||
+        (
+          selectedState==="Inte klar"
+          &&
+          !done.includes(a.id)
+        )
+      )
+    );
+  });
+
+  document.getElementById("list").innerHTML=
+    filtered.length
+      ?filtered.map(card).join("")
+      :`<div class="empty">Inga aktiviteter matchar dina val.</div>`;
+
+  document.getElementById("results").textContent=
+    `${filtered.length} av ${activities.length} aktiviteter visas`;
+}
+
+function toggleActivity(button){
+  const cardElement=
+    button.closest(".card");
+
+  const isOpen=
+    cardElement.classList.toggle("opened");
+
+  button.textContent=
+    isOpen
+      ?"Dölj aktiviteten"
+      :"Visa hela aktiviteten";
+
+  button.setAttribute(
+    "aria-expanded",
+    String(isOpen)
+  );
+}
+
+function markActivity(button,value){
+  const id=
+    button.closest(".card").dataset.id;
+
+  const position=
+    done.indexOf(id);
+
+  if(value&&position<0){
+    done.push(id);
+  }
+
+  if(!value&&position>=0){
+    done.splice(position,1);
+  }
+
+  localStorage.setItem(
+    "79-decimaltal-done",
+    JSON.stringify(done)
+  );
+
+  render();
+}
+
+function clearPrintState(){
+  document
+    .querySelectorAll(".printing")
+    .forEach(cardElement=>
+      cardElement.classList.remove(
+        "printing",
+        "student-mode"
+      )
+    );
+}
+
+function printTeacher(button){
+  clearPrintState();
+
+  button
+    .closest(".card")
+    .classList.add("printing");
+
+  window.print();
+}
+
+function printStudent(button){
+  clearPrintState();
+
+  button
+    .closest(".card")
+    .classList.add(
+      "printing",
+      "student-mode"
+    );
+
+  window.print();
+}
+
+window.addEventListener(
+  "afterprint",
+  clearPrintState
+);
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    render
+  );
+
+document
+  .getElementById("place")
+  .addEventListener(
+    "change",
+    render
+  );
+
+document
+  .getElementById("form")
+  .addEventListener(
+    "change",
+    render
+  );
+
+document
+  .getElementById("state")
+  .addEventListener(
+    "change",
+    render
+  );
+
+render();
+</script>
+
+</body>
+</html>
