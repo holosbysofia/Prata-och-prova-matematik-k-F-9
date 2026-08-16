@@ -29,6 +29,7 @@ header{min-height:72px;padding:12px 5%;display:flex;align-items:center;justify-c
 <section class="tools no-print" aria-label="Filtrera aktiviteter"><input id="search" type="search" placeholder="Sök aktivitet…" aria-label="Sök aktivitet"><select id="place" aria-label="Välj plats"><option>Alla platser</option><option>Klassrum</option><option>Inne på skolan</option><option>Utomhus</option><option>Inne och ute</option></select><select id="form" aria-label="Välj arbetsform"><option>Alla arbetsformer</option><option>Enskilt</option><option>Par</option><option>Grupp</option><option>Helklass</option></select><select id="state" aria-label="Välj status"><option>Alla statusar</option><option>Inte klar</option><option>Klar</option></select></section>
 <div class="results no-print" id="results" aria-live="polite"></div><main class="list" id="list"></main>
 <footer><strong>Praktisk matematik 7–9</strong><span>12 aktiviteter · Enkla hjälpmedel · Lgr22 · A4-utskrift i färg</span></footer>
+
 <script>
 const activities=[
 {id:"levande-braktallinjen",icon:"↔️",title:"Den levande bråktallinjen",place:"Klassrum",form:"Helklass",time:"35 min",material:"Snöre, klädnypor och bråkkort",prep:"Lägg en tallinje från −3 till 3 och förbered positiva, negativa och oegentliga bråk",summary:"Eleverna placerar, jämför och ordnar bråk med olika nämnare på en gemensam tallinje.",goal:"jämföra och placera rationella tal i bråkform samt motivera placeringen",content:"Rationella tal, deras egenskaper och användning i matematiska situationer.",concepts:"rationellt tal, negativt bråk, oegentligt bråk, blandad form, storleksordning och referenspunkt",assessment:"Lyssna efter om eleven använder referenspunkter som 0, 1/2 och 1 samt jämför avstånd.",steps:["Markera heltalen −3 till 3 på snöret.","Dela ut bråkkort med olika nämnare.","Eleverna placerar korten utan färdiga delstreck.","Granska ordningen och flytta kort som behöver justeras.","Lägg till ett nytt bråk mellan två redan placerade bråk."],talk:["Hur vet du att −3/4 är mindre än −1/2?","Vilka referenspunkter hjälpte mest?","Kan det alltid finnas ett nytt bråk mellan två bråk?"],support:"Använd först positiva bråk mellan 0 och 1 och färgmarkera referenspunkter.",challenge:"Placera negativa oegentliga bråk och skapa tre olika bråk i ett mycket litet intervall."},
@@ -44,15 +45,84 @@ const activities=[
 {id:"brakstationer-79",icon:"🔄",title:"Fem praktiska bråkstationer",place:"Klassrum",form:"Grupp",time:"65 min",material:"Tallinje, bråkremsor, rutnät, mått, miniräknare, felkort och protokoll",prep:"Förbered fem stationer med instruktion, stödkuvert och självkontroll",summary:"Eleverna arbetar med storlek, ekvivalens, räknesätt, representationer och felanalys.",goal:"använda och förklara flera centrala metoder för tal i bråkform",content:"Rationella tal, beräkningsmetoder, digital teknik och rimlighetsbedömning.",concepts:"rationellt tal, ekvivalens, gemensam nämnare, produkt, kvot, exakt värde och rimlighet",assessment:"Använd protokollet för att synliggöra elevens modeller, metodval, begrepp och kontrollstrategier.",steps:["Station 1: placera och jämför positiva och negativa bråk.","Station 2: bygg och förenkla ekvivalenta bråk.","Station 3: modellera addition och subtraktion.","Station 4: tolka multiplikation och division praktiskt.","Station 5: jämför exakt bråkform, decimalform och en felaktig lösning."],talk:["Vilken modell förklarade en metod bäst?","När var överslag viktigast?","Vilken missuppfattning blev tydlig under stationerna?"],support:"Ge ett löst exempel per station och låt eleverna börja med tre stationer.",challenge:"Skapa ett nytt stationskort med facit, modell och vanlig fallgrop."},
 {id:"kunskapsuppdrag-brakexperten-79",icon:"🧭",title:"Kunskapsuppdraget – Bråkexperten 7–9",place:"Inne och ute",form:"Enskilt",time:"65–85 min",material:"Tallinje, bråkremsor, beräkningskort, miniräknare, felanalys och protokoll",prep:"Placera sex uppdrag längs en trygg slinga och förbered stödkuvert",summary:"Eleven visar självständigt förståelse för rationella tal, metoder, representationer och rimlighetskontroll.",goal:"jämföra, representera och beräkna med bråk samt motivera metod och rimlighet",content:"Rationella tal och centrala metoder för beräkningar med tal i bråkform enligt Lgr22.",concepts:"rationellt tal, ekvivalent bråk, gemensam nämnare, produkt, kvot, exakt värde, metod och rimlighet",assessment:"Dokumentera elevens begreppsanvändning, modeller, säkerhet i beräkning, metodval och självständiga kontroll.",steps:["Placera och jämför fyra bråk, varav minst ett negativt.","Förläng och förkorta bråk samt motivera ekvivalensen.","Beräkna en addition eller subtraktion med olika nämnare.","Modellera och beräkna en multiplikation och en division.","Välj exakt bråkform eller decimalform i en situation och motivera.","Hitta ett metodfel och lös ett avslutande flerstegsproblem."],talk:["Vilken representation visar din förståelse tydligast?","Hur vet du att svarets storlek är rimlig?","Hur kan metoden kontrolleras på ett annat sätt?"],support:"Ge ett uppdrag i taget, begreppslista, modellmaterial och möjlighet till muntlig förklaring.",challenge:"Använd negativa bråk, sammansatta uttryck och jämför två effektiva lösningsmetoder."}
 ];
+
 const done=JSON.parse(localStorage.getItem("79-brak-done")||"[]");
-function card(a){const isDone=done.includes(a.id);return `<article class="card ${isDone?"done-card":""}" data-id="${a.id}" data-place="${a.place}" data-form="${a.form}"><div class="top"><span class="icon" aria-hidden="true">${a.icon}</span><div><div class="tags"><span class="tag">7–9</span><span class="tag">${a.place}</span><span class="tag">${a.form}</span><span class="tag">${a.time}</span></div><h2>${a.title}</h2><p class="summary">${a.summary}</p></div></div><div class="actions no-print"><button class="open" type="button" aria-expanded="false" onclick="toggleActivity(this)">Visa hela aktiviteten</button><button class="print" type="button" onclick="printTeacher(this)">🖨 Lärarhandledning</button><button class="student" type="button" onclick="printStudent(this)">📝 Elevblad</button><div class="status" aria-label="Aktivitetsstatus"><button class="red ${isDone?"":"active"}" type="button" onclick="markActivity(this,false)">● Inte klar</button><button class="green ${isDone?"active":""}" type="button" onclick="markActivity(this,true)">✓ Klar</button></div></div><div class="details"><div class="facts"><div class="fact"><b>Tid</b>${a.time}</div><div class="fact"><b>Plats</b>${a.place}</div><div class="fact"><b>Arbetsform</b>${a.form}</div><div class="fact"><b>Material</b>${a.material}</div></div><section class="lgrbox"><h3>Koppling till Lgr22</h3><p><b>Lärandemål:</b> Eleven ska kunna ${a.goal}.</p><p><b>Centralt innehåll:</b> ${a.content}</p><p><b>Förmågor:</b> Begrepp, metoder, problemlösning, resonemang och kommunikation.</p></section><section><h3>Förberedelser</h3><p>${a.prep}.</p></section><section><h3>Gör så här – steg för steg</h3><ol class="steps">${a.steps.map((step,index)=>`<li><i>${index+1}</i><span>${step}</span></li>`).join("")}</ol></section><section class="talk"><h3>Matematiska samtalsfrågor</h3><ul>${a.talk.map(question=>`<li>${question}</li>`).join("")}</ul></section><div class="twocol"><div><h3>Språk och begrepp</h3><p>${a.concepts}.</p><p><b>Meningsstarter:</b> Jag vet att … eftersom … / Min representation visar … / Svaret är rimligt eftersom …</p></div><div><h3>Formativ bedömning</h3><p>${a.assessment}</p></div><div><h3>Stöd</h3><p>${a.support}</p></div><div><h3>Utmaning</h3><p>${a.challenge}</p></div></div></div><section class="student-sheet"><h2>${a.title}</h2><p>Namn: __________________________ Datum: ____________</p><p><b>Mitt mål:</b> Jag ska kunna ${a.goal}.</p><h3>Mitt uppdrag</h3><ol>${a.steps.map(step=>`<li>${step}</li>`).join("")}</ol><h3>Min matematiska dokumentation</h3><div class="box"></div><div class="box"></div><h3>Jag motiverar och kontrollerar</h3><div class="box"></div><h3>Exit ticket</h3><p>Det här förstår jag nu:</p><div class="line"></div><p>Det här behöver jag undersöka vidare:</p><div class="line"></div></section></article>`}
-function render(){const query=document.getElementById("search").value.toLowerCase(),selectedPlace=document.getElementById("place").value,selectedForm=document.getElementById("form").value,selectedState=document.getElementById("state").value;const filtered=activities.filter(a=>{const searchable=`${a.title} ${a.summary} ${a.concepts}`.toLowerCase();return(!query||searchable.includes(query))&&(selectedPlace==="Alla platser"||a.place===selectedPlace)&&(selectedForm==="Alla arbetsformer"||a.form===selectedForm)&&(selectedState==="Alla statusar"||(selectedState==="Klar"&&done.includes(a.id))||(selectedState==="Inte klar"&&!done.includes(a.id)))});document.getElementById("list").innerHTML=filtered.length?filtered.map(card).join(""):`<div class="empty">Inga aktiviteter matchar dina val.</div>`;document.getElementById("results").textContent=`${filtered.length} av ${activities.length} aktiviteter visas`}
-function toggleActivity(button){const cardElement=button.closest(".card"),isOpen=cardElement.classList.toggle("opened");button.textContent=isOpen?"Dölj aktiviteten":"Visa hela aktiviteten";button.setAttribute("aria-expanded",String(isOpen))}
-function markActivity(button,value){const id=button.closest(".card").dataset.id,position=done.indexOf(id);if(value&&position<0)done.push(id);if(!value&&position>=0)done.splice(position,1);localStorage.setItem("79-brak-done",JSON.stringify(done));render()}
-function clearPrintState(){document.querySelectorAll(".printing").forEach(cardElement=>cardElement.classList.remove("printing","student-mode"))}
-function printTeacher(button){clearPrintState();button.closest(".card").classList.add("printing");window.print()}
-function printStudent(button){clearPrintState();button.closest(".card").classList.add("printing","student-mode");window.print()}
-window.addEventListener("afterprint",clearPrintState);document.getElementById("search").addEventListener("input",render);document.getElementById("place").addEventListener("change",render);document.getElementById("form").addEventListener("change",render);document.getElementById("state").addEventListener("change",render);render();
+
+function card(a){
+  const isDone=done.includes(a.id);
+  return `<article class="card ${isDone?"done-card":""}" data-id="${a.id}" data-place="${a.place}" data-form="${a.form}"><div class="top"><span class="icon" aria-hidden="true">${a.icon}</span><div><div class="tags"><span class="tag">7–9</span><span class="tag">${a.place}</span><span class="tag">${a.form}</span><span class="tag">${a.time}</span></div><h2>${a.title}</h2><p class="summary">${a.summary}</p></div></div><div class="actions no-print"><button class="open" type="button" aria-expanded="false" onclick="toggleActivity(this)">Visa hela aktiviteten</button><button class="print" type="button" onclick="printTeacher(this)">🖨 Lärarhandledning</button><button class="student" type="button" onclick="printStudent(this)">📝 Elevblad</button><div class="status" aria-label="Aktivitetsstatus"><button class="red ${isDone?"":"active"}" type="button" onclick="markActivity(this,false)">● Inte klar</button><button class="green ${isDone?"active":""}" type="button" onclick="markActivity(this,true)">✓ Klar</button></div></div><div class="details"><div class="facts"><div class="fact"><b>Tid</b>${a.time}</div><div class="fact"><b>Plats</b>${a.place}</div><div class="fact"><b>Arbetsform</b>${a.form}</div><div class="fact"><b>Material</b>${a.material}</div></div><section class="lgrbox"><h3>Koppling till Lgr22</h3><p><b>Lärandemål:</b> Eleven ska kunna ${a.goal}.</p><p><b>Centralt innehåll:</b> ${a.content}</p><p><b>Förmågor:</b> Begrepp, metoder, problemlösning, resonemang och kommunikation.</p></section><section><h3>Förberedelser</h3><p>${a.prep}.</p></section><section><h3>Gör så här – steg för steg</h3><ol class="steps">${a.steps.map((step,index)=>`<li><i>${index+1}</i><span>${step}</span></li>`).join("")}</ol></section><section class="talk"><h3>Matematiska samtalsfrågor</h3><ul>${a.talk.map(question=>`<li>${question}</li>`).join("")}</ul></section><div class="twocol"><div><h3>Språk och begrepp</h3><p>${a.concepts}.</p><p><b>Meningsstarter:</b> Jag vet att … eftersom … / Min representation visar … / Svaret är rimligt eftersom …</p></div><div><h3>Formativ bedömning</h3><p>${a.assessment}</p></div><div><h3>Stöd</h3><p>${a.support}</p></div><div><h3>Utmaning</h3><p>${a.challenge}</p></div></div></div><section class="student-sheet"><h2>${a.title}</h2><p>Namn: __________________________ Datum: ____________</p><p><b>Mitt mål:</b> Jag ska kunna ${a.goal}.</p><h3>Mitt uppdrag</h3><ol>${a.steps.map(step=>`<li>${step}</li>`).join("")}</ol><h3>Min matematiska dokumentation</h3><div class="box"></div><div class="box"></div><h3>Jag motiverar och kontrollerar</h3><div class="box"></div><h3>Exit ticket</h3><p>Det här förstår jag nu:</p><div class="line"></div><p>Det här behöver jag undersöka vidare:</p><div class="line"></div></section></article>`
+}
+
+function render(){
+  const query=document.getElementById("search").value.toLowerCase();
+  const selectedPlace=document.getElementById("place").value;
+  const selectedForm=document.getElementById("form").value;
+  const selectedState=document.getElementById("state").value;
+
+  const filtered=activities.filter(a=>{
+    const searchable=`${a.title} ${a.summary} ${a.concepts}`.toLowerCase();
+
+    return(!query||searchable.includes(query))
+      &&(selectedPlace==="Alla platser"||a.place===selectedPlace)
+      &&(selectedForm==="Alla arbetsformer"||a.form===selectedForm)
+      &&(selectedState==="Alla statusar"
+        ||(selectedState==="Klar"&&done.includes(a.id))
+        ||(selectedState==="Inte klar"&&!done.includes(a.id)));
+  });
+
+  document.getElementById("list").innerHTML=filtered.length
+    ?filtered.map(card).join("")
+    :`<div class="empty">Inga aktiviteter matchar dina val.</div>`;
+
+  document.getElementById("results").textContent=
+    `${filtered.length} av ${activities.length} aktiviteter visas`;
+}
+
+function toggleActivity(button){
+  const cardElement=button.closest(".card");
+  const isOpen=cardElement.classList.toggle("opened");
+  button.textContent=isOpen
+    ?"Dölj aktiviteten"
+    :"Visa hela aktiviteten";
+  button.setAttribute("aria-expanded",String(isOpen));
+}
+
+function markActivity(button,value){
+  const id=button.closest(".card").dataset.id;
+  const position=done.indexOf(id);
+
+  if(value&&position<0)done.push(id);
+  if(!value&&position>=0)done.splice(position,1);
+
+  localStorage.setItem("79-brak-done",JSON.stringify(done));
+  render();
+}
+
+function clearPrintState(){
+  document.querySelectorAll(".printing").forEach(cardElement=>
+    cardElement.classList.remove("printing","student-mode")
+  );
+}
+
+function printTeacher(button){
+  clearPrintState();
+  button.closest(".card").classList.add("printing");
+  window.print();
+}
+
+function printStudent(button){
+  clearPrintState();
+  button.closest(".card").classList.add("printing","student-mode");
+  window.print();
+}
+
+window.addEventListener("afterprint",clearPrintState);
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("place").addEventListener("change",render);
+document.getElementById("form").addEventListener("change",render);
+document.getElementById("state").addEventListener("change",render);
+render();
 </script>
+
 </body>
 </html>
