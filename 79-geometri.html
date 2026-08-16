@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Tolv praktiska aktiviteter om geometri för årskurs 7–9, kopplade till Lgr22.">
+<title>Geometri 7–9 | Praktisk matematik</title>
+
+<style>
+:root{--bg:#f3eee3;--paper:#fffdf8;--green:#4e705e;--dark:#29483b;--soft:#dfe8dd;--sand:#e8dece;--red:#a8665b;--ink:#2e3933;--muted:#68746d;--line:#d9d2c6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif;line-height:1.6}
+button,select,input{font:inherit}
+header{min-height:72px;padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--paper);border-bottom:1px solid var(--line)}
+header a{text-decoration:none;color:var(--dark);font-weight:bold}
+.back{color:var(--green);font-size:13px}
+.hero{padding:58px 7% 70px;background:linear-gradient(140deg,var(--paper),#e4eadf)}
+.hero small{color:var(--green);font-weight:bold;letter-spacing:.14em}
+.hero h1{max-width:1000px;margin:14px 0;color:var(--dark);font:clamp(40px,6vw,68px)/1.05 Georgia,serif}
+.hero p{max-width:800px;color:var(--muted);font-size:17px}
+.lgr{max-width:1080px;margin:-22px auto 35px;padding:22px;background:var(--dark);color:white;border-radius:12px}
+.lgr b{color:#dce8ca}
+.lgr p{margin:5px 0;font-size:13px}
+.tools{max-width:1080px;margin:auto;padding:20px;display:grid;grid-template-columns:1fr repeat(3,180px);gap:10px}
+.tools input,.tools select{padding:12px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px}
+.tools input:focus,.tools select:focus,button:focus-visible,a:focus-visible{outline:3px solid #e0b868;outline-offset:2px}
+.results{max-width:1080px;margin:5px auto 16px;padding:0 20px;color:var(--muted);font-size:13px}
+.list{max-width:1080px;margin:auto;padding:0 20px 75px}
+.card{margin:17px 0;padding:24px;background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--green);border-radius:13px;box-shadow:0 7px 20px #29483b0c}
+.card.done-card{border-left-color:var(--dark);box-shadow:0 0 0 2px #b8c9bc inset}
+.top{display:flex;gap:16px}
+.icon{width:52px;height:52px;flex:0 0 52px;display:grid;place-items:center;background:var(--soft);border-radius:14px;font-size:26px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{padding:4px 9px;background:#ecefe8;border-radius:20px;font-size:10px;font-weight:bold}
+.card h2{margin:8px 0 5px;color:var(--dark);font:26px Georgia,serif}
+.summary{color:var(--muted);font-size:14px}
+.actions{margin-top:16px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.actions button{padding:9px 12px;border:0;border-radius:7px;cursor:pointer;font-size:12px;font-weight:bold}
+.open{background:var(--dark);color:white}
+.print{background:#e7e3da;color:var(--ink)}
+.student{background:var(--soft);color:var(--dark)}
+.status{margin-left:auto;display:flex;gap:7px}
+.status button{background:white;border:1px solid}
+.red{color:var(--red);border-color:#cda7a0!important}
+.green{color:var(--green);border-color:#9db8aa!important}
+.red.active{background:var(--red);color:white}
+.green.active{background:var(--green);color:white}
+.details{display:none;margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+.card.opened .details{display:block}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.fact{padding:11px;background:#f2efe8;border-radius:7px;font-size:12px}
+.fact b{display:block;color:var(--green);font-size:9px;text-transform:uppercase}
+.lgrbox{margin:18px 0;padding:16px;background:#edf2e9;border:1px solid #bdcdbd;border-radius:8px}
+.details h3{margin:20px 0 7px;color:var(--dark);font-size:16px}
+.steps{padding:0;list-style:none}
+.steps li{margin:9px 0;display:flex;gap:10px;font-size:13px}
+.steps i{width:25px;height:25px;flex:0 0 25px;display:grid;place-items:center;background:var(--dark);color:white;border-radius:50%;font-style:normal;font-weight:bold}
+.talk{padding:16px 20px;background:var(--soft);border-radius:8px}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.twocol>div{padding:15px;background:#f2efe8;border-radius:8px}
+.student-sheet{display:none;min-height:250mm;padding:12mm;border:2px solid var(--green)}
+.student-sheet h2{color:var(--dark);font-family:Georgia,serif}
+.box{min-height:70px;margin:10px 0;border:1px solid #9eaaa3}
+.line{height:28px;border-bottom:1px solid #777}
+.empty{padding:45px;background:var(--paper);border-radius:12px;text-align:center}
+footer{padding:25px 6%;display:flex;justify-content:space-between;gap:20px;background:var(--dark);color:#d9e3de;font-size:12px}
+
+@media(max-width:760px){
+  .tools{grid-template-columns:1fr 1fr}
+  .tools input{grid-column:span 2}
+  .facts{grid-template-columns:1fr 1fr}
+  .twocol{grid-template-columns:1fr}
+  .status{width:100%;margin-left:0}
+  .hero{padding:48px 22px 62px}
+}
+
+@media(max-width:480px){
+  .tools{grid-template-columns:1fr}
+  .tools input{grid-column:auto}
+  .actions>button{width:100%}
+  .status{display:grid;grid-template-columns:1fr 1fr}
+  .top{display:block}
+  .icon{margin-bottom:10px}
+  footer{flex-direction:column}
+}
+
+@page{size:A4 portrait;margin:13mm}
+
+@media print{
+  body{background:white;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  header,.hero,.lgr,.tools,.results,footer,.no-print{display:none!important}
+  .list{padding:0;max-width:none}
+  .card{display:none}
+  .card.printing{display:block;margin:0;padding:5mm;border:0;border-left:5px solid var(--green);box-shadow:none}
+  .card.printing .details{display:block}
+  .card.student-mode>.top,.card.student-mode>.actions,.card.student-mode>.details{display:none!important}
+  .card.student-mode .student-sheet{display:block}
+  .facts{grid-template-columns:repeat(4,1fr)}
+  .details section,.lgrbox,.twocol>div{break-inside:avoid}
+  h2,h3{break-after:avoid}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">∑ Praktisk matematik F–9</a>
+  <a class="back" href="7-9.html">← 7–9 områden</a>
+</header>
+
+<section class="hero">
+  <small>7–9 · GEOMETRI · LGR22</small>
+  <h1>Geometri i praktiken</h1>
+  <p>Eleverna undersöker vinklar, geometriska objekt, likformighet, kongruens, skala, Pythagoras sats, cirklar, koordinater, transformationer och geometriska argument.</p>
+</section>
+
+<section class="lgr">
+  <p><b>Syfte enligt Lgr22:</b> Utveckla förmågan att använda matematiska begrepp och metoder, lösa problem, föra resonemang och kommunicera matematik.</p>
+  <p><b>Centralt innehåll:</b> Geometriska objekt och deras egenskaper. Avbildning och konstruktion, likformighet och symmetri. Metoder för beräkningar med geometriska satser och skala samt argumentation för geometriska samband.</p>
+</section>
+
+<section class="tools no-print" aria-label="Filtrera aktiviteter">
+  <input id="search" type="search" placeholder="Sök aktivitet…" aria-label="Sök aktivitet">
+
+  <select id="place" aria-label="Välj plats">
+    <option>Alla platser</option>
+    <option>Klassrum</option>
+    <option>Inne på skolan</option>
+    <option>Utomhus</option>
+    <option>Inne och ute</option>
+  </select>
+
+  <select id="form" aria-label="Välj arbetsform">
+    <option>Alla arbetsformer</option>
+    <option>Enskilt</option>
+    <option>Par</option>
+    <option>Grupp</option>
+    <option>Helklass</option>
+  </select>
+
+  <select id="state" aria-label="Välj status">
+    <option>Alla statusar</option>
+    <option>Inte klar</option>
+    <option>Klar</option>
+  </select>
+</section>
+
+<div class="results no-print" id="results" aria-live="polite"></div>
+<main class="list" id="list"></main>
+
+<footer>
+  <strong>Praktisk matematik 7–9</strong>
+  <span>12 aktiviteter · Enkla hjälpmedel · Lgr22 · A4-utskrift i färg</span>
+</footer>
+
+<script>
+const activities=[
+{id:"vinkelspanarna-79",icon:"📐",title:"Vinkelspanarna",place:"Inne och ute",form:"Par",time:"40 min",material:"Vinkelmätare, kamera eller skissblock och protokoll",prep:"Välj säkra platser med parallella linjer, hörn och korsande stråk",summary:"Paren hittar, mäter och klassificerar vinklar samt använder vinkelsamband för att bestämma okända vinklar.",goal:"använda vinkelbegrepp och vinkelsamband i praktiska situationer",content:"Geometriska objekt, vinklar och deras inbördes relationer.",concepts:"spetsig, rät, trubbig, vertikalvinkel, sidovinkel, alternatvinkel och parallell",assessment:"Observera om eleven skiljer mätning från slutsats och motiverar okända vinklar med rätt samband.",steps:["Hitta och dokumentera fyra olika vinklar.","Uppskatta innan varje vinkel mäts.","Identifiera ett par vertikal- eller sidovinklar.","Skapa en figur med parallella linjer och transversaler.","Bestäm två okända vinklar utan att mäta dem."],talk:["Vilka vinklar är alltid lika?","Hur vet vi att linjerna är parallella?","När räcker ett geometriskt argument bättre än en mätning?"],support:"Använd färgkodade vinklar och färdiga figurer.",challenge:"Kombinera triangelns vinkelsumma med parallella linjer i flera steg."},
+
+{id:"triangelbyggarna-79",icon:"🔺",title:"Triangelbyggarna",place:"Klassrum",form:"Grupp",time:"45 min",material:"Pinnar, snöre, gradskivor och villkorskort",prep:"Förbered villkor med sidor och vinklar",summary:"Grupperna bygger trianglar från olika villkor och undersöker när konstruktionen blir entydig.",goal:"använda trianglars egenskaper och resonera om kongruens och konstruktion",content:"Geometriska objekt, konstruktioner och kongruens.",concepts:"triangel, sidlängd, vinkel, kongruens, konstruktionsvillkor och triangelolikhet",assessment:"Lyssna efter om eleven kan förklara varför vissa uppgifter bestämmer exakt en triangel.",steps:["Dra ett kort med tre givna mått.","Försök bygga triangeln med pinnar och snöre.","Dokumentera om ingen, en eller flera trianglar är möjliga.","Jämför två gruppers konstruktioner.","Formulera villkor för kongruenta trianglar."],talk:["När går det inte att bygga en triangel?","Vilka mått räcker för en entydig konstruktion?","Vad skiljer kongruens från likformighet?"],support:"Börja med tre sidlängder och färdiga pinnar.",challenge:"Undersök SSA-fallet och konstruera motexempel."},
+
+{id:"pythagorasverkstaden-79",icon:"◺",title:"Pythagorasverkstaden",place:"Utomhus",form:"Grupp",time:"50 min",material:"Rep, måttband, kritor, rutpapper och räknare",prep:"Markera säkra mätsträckor och förbered 3–4–5-rep",summary:"Eleverna bygger räta vinklar, mäter sidor och använder Pythagoras sats för att bestämma avstånd.",goal:"använda och motivera Pythagoras sats i geometriska problem",content:"Geometriska satser och metoder för beräkning av längder.",concepts:"rätvinklig triangel, katet, hypotenusa, kvadrat, diagonal och sats",assessment:"Kontrollera om eleven identifierar hypotenusan och bedömer om det beräknade avståndet är rimligt.",steps:["Bygg en rätvinklig triangel med 3–4–5-repet.","Mät sidorna och jämför kvadraternas areor.","Beräkna en okänd sida.","Mät diagonalen i en rektangulär yta och kontrollera.","Avgör om en annan triangel är rätvinklig."],talk:["Varför gäller satsen bara rätvinkliga trianglar?","Hur syns sambandet som area?","Hur kan satsens omvändning användas?"],support:"Använd heltalstrippeln 3–4–5 och en stegmall.",challenge:"Använd decimalmått, tredimensionella diagonaler och felmarginal."},
+
+{id:"skugglikformigheten-79",icon:"🌤️",title:"Skugglikformigheten",place:"Utomhus",form:"Par",time:"45 min",material:"Måttband, meterstav, räknare och skissmall",prep:"Välj en tid och plats där tydliga skuggor kan mätas",summary:"Paren använder likformiga trianglar och skuggor för att beräkna höjder som inte kan mätas direkt.",goal:"använda likformighet och proportionalitet för indirekt mätning",content:"Likformighet och skala i geometriska situationer.",concepts:"likformighet, motsvarande sidor, skalfaktor, proportion, höjd och indirekt mätning",assessment:"Bedöm om eleven parar ihop motsvarande sidor och använder samma skalfaktor.",steps:["Mät meterstavens höjd och skugga.","Mät skuggan från ett högre objekt.","Rita de två trianglarna.","Ställ upp en proportion och beräkna höjden.","Kontrollera rimligheten och diskutera mätosäkerhet."],talk:["Varför är trianglarna likformiga?","Vilka sidor motsvarar varandra?","Hur påverkar solen och marken mätningen?"],support:"Använd färgmarkering av motsvarande sidor och färdig proportion.",challenge:"Jämför två mättillfällen och beräkna relativ mätavvikelse."},
+
+{id:"skalalabbet-79",icon:"🗺️",title:"Skalalabbet",place:"Inne på skolan",form:"Grupp",time:"50 min",material:"Kartor, planritningar, linjal, rutpapper och skalakort",prep:"Förbered fiktiva kartor i olika skalor",summary:"Grupperna växlar mellan ritning och verklighet, jämför skalor och skapar en egen planritning.",goal:"använda skala och skalfaktor för längd och geometriska avbildningar",content:"Skala vid förminskning och förstoring av geometriska objekt.",concepts:"skala, skalfaktor, ritningsmått, verkligt mått, enhetsbyte och proportionalitet",assessment:"Observera om eleven byter till samma enhet innan skalan används.",steps:["Tolka skalan på en karta.","Mät tre avstånd och beräkna verkliga längder.","Jämför samma område i en annan skala.","Rita en liten plan i bestämd skala.","Kontrollera ett mått genom omvänd beräkning."],talk:["Vad betyder skalan 1:200?","Hur förändras arean när längdskalan fördubblas?","Varför måste enheterna vara samma?"],support:"Använd skala 1:10 eller 1:100 och en enhetstabell.",challenge:"Undersök area- och volymskala samt skapa en ritning med två skalsteg."},
+
+{id:"cirkellabbet-79",icon:"⭕",title:"Cirkellabbet",place:"Klassrum",form:"Par",time:"45 min",material:"Runda föremål, snöre, linjal, räknare och tabell",prep:"Samla cirklar med varierande storlek",summary:"Paren mäter diameter och omkrets, uppskattar pi och använder cirkelns formler.",goal:"förklara sambandet mellan diameter, omkrets och pi samt använda cirkelformler",content:"Geometriska objekt, deras egenskaper och beräkningar.",concepts:"cirkel, radie, diameter, omkrets, area, pi, båge och sektor",assessment:"Kontrollera om eleven skiljer radie från diameter och väljer rätt formel.",steps:["Mät diameter och omkrets på fem föremål.","Beräkna kvoten omkrets dividerat med diameter.","Jämför gruppens uppskattningar av pi.","Beräkna en okänd omkrets eller radie.","Undersök en halvcirkel eller sektor."],talk:["Varför blir kvoten nästan samma?","Var uppstår mätfel?","Hur påverkas area och omkrets när radien fördubblas?"],support:"Använd stora föremål och en tydlig formelruta.",challenge:"Beräkna båglängd och sektorarea samt jämför relativa fel."},
+
+{id:"transformationsverkstaden-79",icon:"🔁",title:"Transformationsverkstaden",place:"Klassrum",form:"Par",time:"40 min",material:"Koordinatpapper, speglar, kalkerpapper och transformationskort",prep:"Förbered figurer och instruktioner för förflyttning, spegling och rotation",summary:"Paren genomför och beskriver geometriska transformationer i koordinatsystem.",goal:"använda och beskriva translation, spegling, rotation och skalförändring",content:"Avbildning och symmetri i koordinatsystem.",concepts:"translation, spegling, rotation, rotationscentrum, symmetrilinje, koordinat och avbildning",assessment:"Observera om eleven beskriver transformationen fullständigt och bevarar rätt egenskaper.",steps:["Rita en polygon i ett koordinatsystem.","Dra ett transformationskort.","Genomför avbildningen punkt för punkt.","Beskriv transformationen med ord och koordinater.","Låt ett annat par återskapa originalet."],talk:["Vilka egenskaper bevaras vid varje transformation?","Hur anges en rotation entydigt?","När förändras figurens storlek?"],support:"Använd enkla figurer och hela koordinater.",challenge:"Kombinera flera transformationer och bestäm en enda motsvarande avbildning."},
+
+{id:"konstruktionsuppdraget-79",icon:"✏️",title:"Konstruktionsuppdraget",place:"Klassrum",form:"Enskilt",time:"45 min",material:"Passare, linjal, gradskiva och konstruktionskort",prep:"Förbered uppdrag med mittpunktsnormal, bisektris och trianglar",summary:"Eleven genomför klassiska konstruktioner och förklarar varför de fungerar.",goal:"utföra geometriska konstruktioner och motivera deras egenskaper",content:"Geometriska konstruktioner med relevanta redskap.",concepts:"passare, mittpunktsnormal, bisektris, vinkelrät, parallell, avstånd och geometrisk ort",assessment:"Bedöm precisionen samt om eleven kan koppla konstruktionsstegen till geometriska egenskaper.",steps:["Konstruera mittpunktsnormalen till en sträcka.","Kontrollera lika avstånd till ändpunkterna.","Konstruera en vinkelbisektris.","Bygg en triangel från givna villkor.","Skriv en kort motivering till varje konstruktion."],talk:["Varför ligger punkterna på mittpunktsnormalen lika långt från ändpunkterna?","Vad garanterar passaren?","Hur skiljer sig konstruktion från ungefärlig ritning?"],support:"Ge stegkort med bilder och arbeta med en konstruktion i taget.",challenge:"Konstruera in- och omskriven cirkel och förklara skärningspunkterna."},
+
+{id:"geometriska-argument",icon:"💬",title:"Geometriska argument",place:"Klassrum",form:"Grupp",time:"45 min",material:"Påståendekort, figurer, post-it-lappar och bevismall",prep:"Förbered sanna och falska påståenden om vinklar, trianglar och fyrhörningar",summary:"Grupperna bygger korta geometriska bevis och motexempel i en argumentationskarusell.",goal:"föra och följa geometriska resonemang samt använda definitioner och satser",content:"Argumentation för geometriska samband.",concepts:"definition, sats, antagande, slutsats, bevis, motexempel och nödvändigt villkor",assessment:"Lyssna efter om eleven skiljer exempel från bevis och använder relevanta egenskaper i rätt ordning.",steps:["Dra ett geometriskt påstående.","Avgör om det verkar sant eller falskt.","Skriv givna fakta och önskad slutsats.","Bygg en argumentkedja eller ett motexempel.","Byt lösning och granska varje steg."],talk:["Varför räcker inte en korrekt bild som bevis?","Vilket påstående används i varje steg?","Hur kan ett motexempel motbevisa ett allmänt påstående?"],support:"Använd en bevismall med eftersom–därför.",challenge:"Bevisa ett samband på två sätt eller hitta minsta möjliga motexempel."},
+
+{id:"geometrifeldetektiverna-79",icon:"🕵️",title:"Geometrifeldetektiverna",place:"Klassrum",form:"Grupp",time:"40 min",material:"Felaktiga ritningar, beräkningar och resonemang samt analysmall",prep:"Skapa fel om vinklar, skala, Pythagoras, cirklar och likformighet",summary:"Eleverna hittar första felet, förklarar missuppfattningen och reparerar geometriska lösningar.",goal:"granska geometriska metoder och använda argument för att rätta fel",content:"Geometriska metoder, satser och rimlighetsbedömning.",concepts:"metodfel, figur, skala, motsvarande sida, hypotenusa, radie, sats och kontroll",assessment:"Kontrollera om eleven hänvisar till en geometrisk egenskap och inte bara byter siffra.",steps:["Gör en egen skiss och uppskattning.","Markera första steget där lösningen blir fel.","Klassificera felet och ange relevant egenskap.","Rätta minsta möjliga del.","Skriv en återkopplingsfråga som leder vidare."],talk:["Hur kan en figur vara missvisande?","Vilket mått eller samband kan kontrollera svaret?","Vilka senare fel är bara följder av det första?"],support:"Använd ett tydligt fel per lösning och en begreppslista.",challenge:"Analysera två oberoende fel eller ett argument med dolt antagande."},
+
+{id:"geometristationer-79",icon:"🔄",title:"Fem praktiska geometristationer",place:"Klassrum",form:"Grupp",time:"65 min",material:"Vinkelmätare, passare, snöre, kartor, koordinatpapper och protokoll",prep:"Förbered fem stationer med instruktion, stödkuvert och självkontroll",summary:"Eleverna tränar vinklar, konstruktion, Pythagoras, likformighet och transformationer.",goal:"använda och förklara flera centrala geometriska metoder",content:"Geometriska objekt, konstruktioner, satser, likformighet, skala och avbildning.",concepts:"vinkel, kongruens, likformighet, skala, hypotenusa, konstruktion och transformation",assessment:"Använd protokollet för att synliggöra elevens modeller, metodval, begrepp och kontroller.",steps:["Station 1: bestäm okända vinklar.","Station 2: konstruera med passare och linjal.","Station 3: använd Pythagoras sats.","Station 4: lös ett likformighets- och skalproblem.","Station 5: genomför en transformation och granska ett fel."],talk:["Vilken figur eller modell gav bäst stöd?","När behövdes en sats?","Hur kontrollerades precision och rimlighet?"],support:"Ge ett löst exempel per station och låt eleverna börja med tre stationer.",challenge:"Skapa ett nytt stationskort med facit, argument och vanlig fallgrop."},
+
+{id:"kunskapsuppdrag-geometriexperten-79",icon:"🧭",title:"Kunskapsuppdraget – Geometriexperten 7–9",place:"Inne och ute",form:"Enskilt",time:"65–85 min",material:"Mätredskap, passare, koordinatpapper, kartor, felanalys och protokoll",prep:"Placera sex uppdrag längs en trygg slinga och förbered stödkuvert",summary:"Eleven visar självständigt förståelse för geometriska objekt, metoder, satser, konstruktioner och argument.",goal:"använda geometriska begrepp och metoder samt motivera slutsatser",content:"Geometriska objekt, konstruktioner, likformighet, skala, satser och avbildning enligt Lgr22.",concepts:"vinkel, kongruens, likformighet, skala, Pythagoras sats, cirkel, transformation och bevis",assessment:"Dokumentera elevens begrepp, precision, metodval, resonemang och självständiga kontroll.",steps:["Bestäm okända vinklar med ett argument.","Konstruera en figur från givna villkor.","Använd Pythagoras sats i en praktisk mätning.","Lös ett problem med likformighet eller skala.","Genomför och beskriv en transformation.","Hitta ett geometriskt metodfel och ge ett motiverat svar."],talk:["Vilken geometrisk egenskap stödjer din slutsats?","Hur kan resultatet kontrolleras?","Vad är skillnaden mellan mätning och bevis?"],support:"Ge ett uppdrag i taget, begreppslista, modellmaterial och möjlighet till muntlig förklaring.",challenge:"Kombinera flera satser, area- eller volymskala och ett eget bevis."}
+];
+
+const done=JSON.parse(
+  localStorage.getItem("79-geometri-done")||"[]"
+);
+
+function card(a){
+  const isDone=done.includes(a.id);
+
+  return `
+  <article class="card ${isDone?"done-card":""}" data-id="${a.id}" data-place="${a.place}" data-form="${a.form}">
+    <div class="top">
+      <span class="icon" aria-hidden="true">${a.icon}</span>
+
+      <div>
+        <div class="tags">
+          <span class="tag">7–9</span>
+          <span class="tag">${a.place}</span>
+          <span class="tag">${a.form}</span>
+          <span class="tag">${a.time}</span>
+        </div>
+
+        <h2>${a.title}</h2>
+        <p class="summary">${a.summary}</p>
+      </div>
+    </div>
+
+    <div class="actions no-print">
+      <button class="open" type="button" aria-expanded="false" onclick="toggleActivity(this)">Visa hela aktiviteten</button>
+      <button class="print" type="button" onclick="printTeacher(this)">🖨 Lärarhandledning</button>
+      <button class="student" type="button" onclick="printStudent(this)">📝 Elevblad</button>
+
+      <div class="status" aria-label="Aktivitetsstatus">
+        <button class="red ${isDone?"":"active"}" type="button" onclick="markActivity(this,false)">● Inte klar</button>
+        <button class="green ${isDone?"active":""}" type="button" onclick="markActivity(this,true)">✓ Klar</button>
+      </div>
+    </div>
+
+    <div class="details">
+      <div class="facts">
+        <div class="fact"><b>Tid</b>${a.time}</div>
+        <div class="fact"><b>Plats</b>${a.place}</div>
+        <div class="fact"><b>Arbetsform</b>${a.form}</div>
+        <div class="fact"><b>Material</b>${a.material}</div>
+      </div>
+
+      <section class="lgrbox">
+        <h3>Koppling till Lgr22</h3>
+        <p><b>Lärandemål:</b> Eleven ska kunna ${a.goal}.</p>
+        <p><b>Centralt innehåll:</b> ${a.content}</p>
+        <p><b>Förmågor:</b> Begrepp, metoder, problemlösning, resonemang och kommunikation.</p>
+      </section>
+
+      <section>
+        <h3>Förberedelser</h3>
+        <p>${a.prep}.</p>
+      </section>
+
+      <section>
+        <h3>Gör så här – steg för steg</h3>
+        <ol class="steps">
+          ${a.steps.map((step,index)=>`<li><i>${index+1}</i><span>${step}</span></li>`).join("")}
+        </ol>
+      </section>
+
+      <section class="talk">
+        <h3>Matematiska samtalsfrågor</h3>
+        <ul>
+          ${a.talk.map(question=>`<li>${question}</li>`).join("")}
+        </ul>
+      </section>
+
+      <div class="twocol">
+        <div>
+          <h3>Språk och begrepp</h3>
+          <p>${a.concepts}.</p>
+          <p><b>Meningsstarter:</b> Jag vet att … eftersom … / Min representation visar … / Svaret är rimligt eftersom …</p>
+        </div>
+
+        <div>
+          <h3>Formativ bedömning</h3>
+          <p>${a.assessment}</p>
+        </div>
+
+        <div>
+          <h3>Stöd</h3>
+          <p>${a.support}</p>
+        </div>
+
+        <div>
+          <h3>Utmaning</h3>
+          <p>${a.challenge}</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="student-sheet">
+      <h2>${a.title}</h2>
+      <p>Namn: __________________________ Datum: ____________</p>
+      <p><b>Mitt mål:</b> Jag ska kunna ${a.goal}.</p>
+
+      <h3>Mitt uppdrag</h3>
+      <ol>
+        ${a.steps.map(step=>`<li>${step}</li>`).join("")}
+      </ol>
+
+      <h3>Min matematiska dokumentation</h3>
+      <div class="box"></div>
+      <div class="box"></div>
+
+      <h3>Jag motiverar och kontrollerar</h3>
+      <div class="box"></div>
+
+      <h3>Exit ticket</h3>
+      <p>Det här förstår jag nu:</p>
+      <div class="line"></div>
+      <p>Det här behöver jag undersöka vidare:</p>
+      <div class="line"></div>
+    </section>
+  </article>`;
+}
+
+function render(){
+  const query=document.getElementById("search").value.toLowerCase();
+  const selectedPlace=document.getElementById("place").value;
+  const selectedForm=document.getElementById("form").value;
+  const selectedState=document.getElementById("state").value;
+
+  const filtered=activities.filter(a=>{
+    const searchable=`${a.title} ${a.summary} ${a.concepts}`.toLowerCase();
+
+    return(
+      (!query||searchable.includes(query))
+      &&
+      (selectedPlace==="Alla platser"||a.place===selectedPlace)
+      &&
+      (selectedForm==="Alla arbetsformer"||a.form===selectedForm)
+      &&
+      (
+        selectedState==="Alla statusar"
+        ||
+        (selectedState==="Klar"&&done.includes(a.id))
+        ||
+        (selectedState==="Inte klar"&&!done.includes(a.id))
+      )
+    );
+  });
+
+  document.getElementById("list").innerHTML=
+    filtered.length
+      ?filtered.map(card).join("")
+      :`<div class="empty">Inga aktiviteter matchar dina val.</div>`;
+
+  document.getElementById("results").textContent=
+    `${filtered.length} av ${activities.length} aktiviteter visas`;
+}
+
+function toggleActivity(button){
+  const cardElement=button.closest(".card");
+  const isOpen=cardElement.classList.toggle("opened");
+
+  button.textContent=
+    isOpen
+      ?"Dölj aktiviteten"
+      :"Visa hela aktiviteten";
+
+  button.setAttribute("aria-expanded",String(isOpen));
+}
+
+function markActivity(button,value){
+  const id=button.closest(".card").dataset.id;
+  const position=done.indexOf(id);
+
+  if(value&&position<0){
+    done.push(id);
+  }
+
+  if(!value&&position>=0){
+    done.splice(position,1);
+  }
+
+  localStorage.setItem(
+    "79-geometri-done",
+    JSON.stringify(done)
+  );
+
+  render();
+}
+
+function clearPrintState(){
+  document.querySelectorAll(".printing").forEach(cardElement=>
+    cardElement.classList.remove("printing","student-mode")
+  );
+}
+
+function printTeacher(button){
+  clearPrintState();
+  button.closest(".card").classList.add("printing");
+  window.print();
+}
+
+function printStudent(button){
+  clearPrintState();
+  button.closest(".card").classList.add("printing","student-mode");
+  window.print();
+}
+
+window.addEventListener("afterprint",clearPrintState);
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("place").addEventListener("change",render);
+document.getElementById("form").addEventListener("change",render);
+document.getElementById("state").addEventListener("change",render);
+
+render();
+</script>
+
+</body>
+</html>
