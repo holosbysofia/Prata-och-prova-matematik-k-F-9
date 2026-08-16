@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Tolv praktiska aktiviteter om procent för årskurs 7–9, kopplade till Lgr22.">
+<title>Procent 7–9 | Praktisk matematik</title>
+
+<style>
+:root{--bg:#f3eee3;--paper:#fffdf8;--green:#4e705e;--dark:#29483b;--soft:#dfe8dd;--sand:#e8dece;--red:#a8665b;--ink:#2e3933;--muted:#68746d;--line:#d9d2c6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif;line-height:1.6}
+button,select,input{font:inherit}
+header{min-height:72px;padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--paper);border-bottom:1px solid var(--line)}
+header a{text-decoration:none;color:var(--dark);font-weight:bold}
+.back{color:var(--green);font-size:13px}
+.hero{padding:58px 7% 70px;background:linear-gradient(140deg,var(--paper),#e4eadf)}
+.hero small{color:var(--green);font-weight:bold;letter-spacing:.14em}
+.hero h1{max-width:1000px;margin:14px 0;color:var(--dark);font:clamp(40px,6vw,68px)/1.05 Georgia,serif}
+.hero p{max-width:800px;color:var(--muted);font-size:17px}
+.lgr{max-width:1080px;margin:-22px auto 35px;padding:22px;background:var(--dark);color:white;border-radius:12px}
+.lgr b{color:#dce8ca}
+.lgr p{margin:5px 0;font-size:13px}
+.tools{max-width:1080px;margin:auto;padding:20px;display:grid;grid-template-columns:1fr repeat(3,180px);gap:10px}
+.tools input,.tools select{padding:12px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px}
+.tools input:focus,.tools select:focus,button:focus-visible,a:focus-visible{outline:3px solid #e0b868;outline-offset:2px}
+.results{max-width:1080px;margin:5px auto 16px;padding:0 20px;color:var(--muted);font-size:13px}
+.list{max-width:1080px;margin:auto;padding:0 20px 75px}
+.card{margin:17px 0;padding:24px;background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--green);border-radius:13px;box-shadow:0 7px 20px #29483b0c}
+.card.done-card{border-left-color:var(--dark);box-shadow:0 0 0 2px #b8c9bc inset}
+.top{display:flex;gap:16px}
+.icon{width:52px;height:52px;flex:0 0 52px;display:grid;place-items:center;background:var(--soft);border-radius:14px;font-size:26px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{padding:4px 9px;background:#ecefe8;border-radius:20px;font-size:10px;font-weight:bold}
+.card h2{margin:8px 0 5px;color:var(--dark);font:26px Georgia,serif}
+.summary{color:var(--muted);font-size:14px}
+.actions{margin-top:16px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.actions button{padding:9px 12px;border:0;border-radius:7px;cursor:pointer;font-size:12px;font-weight:bold}
+.open{background:var(--dark);color:white}
+.print{background:#e7e3da;color:var(--ink)}
+.student{background:var(--soft);color:var(--dark)}
+.status{margin-left:auto;display:flex;gap:7px}
+.status button{background:white;border:1px solid}
+.red{color:var(--red);border-color:#cda7a0!important}
+.green{color:var(--green);border-color:#9db8aa!important}
+.red.active{background:var(--red);color:white}
+.green.active{background:var(--green);color:white}
+.details{display:none;margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+.card.opened .details{display:block}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.fact{padding:11px;background:#f2efe8;border-radius:7px;font-size:12px}
+.fact b{display:block;color:var(--green);font-size:9px;text-transform:uppercase}
+.lgrbox{margin:18px 0;padding:16px;background:#edf2e9;border:1px solid #bdcdbd;border-radius:8px}
+.details h3{margin:20px 0 7px;color:var(--dark);font-size:16px}
+.steps{padding:0;list-style:none}
+.steps li{margin:9px 0;display:flex;gap:10px;font-size:13px}
+.steps i{width:25px;height:25px;flex:0 0 25px;display:grid;place-items:center;background:var(--dark);color:white;border-radius:50%;font-style:normal;font-weight:bold}
+.talk{padding:16px 20px;background:var(--soft);border-radius:8px}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.twocol>div{padding:15px;background:#f2efe8;border-radius:8px}
+.student-sheet{display:none;min-height:250mm;padding:12mm;border:2px solid var(--green)}
+.student-sheet h2{color:var(--dark);font-family:Georgia,serif}
+.box{min-height:70px;margin:10px 0;border:1px solid #9eaaa3}
+.line{height:28px;border-bottom:1px solid #777}
+.empty{padding:45px;background:var(--paper);border-radius:12px;text-align:center}
+footer{padding:25px 6%;display:flex;justify-content:space-between;gap:20px;background:var(--dark);color:#d9e3de;font-size:12px}
+
+@media(max-width:760px){
+  .tools{grid-template-columns:1fr 1fr}
+  .tools input{grid-column:span 2}
+  .facts{grid-template-columns:1fr 1fr}
+  .twocol{grid-template-columns:1fr}
+  .status{width:100%;margin-left:0}
+  .hero{padding:48px 22px 62px}
+}
+
+@media(max-width:480px){
+  .tools{grid-template-columns:1fr}
+  .tools input{grid-column:auto}
+  .actions>button{width:100%}
+  .status{display:grid;grid-template-columns:1fr 1fr}
+  .top{display:block}
+  .icon{margin-bottom:10px}
+  footer{flex-direction:column}
+}
+
+@page{size:A4 portrait;margin:13mm}
+
+@media print{
+  body{background:white;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  header,.hero,.lgr,.tools,.results,footer,.no-print{display:none!important}
+  .list{padding:0;max-width:none}
+  .card{display:none}
+  .card.printing{display:block;margin:0;padding:5mm;border:0;border-left:5px solid var(--green);box-shadow:none}
+  .card.printing .details{display:block}
+  .card.student-mode>.top,.card.student-mode>.actions,.card.student-mode>.details{display:none!important}
+  .card.student-mode .student-sheet{display:block}
+  .facts{grid-template-columns:repeat(4,1fr)}
+  .details section,.lgrbox,.twocol>div{break-inside:avoid}
+  h2,h3{break-after:avoid}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">∑ Praktisk matematik F–9</a>
+  <a class="back" href="7-9.html">← 7–9 områden</a>
+</header>
+
+<section class="hero">
+  <small>7–9 · PROCENT · LGR22</small>
+  <h1>Procent i praktiken</h1>
+  <p>Eleverna undersöker procent som andel, jämför förändringar, använder förändringsfaktor och löser problem om procentenheter, promille, ränta, rea, moms och upprepade förändringar.</p>
+</section>
+
+<section class="lgr">
+  <p><b>Syfte enligt Lgr22:</b> Utveckla förmågan att använda matematiska begrepp och metoder, lösa problem, värdera resultat samt föra och följa matematiska resonemang.</p>
+  <p><b>Centralt innehåll:</b> Tal i procentform och deras samband med tal i bråk- och decimalform. Beräkningar med procent i vardagliga och matematiska situationer samt metoder för procentuell förändring och förändringsfaktor.</p>
+</section>
+
+<section class="tools no-print" aria-label="Filtrera aktiviteter">
+  <input id="search" type="search" placeholder="Sök aktivitet…" aria-label="Sök aktivitet">
+
+  <select id="place" aria-label="Välj plats">
+    <option>Alla platser</option>
+    <option>Klassrum</option>
+    <option>Inne på skolan</option>
+    <option>Utomhus</option>
+    <option>Inne och ute</option>
+  </select>
+
+  <select id="form" aria-label="Välj arbetsform">
+    <option>Alla arbetsformer</option>
+    <option>Enskilt</option>
+    <option>Par</option>
+    <option>Grupp</option>
+    <option>Helklass</option>
+  </select>
+
+  <select id="state" aria-label="Välj status">
+    <option>Alla statusar</option>
+    <option>Inte klar</option>
+    <option>Klar</option>
+  </select>
+</section>
+
+<div class="results no-print" id="results" aria-live="polite"></div>
+<main class="list" id="list"></main>
+
+<footer>
+  <strong>Praktisk matematik 7–9</strong>
+  <span>12 aktiviteter · Enkla hjälpmedel · Lgr22 · A4-utskrift i färg</span>
+</footer>
+
+<script>
+const activities=[
+{id:"procentvaggen-79",icon:"🧱",title:"Procentväggen",place:"Klassrum",form:"Par",time:"35 min",material:"Hundrarutor, bråkremsor, decimal- och procentkort",prep:"Förbered kort med samma värde i bråk-, decimal- och procentform",summary:"Paren bygger en gemensam vägg där varje andel kopplas till bråkform, decimalform och procentform.",goal:"växla mellan bråk-, decimal- och procentform och förklara sambanden",content:"Tal i procentform och deras samband med tal i bråk- och decimalform.",concepts:"procent, hundradel, andel, bråkform, decimalform, ekvivalent värde och helhet",assessment:"Observera om eleven kopplar procent till en bestämd helhet och kan motivera ekvivalenta representationer.",steps:["Dra ett procentkort och markera andelen på en hundraruta.","Skriv samma värde i decimalform och bråkform.","Placera representationerna tillsammans på procentväggen.","Hitta flera representationer av samma värde.","Skapa ett eget kortpar som ett annat par ska kontrollera."],talk:["Varför betyder procent hundradelar?","Hur syns 12,5 procent i bråkform?","Kan samma antal motsvara olika procent beroende på helheten?"],support:"Börja med 10, 20, 25, 50 och 75 procent och använd färgade hundrarutor.",challenge:"Använd procenttal över 100, under 1 och periodiska decimaler."},
+
+{id:"levande-procentlinjen-79",icon:"↔️",title:"Den levande procentlinjen",place:"Utomhus",form:"Helklass",time:"35 min",material:"Rep, kritor och procentkort",prep:"Markera 0, 50, 100, 150 och 200 procent på en lång linje",summary:"Eleverna placerar procenttal, decimaler och bråk på samma linje och jämför deras storlek.",goal:"jämföra procenttal och använda referenspunkter även över 100 procent",content:"Tal i procentform och deras användning i matematiska situationer.",concepts:"procenttal, referenspunkt, storleksordning, ökning, minskning och mer än helheten",assessment:"Lyssna efter om eleven skiljer mellan procent som andel och förändring med procent.",steps:["Markera referenspunkterna på linjen.","Dela ut kort som 0,35, 3/4, 120 procent och 1,6.","Eleverna placerar sig och motiverar sin position.","Byt kort mellan elever och kontrollera ordningen.","Skapa två olika uttryck som hamnar på samma plats."],talk:["Vad betyder 150 procent av en helhet?","Varför ligger 0,8 på samma plats som 80 procent?","Hur skiljer sig 20 procent från en ökning med 20 procent?"],support:"Använd först 0–100 procent och kort i hela tiotal.",challenge:"Ta med negativa procenttal, promille och mycket små andelar."},
+
+{id:"representationsstafetten-procent",icon:"🔄",title:"Representationsstafetten",place:"Klassrum",form:"Grupp",time:"40 min",material:"Kort med bilder, bråk, decimaler, procent och vardagssituationer",prep:"Gör fyra kort för varje värde eller situation",summary:"Grupperna matchar och förklarar fyra representationer av samma andel under en strukturerad stafett.",goal:"välja och använda en lämplig representation för procent i olika situationer",content:"Samband mellan tal i procent-, bråk- och decimalform.",concepts:"representation, andel, förhållande, procentform, decimalform, bråkform och jämförelse",assessment:"Bedöm om eleven kan förklara kopplingen mellan representationerna utan att enbart använda en regel.",steps:["Lägg bildkorten synliga och övriga kort upp och ned.","Hämta ett kort i taget och placera det vid rätt bild.","Gruppen måste enas och skriva en motivering.","Kontrollera med ett annat lag och rätta vid behov.","Välj den representation som är mest användbar i varje situation."],talk:["När är procentform tydligare än bråkform?","Vilken representation gör beräkningen enklast?","Hur kan en bild vara missvisande om helheten är oklar?"],support:"Använd välkända andelar och låt färger markera korttyperna.",challenge:"Ta med 12,5 procent, 0,3 procent och andelar över 100 procent."},
+
+{id:"del-helhet-procentsats",icon:"🔺",title:"Del, helhet och procentsats",place:"Klassrum",form:"Par",time:"45 min",material:"Situationskort, marker, hundrarutor och lösningsmall",prep:"Förbered problem där olika storheter är okända",summary:"Paren varierar vilken av del, helhet och procentsats som saknas och förklarar sambandet med modeller.",goal:"beräkna del, helhet och procentsats samt tolka svaret i sammanhanget",content:"Beräkningar med procent i vardagliga och matematiska situationer.",concepts:"del, helhet, procentsats, andel, proportionalitet, kvot och enhet",assessment:"Kontrollera om eleven identifierar helheten korrekt och väljer operation utifrån vad som söks.",steps:["Läs kortet och ringa in del, helhet och procentsats.","Markera den okända storheten.","Gör ett överslag innan beräkningen.","Lös med modell, proportionalitet eller decimalform.","Skriv en kontrollfråga som visar om svaret är rimligt."],talk:["Hur hittar vi helheten när delen och procentsatsen är kända?","Varför måste del och helhet ha samma enhet?","Hur kan samma del ge olika procentsatser?"],support:"Använd lösningsmallen och börja med heltalsprocent.",challenge:"Använd procent under 1, över 100 och problem med flera möjliga helheter."},
+
+{id:"forandringsfaktorn-79",icon:"×",title:"Förändringsfaktorn i rörelse",place:"Klassrum",form:"Grupp",time:"40 min",material:"Pris-, längd- och förändringskort, miniräknare och protokoll",prep:"Förbered ökningar och minskningar från 0,5 till 250 procent",summary:"Grupperna bygger förändringsfaktorer och kopplar dem till procentuell ökning eller minskning.",goal:"använda förändringsfaktor för att beräkna och beskriva procentuella förändringar",content:"Metoder för beräkning av procentuell förändring och förändringsfaktor.",concepts:"ursprungsvärde, nytt värde, förändringsfaktor, procentuell ökning, procentuell minskning och multiplikation",assessment:"Observera om eleven kopplar exempelvis en minskning med 20 procent till faktorn 0,80.",steps:["Dra ett startvärde och ett förändringskort.","Skriv förändringen som decimal och förändringsfaktor.","Beräkna det nya värdet i ett steg.","Kontrollera genom att beräkna förändringen separat.","Skapa ett kort där en annan grupp ska hitta förändringen."],talk:["Varför motsvarar 1,15 en ökning med 15 procent?","Hur syns en minskning i förändringsfaktorn?","Kan en förändringsfaktor vara negativ i våra situationer?"],support:"Använd en tabell med ökning, minskning och faktor.",challenge:"Bestäm förändringsfaktorn från två givna värden och använd procenttal över 100."},
+
+{id:"baklangesprocenten",icon:"⏪",title:"Baklängesprocenten",place:"Klassrum",form:"Par",time:"45 min",material:"Fiktiva prislappar, förändringskort och miniwhiteboard",prep:"Förbered slutvärden efter rea, påslag, moms och andra förändringar",summary:"Paren räknar tillbaka till ursprungsvärdet genom att dividera med förändringsfaktorn.",goal:"bestämma ett ursprungsvärde efter en känd procentuell förändring",content:"Procentuell förändring och förändringsfaktor i vardagliga situationer.",concepts:"ursprungsvärde, slutvärde, förändringsfaktor, baklängesberäkning, division och kontroll",assessment:"Se om eleven dividerar med förändringsfaktorn och kontrollerar genom att gå framåt igen.",steps:["Läs slutvärdet och den genomförda förändringen.","Skriv rätt förändringsfaktor.","Gör ett överslag av ursprungsvärdet.","Dividera slutvärdet med förändringsfaktorn.","Kontrollera genom att genomföra förändringen framåt."],talk:["Varför kan vi inte bara lägga tillbaka samma procent?","Hur vet vi om ursprungsvärdet ska vara större eller mindre?","Vad visar framåtkontrollen?"],support:"Använd förändringsfaktorer som 0,5, 0,8, 1,1 och 1,25.",challenge:"Lös problem där både ursprungsvärde och procentsats måste härledas ur flera uppgifter."},
+
+{id:"forandringar-i-flera-steg",icon:"🪜",title:"Förändringar i flera steg",place:"Klassrum",form:"Grupp",time:"45 min",material:"Förändringskort, startvärden, miniräknare och tabell",prep:"Förbered kedjor med två eller tre ökningar och minskningar",summary:"Grupperna undersöker varför upprepade procentförändringar inte kan adderas direkt.",goal:"beräkna och analysera upprepade procentuella förändringar med förändringsfaktorer",content:"Procentuell förändring och förändringsfaktor i flera steg.",concepts:"sammansatt förändring, total förändringsfaktor, återställning, procentenhet och basvärde",assessment:"Bedöm om eleven multiplicerar förändringsfaktorer och jämför slutvärdet med samma ursprungsvärde.",steps:["Dra ett startvärde och två förändringskort.","Förutsäg om värdet återgår när procenttalen är lika stora men motsatta.","Beräkna steg för steg.","Multiplicera förändringsfaktorerna och kontrollera i ett steg.","Bestäm den totala procentuella förändringen."],talk:["Varför återställer inte plus 20 procent efter minus 20 procent?","Hur visar den totala faktorn förändringen?","När får ordningen mellan förändringarna betydelse?"],support:"Använd två steg och en tabell med värde efter varje steg.",challenge:"Undersök tre förändringar, årlig tillväxt och vilken faktor som krävs för återställning."},
+
+{id:"rea-moms-labbet",icon:"🛍️",title:"Rea, moms och jämförpris",place:"Inne på skolan",form:"Grupp",time:"55 min",material:"Fiktiva annonser, prislappar, kvitton, miniräknare och analysblad",prep:"Skapa realistiska men påhittade priser, rabatter och momssatser",summary:"Grupperna granskar erbjudanden och skiljer rabatt, pris inklusive moms och pris exklusive moms.",goal:"använda procent och förändringsfaktor i ekonomiska situationer och jämföra alternativ",content:"Procentberäkningar i vardagliga situationer.",concepts:"rabatt, ordinarie pris, reapris, moms, inklusive, exklusive, jämförpris och förändringsfaktor",assessment:"Observera om eleven använder rätt basvärde och skiljer att lägga till moms från att ta bort moms.",steps:["Gör ett överslag av reapriset.","Beräkna priset efter rabatt med förändringsfaktor.","Jämför pris inklusive och exklusive moms.","Beräkna jämförpris för två alternativ.","Skriv en rekommendation och visa alla antaganden."],talk:["Varför tas moms bort genom division?","Vilket pris är helheten vid rabatt?","Kan den största rabatten ändå ge det högsta priset?"],support:"Ge en tabell med ordinarie pris, faktor och nytt pris.",challenge:"Kombinera rabatt, rabattkod och moms samt avslöja ett vilseledande erbjudande."},
+
+{id:"ranta-och-tillvaxt",icon:"📈",title:"Ränta och tillväxt över tid",place:"Klassrum",form:"Par",time:"45 min",material:"Tillväxtkort, tabell, kalkylblad eller miniräknare",prep:"Förbered fiktiva sparanden och populationer med fasta årliga förändringar",summary:"Paren jämför linjär och procentuell förändring och modellerar utveckling över flera perioder.",goal:"beräkna upprepad procentuell förändring och tolka exponentiell utveckling",content:"Förändringsfaktor och procentuell förändring i matematiska och vardagliga situationer.",concepts:"ränta, ränta på ränta, tillväxt, period, förändringsfaktor, exponentiell utveckling och prognos",assessment:"Kontrollera om eleven använder föregående periods värde som ny bas och kan förklara ränta på ränta.",steps:["Dra ett startvärde och en årlig procentsats.","Beräkna utvecklingen period för period.","Skriv en formel med förändringsfaktor och antal perioder.","Jämför med att lägga till samma belopp varje år.","Bedöm prognosens rimlighet och begränsningar."],talk:["Varför ökar förändringsbeloppet trots samma procentsats?","Vad betyder exponenten i formeln?","När är en lång prognos osäker?"],support:"Använd två eller tre perioder och en färdig tabell.",challenge:"Bestäm procentsats eller antal perioder utifrån ett mål och jämför två modeller."},
+
+{id:"procentfeldetektiverna-79",icon:"🕵️",title:"Procentfeldetektiverna",place:"Klassrum",form:"Grupp",time:"40 min",material:"Felaktiga elevlösningar, diagram, annonser och analysmall",prep:"Skapa fel om helhet, procentenheter, promille, förändringsfaktor och flera förändringar",summary:"Eleverna hittar första felet, förklarar missuppfattningen och reparerar procentresonemang.",goal:"granska procentberäkningar och skilja närliggande procentbegrepp",content:"Procentberäkningar, rimlighetsbedömning och matematiska resonemang.",concepts:"procent, procentenhet, promille, relativ förändring, förändringsfaktor, basvärde och felkälla",assessment:"Lyssna efter om eleven anger vilken helhet eller vilket basvärde som används och varför lösningen brister.",steps:["Gör ett eget överslag innan lösningen granskas.","Markera första raden där resonemanget blir fel.","Klassificera felet och ange rätt basvärde.","Rätta minsta möjliga del och slutför lösningen.","Skriv en återkopplingsfråga som leder vidare."],talk:["Vad är skillnaden mellan procent och procentenheter?","När används promille i stället för procent?","Varför är två lika stora procentförändringar inte alltid motsatta?"],support:"Använd ett tydligt fel per lösning och en begreppslista.",challenge:"Analysera statistik med både absolut och relativ förändring samt två oberoende fel."},
+
+{id:"procentstationer-79",icon:"🔄",title:"Fem praktiska procentstationer",place:"Klassrum",form:"Grupp",time:"65 min",material:"Hundrarutor, förändringskort, annonser, tabeller, miniräknare och protokoll",prep:"Förbered fem stationer med instruktion, stödkuvert och självkontroll",summary:"Eleverna tränar representationer, del–helhet, förändringsfaktor, ekonomi och kritisk granskning.",goal:"använda och förklara flera centrala procentmetoder i varierade situationer",content:"Procentform, procentberäkningar, procentuell förändring och förändringsfaktor.",concepts:"andel, helhet, procentsats, förändringsfaktor, procentenhet, promille och rimlighet",assessment:"Använd protokollet för att synliggöra elevens representationer, metodval, begrepp och kontroller.",steps:["Station 1: matcha bråk-, decimal- och procentform.","Station 2: bestäm del, helhet eller procentsats.","Station 3: använd förändringsfaktor framåt och bakåt.","Station 4: granska rea, moms och upprepade förändringar.","Station 5: skilj procent, procentenheter och promille i data."],talk:["Vilken representation gjorde sambandet tydligast?","När var basvärdet avgörande?","Vilken kontroll avslöjade ett orimligt svar?"],support:"Ge ett löst exempel per station och låt eleverna börja med tre stationer.",challenge:"Skapa ett nytt stationskort med facit, två metoder och en vanlig fallgrop."},
+
+{id:"kunskapsuppdrag-procentexperten-79",icon:"🧭",title:"Kunskapsuppdraget – Procentexperten 7–9",place:"Inne och ute",form:"Enskilt",time:"65–85 min",material:"Hundraruta, procentkort, fiktiva annonser, tabell, miniräknare, felanalys och protokoll",prep:"Placera sex uppdrag längs en trygg slinga och förbered stödkuvert",summary:"Eleven visar självständigt förståelse för representationer, procentberäkningar, förändringar och rimlighet.",goal:"representera, beräkna och resonera om procent samt motivera metod och rimlighet",content:"Tal i procentform, procentuell förändring och förändringsfaktor enligt Lgr22.",concepts:"procent, andel, helhet, procentsats, förändringsfaktor, procentenhet, promille och rimlighet",assessment:"Dokumentera elevens begreppsanvändning, säkerhet i beräkning, metodval, resonemang och självständiga kontroll.",steps:["Växla mellan bråk-, decimal- och procentform.","Bestäm en okänd del, helhet eller procentsats.","Beräkna ett nytt värde med förändringsfaktor.","Räkna bakåt till ursprungsvärdet.","Analysera två upprepade procentförändringar.","Skilj procent från procentenheter och rätta ett metodfel."],talk:["Vilket värde är helheten i din lösning?","Varför passar din metod i situationen?","Hur kan resultatet kontrolleras på ett annat sätt?"],support:"Ge ett uppdrag i taget, begreppslista, lösningsmall och möjlighet till muntlig förklaring.",challenge:"Kombinera upprepade förändringar, ränta, promille och baklängesberäkning i ett flerstegsproblem."}
+];
+
+const done=JSON.parse(
+  localStorage.getItem("79-procent-done")||"[]"
+);
+
+function card(a){
+  const isDone=done.includes(a.id);
+
+  return `
+  <article
+    class="card ${isDone?"done-card":""}"
+    data-id="${a.id}"
+    data-place="${a.place}"
+    data-form="${a.form}"
+  >
+    <div class="top">
+      <span class="icon" aria-hidden="true">${a.icon}</span>
+
+      <div>
+        <div class="tags">
+          <span class="tag">7–9</span>
+          <span class="tag">${a.place}</span>
+          <span class="tag">${a.form}</span>
+          <span class="tag">${a.time}</span>
+        </div>
+
+        <h2>${a.title}</h2>
+        <p class="summary">${a.summary}</p>
+      </div>
+    </div>
+
+    <div class="actions no-print">
+      <button
+        class="open"
+        type="button"
+        aria-expanded="false"
+        onclick="toggleActivity(this)"
+      >
+        Visa hela aktiviteten
+      </button>
+
+      <button
+        class="print"
+        type="button"
+        onclick="printTeacher(this)"
+      >
+        🖨 Lärarhandledning
+      </button>
+
+      <button
+        class="student"
+        type="button"
+        onclick="printStudent(this)"
+      >
+        📝 Elevblad
+      </button>
+
+      <div class="status" aria-label="Aktivitetsstatus">
+        <button
+          class="red ${isDone?"":"active"}"
+          type="button"
+          onclick="markActivity(this,false)"
+        >
+          ● Inte klar
+        </button>
+
+        <button
+          class="green ${isDone?"active":""}"
+          type="button"
+          onclick="markActivity(this,true)"
+        >
+          ✓ Klar
+        </button>
+      </div>
+    </div>
+
+    <div class="details">
+      <div class="facts">
+        <div class="fact">
+          <b>Tid</b>
+          ${a.time}
+        </div>
+
+        <div class="fact">
+          <b>Plats</b>
+          ${a.place}
+        </div>
+
+        <div class="fact">
+          <b>Arbetsform</b>
+          ${a.form}
+        </div>
+
+        <div class="fact">
+          <b>Material</b>
+          ${a.material}
+        </div>
+      </div>
+
+      <section class="lgrbox">
+        <h3>Koppling till Lgr22</h3>
+        <p><b>Lärandemål:</b> Eleven ska kunna ${a.goal}.</p>
+        <p><b>Centralt innehåll:</b> ${a.content}</p>
+        <p><b>Förmågor:</b> Begrepp, metoder, problemlösning, resonemang och kommunikation.</p>
+      </section>
+
+      <section>
+        <h3>Förberedelser</h3>
+        <p>${a.prep}.</p>
+      </section>
+
+      <section>
+        <h3>Gör så här – steg för steg</h3>
+
+        <ol class="steps">
+          ${a.steps.map((step,index)=>`
+            <li>
+              <i>${index+1}</i>
+              <span>${step}</span>
+            </li>
+          `).join("")}
+        </ol>
+      </section>
+
+      <section class="talk">
+        <h3>Matematiska samtalsfrågor</h3>
+
+        <ul>
+          ${a.talk.map(question=>`
+            <li>${question}</li>
+          `).join("")}
+        </ul>
+      </section>
+
+      <div class="twocol">
+        <div>
+          <h3>Språk och begrepp</h3>
+          <p>${a.concepts}.</p>
+          <p><b>Meningsstarter:</b> Jag vet att … eftersom … / Min representation visar … / Svaret är rimligt eftersom …</p>
+        </div>
+
+        <div>
+          <h3>Formativ bedömning</h3>
+          <p>${a.assessment}</p>
+        </div>
+
+        <div>
+          <h3>Stöd</h3>
+          <p>${a.support}</p>
+        </div>
+
+        <div>
+          <h3>Utmaning</h3>
+          <p>${a.challenge}</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="student-sheet">
+      <h2>${a.title}</h2>
+
+      <p>
+        Namn: __________________________
+        Datum: ____________
+      </p>
+
+      <p>
+        <b>Mitt mål:</b>
+        Jag ska kunna ${a.goal}.
+      </p>
+
+      <h3>Mitt uppdrag</h3>
+
+      <ol>
+        ${a.steps.map(step=>`
+          <li>${step}</li>
+        `).join("")}
+      </ol>
+
+      <h3>Min matematiska dokumentation</h3>
+      <div class="box"></div>
+      <div class="box"></div>
+
+      <h3>Jag motiverar och kontrollerar</h3>
+      <div class="box"></div>
+
+      <h3>Exit ticket</h3>
+
+      <p>Det här förstår jag nu:</p>
+      <div class="line"></div>
+
+      <p>Det här behöver jag undersöka vidare:</p>
+      <div class="line"></div>
+    </section>
+  </article>
+  `;
+}
+
+function render(){
+  const query=
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase();
+
+  const selectedPlace=
+    document
+      .getElementById("place")
+      .value;
+
+  const selectedForm=
+    document
+      .getElementById("form")
+      .value;
+
+  const selectedState=
+    document
+      .getElementById("state")
+      .value;
+
+  const filtered=activities.filter(a=>{
+    const searchable=
+      `${a.title} ${a.summary} ${a.concepts}`
+        .toLowerCase();
+
+    return(
+      (!query||searchable.includes(query))
+      &&
+      (
+        selectedPlace==="Alla platser"
+        ||
+        a.place===selectedPlace
+      )
+      &&
+      (
+        selectedForm==="Alla arbetsformer"
+        ||
+        a.form===selectedForm
+      )
+      &&
+      (
+        selectedState==="Alla statusar"
+        ||
+        (
+          selectedState==="Klar"
+          &&
+          done.includes(a.id)
+        )
+        ||
+        (
+          selectedState==="Inte klar"
+          &&
+          !done.includes(a.id)
+        )
+      )
+    );
+  });
+
+  document.getElementById("list").innerHTML=
+    filtered.length
+      ?filtered.map(card).join("")
+      :`<div class="empty">Inga aktiviteter matchar dina val.</div>`;
+
+  document.getElementById("results").textContent=
+    `${filtered.length} av ${activities.length} aktiviteter visas`;
+}
+
+function toggleActivity(button){
+  const cardElement=
+    button.closest(".card");
+
+  const isOpen=
+    cardElement.classList.toggle("opened");
+
+  button.textContent=
+    isOpen
+      ?"Dölj aktiviteten"
+      :"Visa hela aktiviteten";
+
+  button.setAttribute(
+    "aria-expanded",
+    String(isOpen)
+  );
+}
+
+function markActivity(button,value){
+  const id=
+    button.closest(".card").dataset.id;
+
+  const position=
+    done.indexOf(id);
+
+  if(value&&position<0){
+    done.push(id);
+  }
+
+  if(!value&&position>=0){
+    done.splice(position,1);
+  }
+
+  localStorage.setItem(
+    "79-procent-done",
+    JSON.stringify(done)
+  );
+
+  render();
+}
+
+function clearPrintState(){
+  document
+    .querySelectorAll(".printing")
+    .forEach(cardElement=>
+      cardElement.classList.remove(
+        "printing",
+        "student-mode"
+      )
+    );
+}
+
+function printTeacher(button){
+  clearPrintState();
+
+  button
+    .closest(".card")
+    .classList.add("printing");
+
+  window.print();
+}
+
+function printStudent(button){
+  clearPrintState();
+
+  button
+    .closest(".card")
+    .classList.add(
+      "printing",
+      "student-mode"
+    );
+
+  window.print();
+}
+
+window.addEventListener(
+  "afterprint",
+  clearPrintState
+);
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    render
+  );
+
+document
+  .getElementById("place")
+  .addEventListener(
+    "change",
+    render
+  );
+
+document
+  .getElementById("form")
+  .addEventListener(
+    "change",
+    render
+  );
+
+document
+  .getElementById("state")
+  .addEventListener(
+    "change",
+    render
+  );
+
+render();
+</script>
+
+</body>
+</html>
