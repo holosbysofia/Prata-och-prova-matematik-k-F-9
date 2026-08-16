@@ -6,7 +6,43 @@
   <meta name="description" content="Praktiska matematikaktiviteter för årskurs 7–9 kopplade till Lgr22.">
   <title>7–9 | Praktisk matematik F–9</title>
   <style>
-    :root{--beige:#f3eee3;--paper:#fffdf8;--green:#4e705e;--dark:#29483b;--soft:#dfe8dd;--sand:#e8dece;--ink:#2e3933;--muted:#68746d;--line:#d9d2c6}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--beige);color:var(--ink);font-family:Arial,sans-serif;line-height:1.6}a{color:inherit}header{height:76px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}.brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:800}.brand-icon{width:39px;height:39px;border-radius:50%;display:grid;place-items:center;background:var(--dark);color:#d9e6c7;font-family:Georgia,serif;font-size:23px}.home{font-size:13px;color:var(--green);text-decoration:none;font-weight:bold}.hero{padding:66px 7%;background:linear-gradient(140deg,var(--paper),#e4eadf);overflow:hidden;border-bottom:1px solid var(--line)}.eyebrow{display:inline-block;font-size:12px;letter-spacing:.16em;font-weight:bold;color:var(--green);background:var(--soft);padding:6px 10px;border-radius:20px}h1{font-family:Georgia,serif;font-size:clamp(40px,5.2vw,68px);line-height:1.06;margin:16px 0 18px;color:var(--dark);max-width:1050px}.hero p{max-width:760px;color:var(--muted);font-size:18px}.bubble{display:none}.quick{max-width:1100px;margin:-24px auto 55px;padding:0 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative}.quick div{background:var(--dark);color:white;padding:17px;border-radius:10px;text-align:center}.quick b{display:block;font-size:13px}.quick span{font-size:24px}.intro{text-align:center;max-width:750px;margin:auto;padding:0 20px 25px}.intro h2{font-family:Georgia,serif;font-size:39px;color:var(--dark);margin:0}.intro p{color:var(--muted)}.areas{max-width:1120px;margin:auto;padding:15px 20px 85px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.area{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px;text-decoration:none;min-height:210px;display:flex;flex-direction:column;box-shadow:0 8px 24px #29483b0d;transition:.22s}.area[href]:hover{transform:translateY(-4px);border-color:#98ad9f}.area.locked{opacity:.72;box-shadow:none}.area.locked .open{color:var(--muted)}.icon{width:49px;height:49px;border-radius:12px;display:grid;place-items:center;background:var(--soft);font-size:25px;margin-bottom:14px}.area:nth-child(3n+2) .icon{background:var(--sand)}.area h2{font-family:Georgia,serif;color:var(--dark);font-size:23px;margin:0 0 7px}.area p{color:var(--muted);font-size:13px;margin:0 0 14px}.open{color:var(--green);font-size:13px;font-weight:bold;margin-top:auto}.open span{float:right;font-size:18px}.note{max-width:1080px;margin:0 auto 75px;padding:28px;background:#dfe7d3;border-radius:14px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}.note>span{font-size:36px}.note h2{font-family:Georgia,serif;color:var(--dark);margin:0}.note p{margin:4px 0 0;color:var(--muted)}footer{background:var(--dark);color:#d9e3de;padding:28px 6%;display:flex;justify-content:space-between;font-size:13px}
+    :root{--beige:#f3eee3;--paper:#fffdf8;--green:#4e705e;--dark:#29483b;--soft:#dfe8dd;--sand:#e8dece;--ink:#2e3933;--muted:#68746d;--line:#d9d2c6}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--beige);color:var(--ink);font-family:Arial,sans-serif;line-height:1.6}
+    a{color:inherit}
+    header{height:76px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+    .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:800}
+    .brand-icon{width:39px;height:39px;border-radius:50%;display:grid;place-items:center;background:var(--dark);color:#d9e6c7;font-family:Georgia,serif;font-size:23px}
+    .home{font-size:13px;color:var(--green);text-decoration:none;font-weight:bold}
+    .hero{padding:66px 7%;background:linear-gradient(140deg,var(--paper),#e4eadf);overflow:hidden;border-bottom:1px solid var(--line)}
+    .eyebrow{display:inline-block;font-size:12px;letter-spacing:.16em;font-weight:bold;color:var(--green);background:var(--soft);padding:6px 10px;border-radius:20px}
+    h1{font-family:Georgia,serif;font-size:clamp(40px,5.2vw,68px);line-height:1.06;margin:16px 0 18px;color:var(--dark);max-width:1050px}
+    .hero p{max-width:760px;color:var(--muted);font-size:18px}
+    .bubble{display:none}
+    .quick{max-width:1100px;margin:-24px auto 55px;padding:0 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative}
+    .quick div{background:var(--dark);color:white;padding:17px;border-radius:10px;text-align:center}
+    .quick b{display:block;font-size:13px}
+    .quick span{font-size:24px}
+    .intro{text-align:center;max-width:750px;margin:auto;padding:0 20px 25px}
+    .intro h2{font-family:Georgia,serif;font-size:39px;color:var(--dark);margin:0}
+    .intro p{color:var(--muted)}
+    .areas{max-width:1120px;margin:auto;padding:15px 20px 85px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .area{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px;text-decoration:none;min-height:210px;display:flex;flex-direction:column;box-shadow:0 8px 24px #29483b0d;transition:.22s}
+    .area[href]:hover{transform:translateY(-4px);border-color:#98ad9f}
+    .area.locked{opacity:.72;box-shadow:none}
+    .area.locked .open{color:var(--muted)}
+    .icon{width:49px;height:49px;border-radius:12px;display:grid;place-items:center;background:var(--soft);font-size:25px;margin-bottom:14px}
+    .area:nth-child(3n+2) .icon{background:var(--sand)}
+    .area h2{font-family:Georgia,serif;color:var(--dark);font-size:23px;margin:0 0 7px}
+    .area p{color:var(--muted);font-size:13px;margin:0 0 14px}
+    .open{color:var(--green);font-size:13px;font-weight:bold;margin-top:auto}
+    .open span{float:right;font-size:18px}
+    .note{max-width:1080px;margin:0 auto 75px;padding:28px;background:#dfe7d3;border-radius:14px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+    .note>span{font-size:36px}
+    .note h2{font-family:Georgia,serif;color:var(--dark);margin:0}
+    .note p{margin:4px 0 0;color:var(--muted)}
+    footer{background:var(--dark);color:#d9e3de;padding:28px 6%;display:flex;justify-content:space-between;font-size:13px}
 
     @media(max-width:850px){
       .areas{grid-template-columns:1fr 1fr}
@@ -113,18 +149,18 @@
       <span class="open">Öppna området <span>→</span></span>
     </a>
 
-    <article class="area locked">
+    <a class="area" href="79-statistik.html">
       <span class="icon">📊</span>
       <h2>Statistik</h2>
       <p>Datainsamling, diagram, lägesmått, spridning, tolkning och kritisk granskning.</p>
-      <span class="open">Nästa område</span>
-    </article>
+      <span class="open">Öppna området <span>→</span></span>
+    </a>
 
     <article class="area locked">
       <span class="icon">🎲</span>
       <h2>Sannolikhet</h2>
       <p>Likformig sannolikhet, träddiagram, kombinatorik, simuleringar, chans och risk.</p>
-      <span class="open">Kommer senare</span>
+      <span class="open">Nästa område</span>
     </article>
 
     <article class="area locked">
