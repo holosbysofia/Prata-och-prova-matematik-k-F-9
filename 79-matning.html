@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Tolv praktiska aktiviteter om mätning för årskurs 7–9, kopplade till Lgr22.">
+<title>Mätning 7–9 | Praktisk matematik</title>
+<style>
+:root{--bg:#f3eee3;--paper:#fffdf8;--green:#4e705e;--dark:#29483b;--soft:#dfe8dd;--sand:#e8dece;--red:#a8665b;--ink:#2e3933;--muted:#68746d;--line:#d9d2c6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif;line-height:1.6}button,select,input{font:inherit}
+header{min-height:72px;padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--paper);border-bottom:1px solid var(--line)}header a{text-decoration:none;color:var(--dark);font-weight:bold}.back{color:var(--green);font-size:13px}
+.hero{padding:58px 7% 70px;background:linear-gradient(140deg,var(--paper),#e4eadf)}.hero small{color:var(--green);font-weight:bold;letter-spacing:.14em}.hero h1{max-width:1000px;margin:14px 0;color:var(--dark);font:clamp(40px,6vw,68px)/1.05 Georgia,serif}.hero p{max-width:800px;color:var(--muted);font-size:17px}
+.lgr{max-width:1080px;margin:-22px auto 35px;padding:22px;background:var(--dark);color:white;border-radius:12px}.lgr b{color:#dce8ca}.lgr p{margin:5px 0;font-size:13px}
+.tools{max-width:1080px;margin:auto;padding:20px;display:grid;grid-template-columns:1fr repeat(3,180px);gap:10px}.tools input,.tools select{padding:12px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px}.tools input:focus,.tools select:focus,button:focus-visible,a:focus-visible{outline:3px solid #e0b868;outline-offset:2px}
+.results{max-width:1080px;margin:5px auto 16px;padding:0 20px;color:var(--muted);font-size:13px}.list{max-width:1080px;margin:auto;padding:0 20px 75px}.card{margin:17px 0;padding:24px;background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--green);border-radius:13px;box-shadow:0 7px 20px #29483b0c}.card.done-card{border-left-color:var(--dark);box-shadow:0 0 0 2px #b8c9bc inset}
+.top{display:flex;gap:16px}.icon{width:52px;height:52px;flex:0 0 52px;display:grid;place-items:center;background:var(--soft);border-radius:14px;font-size:26px}.tags{display:flex;flex-wrap:wrap;gap:6px}.tag{padding:4px 9px;background:#ecefe8;border-radius:20px;font-size:10px;font-weight:bold}.card h2{margin:8px 0 5px;color:var(--dark);font:26px Georgia,serif}.summary{color:var(--muted);font-size:14px}
+.actions{margin-top:16px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}.actions button{padding:9px 12px;border:0;border-radius:7px;cursor:pointer;font-size:12px;font-weight:bold}.open{background:var(--dark);color:white}.print{background:#e7e3da;color:var(--ink)}.student{background:var(--soft);color:var(--dark)}.status{margin-left:auto;display:flex;gap:7px}.status button{background:white;border:1px solid}.red{color:var(--red);border-color:#cda7a0!important}.green{color:var(--green);border-color:#9db8aa!important}.red.active{background:var(--red);color:white}.green.active{background:var(--green);color:white}
+.details{display:none;margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}.card.opened .details{display:block}.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.fact{padding:11px;background:#f2efe8;border-radius:7px;font-size:12px}.fact b{display:block;color:var(--green);font-size:9px;text-transform:uppercase}.lgrbox{margin:18px 0;padding:16px;background:#edf2e9;border:1px solid #bdcdbd;border-radius:8px}.details h3{margin:20px 0 7px;color:var(--dark);font-size:16px}.steps{padding:0;list-style:none}.steps li{margin:9px 0;display:flex;gap:10px;font-size:13px}.steps i{width:25px;height:25px;flex:0 0 25px;display:grid;place-items:center;background:var(--dark);color:white;border-radius:50%;font-style:normal;font-weight:bold}.talk{padding:16px 20px;background:var(--soft);border-radius:8px}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:13px}.twocol>div{padding:15px;background:#f2efe8;border-radius:8px}
+.student-sheet{display:none;min-height:250mm;padding:12mm;border:2px solid var(--green)}.student-sheet h2{color:var(--dark);font-family:Georgia,serif}.box{min-height:70px;margin:10px 0;border:1px solid #9eaaa3}.line{height:28px;border-bottom:1px solid #777}.empty{padding:45px;background:var(--paper);border-radius:12px;text-align:center}footer{padding:25px 6%;display:flex;justify-content:space-between;gap:20px;background:var(--dark);color:#d9e3de;font-size:12px}
+@media(max-width:760px){.tools{grid-template-columns:1fr 1fr}.tools input{grid-column:span 2}.facts{grid-template-columns:1fr 1fr}.twocol{grid-template-columns:1fr}.status{width:100%;margin-left:0}.hero{padding:48px 22px 62px}}
+@media(max-width:480px){.tools{grid-template-columns:1fr}.tools input{grid-column:auto}.actions>button{width:100%}.status{display:grid;grid-template-columns:1fr 1fr}.top{display:block}.icon{margin-bottom:10px}footer{flex-direction:column}}
+@page{size:A4 portrait;margin:13mm}@media print{body{background:white;-webkit-print-color-adjust:exact;print-color-adjust:exact}header,.hero,.lgr,.tools,.results,footer,.no-print{display:none!important}.list{padding:0;max-width:none}.card{display:none}.card.printing{display:block;margin:0;padding:5mm;border:0;border-left:5px solid var(--green);box-shadow:none}.card.printing .details{display:block}.card.student-mode>.top,.card.student-mode>.actions,.card.student-mode>.details{display:none!important}.card.student-mode .student-sheet{display:block}.facts{grid-template-columns:repeat(4,1fr)}.details section,.lgrbox,.twocol>div{break-inside:avoid}h2,h3{break-after:avoid}}
+</style>
+</head>
+<body>
+<header><a href="index.html">∑ Praktisk matematik F–9</a><a class="back" href="7-9.html">← 7–9 områden</a></header>
+
+<section class="hero">
+<small>7–9 · MÄTNING · LGR22</small>
+<h1>Mätning i praktiken</h1>
+<p>Eleverna undersöker längd, area, volym, massa, tid, hastighet, enhetsbyten, mätosäkerhet, felkällor och rimlig precision.</p>
+</section>
+
+<section class="lgr">
+<p><b>Syfte enligt Lgr22:</b> Utveckla förmågan att använda matematiska begrepp och metoder, lösa problem och värdera resultat.</p>
+<p><b>Centralt innehåll:</b> Metoder för beräkning av area, omkrets och volym. Enhetsbyten, mätning, uppskattning, felkällor och rimlighetsbedömning i vardagliga och ämnesövergripande situationer.</p>
+</section>
+
+<section class="tools no-print" aria-label="Filtrera aktiviteter">
+<input id="search" type="search" placeholder="Sök aktivitet…" aria-label="Sök aktivitet">
+<select id="place" aria-label="Välj plats">
+<option>Alla platser</option>
+<option>Klassrum</option>
+<option>Inne på skolan</option>
+<option>Utomhus</option>
+<option>Inne och ute</option>
+</select>
+<select id="form" aria-label="Välj arbetsform">
+<option>Alla arbetsformer</option>
+<option>Enskilt</option>
+<option>Par</option>
+<option>Grupp</option>
+<option>Helklass</option>
+</select>
+<select id="state" aria-label="Välj status">
+<option>Alla statusar</option>
+<option>Inte klar</option>
+<option>Klar</option>
+</select>
+</section>
+
+<div class="results no-print" id="results" aria-live="polite"></div>
+<main class="list" id="list"></main>
+
+<footer>
+<strong>Praktisk matematik 7–9</strong>
+<span>12 aktiviteter · Enkla hjälpmedel · Lgr22 · A4-utskrift i färg</span>
+</footer>
+
+<script>
+const activities=[
+{id:"enhetsstafetten-79",icon:"🔁",title:"Enhetsstafetten",place:"Klassrum",form:"Grupp",time:"35 min",material:"Enhetskort och mätkort",prep:"Förbered storheter i flera enheter",summary:"Grupperna matchar och omvandlar längd, area, volym, massa och tid.",goal:"genomföra och motivera enhetsbyten",content:"Måttenheter och metoder för enhetsbyten.",concepts:"enhet, prefix, längd, area, volym, massa och omvandlingsfaktor",assessment:"Kontrollera om eleven skiljer linjära, kvadrerade och kuberade enheter.",steps:["Matcha ekvivalenta mått.","Förklara varje omvandlingsfaktor.","Kontrollera med en uppskattning."],talk:["Varför blir areafaktorn 100?","Hur avslöjar enheten ett fel?"],support:"Använd en omvandlingstabell.",challenge:"Använd grundpotensform och sammansatta enheter."},
+
+{id:"areaexpeditionen-79",icon:"⬛",title:"Areaexpeditionen",place:"Utomhus",form:"Par",time:"45 min",material:"Måttband, kritor och skissblock",prep:"Välj oregelbundna ytor",summary:"Paren uppskattar och beräknar area genom uppdelning i enklare figurer.",goal:"beräkna area av sammansatta figurer",content:"Metoder för beräkning av area.",concepts:"area, sammansatt figur, bas, höjd, uppskattning och kvadratmeter",assessment:"Se om eleven delar upp ytan utan överlapp eller luckor.",steps:["Uppskatta arean.","Mät nödvändiga längder.","Dela upp, beräkna och kontrollera."],talk:["Vilka mått behövs?","Kan figuren delas på flera sätt?"],support:"Ge en färdig delningsskiss.",challenge:"Beräkna felmarginal och jämför två metoder."},
+
+{id:"volymbygget-79",icon:"📦",title:"Volymbygget",place:"Klassrum",form:"Grupp",time:"45 min",material:"Kartong, kuber, linjal och vattenmått",prep:"Förbered öppna lådor och kroppar",summary:"Eleverna bygger kroppar och kopplar lager, basarea och höjd till volym.",goal:"beräkna volym och tolka volymformler",content:"Metoder för beräkning av volym.",concepts:"volym, basarea, höjd, kubikenhet, liter och rymd",assessment:"Observera om eleven skiljer volym från begränsningsarea.",steps:["Bygg en kropp av kuber.","Bestäm basarea och antal lager.","Beräkna och jämför med modellen."],talk:["Varför multipliceras basarea med höjd?","Hur hör liter och kubikdecimeter ihop?"],support:"Använd rätblock och heltalsmått.",challenge:"Använd prismor, cylindrar och enhetsbyten."},
+
+{id:"forpackningslabbet-79",icon:"🎁",title:"Förpackningslabbet",place:"Klassrum",form:"Par",time:"50 min",material:"Kartongförpackningar, papper och linjal",prep:"Samla rena förpackningar",summary:"Paren jämför volym och begränsningsarea för olika förpackningar.",goal:"beräkna begränsningsarea och värdera materialåtgång",content:"Area och volym i praktiska situationer.",concepts:"begränsningsarea, nät, volym, spill, effektivitet och skala",assessment:"Bedöm om eleven räknar varje yta rätt antal gånger.",steps:["Rita förpackningens nät.","Beräkna area och volym.","Jämför material per volymenhet."],talk:["Vilken form är materialeffektiv?","Var uppstår spill?"],support:"Använd rätblock och färdig nätmall.",challenge:"Optimera mått för given volym."},
+
+{id:"hastighetsbanan-79",icon:"🏃",title:"Hastighetsbanan",place:"Utomhus",form:"Grupp",time:"45 min",material:"Måttband, tidtagare och protokoll",prep:"Mät upp en säker bana",summary:"Grupperna mäter sträcka och tid och jämför medelhastigheter.",goal:"använda sambandet mellan hastighet, sträcka och tid",content:"Mätning och beräkningar med sammansatta enheter.",concepts:"sträcka, tid, hastighet, medelhastighet, meter per sekund och kilometer per timme",assessment:"Kontrollera om eleven använder enhet och skiljer medelhastighet från ögonblickshastighet.",steps:["Mät banan.","Genomför tre tidsmätningar.","Beräkna och jämför hastigheter."],talk:["Varför varierar mätningarna?","Hur omvandlas m/s till km/h?"],support:"Ge formeltriangel och samma enheter.",challenge:"Analysera delsträckor och osäkerhet."},
+
+{id:"matosakerhetslabbet-79",icon:"🎯",title:"Mätosäkerhetslabbet",place:"Klassrum",form:"Grupp",time:"40 min",material:"Linjal, måttband, våg och tidtagare",prep:"Välj föremål som kan mätas upprepat",summary:"Eleverna jämför upprepade mätningar och identifierar slumpmässiga och systematiska fel.",goal:"bedöma mätosäkerhet och felkällor",content:"Mätning, felkällor och rimlighetsbedömning.",concepts:"mätosäkerhet, upplösning, felkälla, systematiskt fel, slumpfel och intervall",assessment:"Lyssna efter om eleven kopplar precision till redskap och metod.",steps:["Mät samma storhet flera gånger.","Jämför spridningen.","Identifiera och minska felkällor."],talk:["Kan två värden båda vara rimliga?","Vad skiljer slumpfel från systematiskt fel?"],support:"Ge en protokollmall.",challenge:"Ange osäkerhetsintervall och relativ avvikelse."},
+
+{id:"precisionsvakten-79",icon:"🔍",title:"Precisionsvakten",place:"Klassrum",form:"Par",time:"35 min",material:"Mätvärden, räknare och svarskort",prep:"Förbered svar med rimlig och orimlig precision",summary:"Paren granskar antal decimaler och väljer lämplig precision utifrån mätningen.",goal:"avrunda och redovisa mätresultat med rimlig precision",content:"Rimlighetsbedömning och precision.",concepts:"precision, noggrannhet, decimal, värdesiffra, avrundning och närmevärde",assessment:"Kontrollera om eleven undviker fler siffror än underlaget stödjer.",steps:["Granska mätningens upplösning.","Beräkna utan tidig avrundning.","Redovisa med motiverad precision."],talk:["Betyder fler decimaler större noggrannhet?","När ska avrundning ske?"],support:"Ange önskad enhet.",challenge:"Använd värdesiffror och felpropagering."},
+
+{id:"densitetsdetektiverna-79",icon:"⚗️",title:"Densitetsdetektiverna",place:"Klassrum",form:"Grupp",time:"50 min",material:"Våg, mätglas, vatten och fasta föremål",prep:"Välj tåliga föremål",summary:"Grupperna mäter massa och volym och identifierar material med densitet.",goal:"mäta och använda en sammansatt storhet",content:"Mätning inom andra ämnesområden.",concepts:"massa, volym, densitet, undanträngning, gram per kubikcentimeter och rimlighet",assessment:"Bedöm om eleven håller ordning på enheter och mätfel.",steps:["Mät massan.","Bestäm volymen.","Beräkna densiteten och jämför."],talk:["Hur mäts ett oregelbundet föremål?","Hur påverkar luftbubblor resultatet?"],support:"Använd stora volymer och formelstöd.",challenge:"Beräkna osäkerhet och identifiera okänt material."},
+
+{id:"indirekta-matningen-79",icon:"🌳",title:"Indirekta mätningen",place:"Utomhus",form:"Par",time:"45 min",material:"Måttband, meterstav och skissmall",prep:"Välj ett högt objekt och säker mark",summary:"Paren bestämmer en svårmätt höjd med skuggor eller likformighet.",goal:"planera och genomföra indirekt mätning",content:"Mätning, proportionalitet och geometriska samband.",concepts:"indirekt mätning, likformighet, proportion, höjd, skugga och felmarginal",assessment:"Observera om eleven redovisar antaganden och motsvarande mått.",steps:["Planera metoden.","Mät referens och skuggor.","Beräkna och rimlighetsbedöm."],talk:["Vilka antaganden görs?","Hur kan svaret kontrolleras?"],support:"Ge färdig proportionsmall.",challenge:"Jämför två metoder och avvikelsen."},
+
+{id:"matningsfeldetektiverna-79",icon:"🕵️",title:"Mätningsfeldetektiverna",place:"Klassrum",form:"Grupp",time:"40 min",material:"Felaktiga lösningar och analysmall",prep:"Skapa fel om enheter, area, volym och precision",summary:"Eleverna hittar första felet och reparerar mätberäkningar.",goal:"granska mätmetoder och rätta fel",content:"Metoder, enheter och rimlighetsbedömning.",concepts:"enhetsfel, metodfel, mätfel, avrundningsfel, kontroll och återkoppling",assessment:"Lyssna efter om eleven förklarar orsaken till felet.",steps:["Gör ett överslag.","Markera första felet.","Rätta och kontrollera enheten."],talk:["Hur avslöjar enheten felet?","Vilka fel är följdfel?"],support:"Använd ett fel per lösning.",challenge:"Analysera flera oberoende fel."},
+
+{id:"matningsstationer-79",icon:"🔄",title:"Fem praktiska mätstationer",place:"Klassrum",form:"Grupp",time:"65 min",material:"Mätredskap, kroppar, kartor och protokoll",prep:"Förbered fem stationer",summary:"Eleverna tränar enheter, area, volym, hastighet och osäkerhet.",goal:"använda och förklara centrala mätmetoder",content:"Mätning, enhetsbyten, area, volym och felkällor.",concepts:"enhet, area, volym, hastighet, precision och mätosäkerhet",assessment:"Använd protokollet för metodval och kontroller.",steps:["Station 1: enhetsbyten.","Station 2: area.","Station 3: volym.","Station 4: hastighet.","Station 5: felanalys."],talk:["Vilken kontroll var viktigast?","När påverkade precisionen slutsatsen?"],support:"Ge ett löst exempel per station.",challenge:"Skapa en station med facit och felkälla."},
+
+{id:"kunskapsuppdrag-matexperten-79",icon:"🧭",title:"Kunskapsuppdraget – Mätexperten 7–9",place:"Inne och ute",form:"Enskilt",time:"65–85 min",material:"Mätredskap, kroppar, tidtagare och protokoll",prep:"Förbered sex uppdrag",summary:"Eleven visar självständigt mätning, beräkning och rimlighetsbedömning.",goal:"mäta, beräkna och värdera resultat med rätt enheter",content:"Mätning och beräkningar enligt Lgr22.",concepts:"enhet, area, volym, hastighet, precision, felkälla och rimlighet",assessment:"Dokumentera metod, enheter, precision och kontroll.",steps:["Genomför ett enhetsbyte.","Bestäm en sammansatt area.","Beräkna en volym.","Mät en hastighet.","Analysera mätosäkerhet.","Rätta ett metodfel."],talk:["Hur vet du att svaret är rimligt?","Vilken precision stödjer mätningen?"],support:"Ge ett uppdrag i taget och formelstöd.",challenge:"Kombinera flera enheter och beräkna relativt fel."}
+];
+
+const done=JSON.parse(localStorage.getItem("79-matning-done")||"[]");
+
+function card(a){
+const isDone=done.includes(a.id);
+return `<article class="card ${isDone?"done-card":""}" data-id="${a.id}" data-place="${a.place}" data-form="${a.form}">
+<div class="top">
+<span class="icon" aria-hidden="true">${a.icon}</span>
+<div>
+<div class="tags">
+<span class="tag">7–9</span>
+<span class="tag">${a.place}</span>
+<span class="tag">${a.form}</span>
+<span class="tag">${a.time}</span>
+</div>
+<h2>${a.title}</h2>
+<p class="summary">${a.summary}</p>
+</div>
+</div>
+
+<div class="actions no-print">
+<button class="open" type="button" aria-expanded="false" onclick="toggleActivity(this)">Visa hela aktiviteten</button>
+<button class="print" type="button" onclick="printTeacher(this)">🖨 Lärarhandledning</button>
+<button class="student" type="button" onclick="printStudent(this)">📝 Elevblad</button>
+<div class="status" aria-label="Aktivitetsstatus">
+<button class="red ${isDone?"":"active"}" type="button" onclick="markActivity(this,false)">● Inte klar</button>
+<button class="green ${isDone?"active":""}" type="button" onclick="markActivity(this,true)">✓ Klar</button>
+</div>
+</div>
+
+<div class="details">
+<div class="facts">
+<div class="fact"><b>Tid</b>${a.time}</div>
+<div class="fact"><b>Plats</b>${a.place}</div>
+<div class="fact"><b>Arbetsform</b>${a.form}</div>
+<div class="fact"><b>Material</b>${a.material}</div>
+</div>
+
+<section class="lgrbox">
+<h3>Koppling till Lgr22</h3>
+<p><b>Lärandemål:</b> Eleven ska kunna ${a.goal}.</p>
+<p><b>Centralt innehåll:</b> ${a.content}</p>
+<p><b>Förmågor:</b> Begrepp, metoder, problemlösning, resonemang och kommunikation.</p>
+</section>
+
+<section>
+<h3>Förberedelser</h3>
+<p>${a.prep}.</p>
+</section>
+
+<section>
+<h3>Gör så här – steg för steg</h3>
+<ol class="steps">${a.steps.map((step,index)=>`<li><i>${index+1}</i><span>${step}</span></li>`).join("")}</ol>
+</section>
+
+<section class="talk">
+<h3>Matematiska samtalsfrågor</h3>
+<ul>${a.talk.map(question=>`<li>${question}</li>`).join("")}</ul>
+</section>
+
+<div class="twocol">
+<div>
+<h3>Språk och begrepp</h3>
+<p>${a.concepts}.</p>
+<p><b>Meningsstarter:</b> Jag vet att … eftersom … / Min representation visar … / Svaret är rimligt eftersom …</p>
+</div>
+<div>
+<h3>Formativ bedömning</h3>
+<p>${a.assessment}</p>
+</div>
+<div>
+<h3>Stöd</h3>
+<p>${a.support}</p>
+</div>
+<div>
+<h3>Utmaning</h3>
+<p>${a.challenge}</p>
+</div>
+</div>
+</div>
+
+<section class="student-sheet">
+<h2>${a.title}</h2>
+<p>Namn: __________________________ Datum: ____________</p>
+<p><b>Mitt mål:</b> Jag ska kunna ${a.goal}.</p>
+<h3>Mitt uppdrag</h3>
+<ol>${a.steps.map(step=>`<li>${step}</li>`).join("")}</ol>
+<h3>Min matematiska dokumentation</h3>
+<div class="box"></div>
+<div class="box"></div>
+<h3>Jag motiverar och kontrollerar</h3>
+<div class="box"></div>
+<h3>Exit ticket</h3>
+<p>Det här förstår jag nu:</p>
+<div class="line"></div>
+<p>Det här behöver jag undersöka vidare:</p>
+<div class="line"></div>
+</section>
+</article>`
+}
+
+function render(){
+const query=document.getElementById("search").value.toLowerCase();
+const selectedPlace=document.getElementById("place").value;
+const selectedForm=document.getElementById("form").value;
+const selectedState=document.getElementById("state").value;
+
+const filtered=activities.filter(a=>{
+const searchable=`${a.title} ${a.summary} ${a.concepts}`.toLowerCase();
+
+return(!query||searchable.includes(query))&&
+(selectedPlace==="Alla platser"||a.place===selectedPlace)&&
+(selectedForm==="Alla arbetsformer"||a.form===selectedForm)&&
+(selectedState==="Alla statusar"||
+(selectedState==="Klar"&&done.includes(a.id))||
+(selectedState==="Inte klar"&&!done.includes(a.id)))
+});
+
+document.getElementById("list").innerHTML=filtered.length
+?filtered.map(card).join("")
+:`<div class="empty">Inga aktiviteter matchar dina val.</div>`;
+
+document.getElementById("results").textContent=
+`${filtered.length} av ${activities.length} aktiviteter visas`;
+}
+
+function toggleActivity(button){
+const cardElement=button.closest(".card");
+const isOpen=cardElement.classList.toggle("opened");
+button.textContent=isOpen?"Dölj aktiviteten":"Visa hela aktiviteten";
+button.setAttribute("aria-expanded",String(isOpen));
+}
+
+function markActivity(button,value){
+const id=button.closest(".card").dataset.id;
+const position=done.indexOf(id);
+
+if(value&&position<0)done.push(id);
+if(!value&&position>=0)done.splice(position,1);
+
+localStorage.setItem("79-matning-done",JSON.stringify(done));
+render();
+}
+
+function clearPrintState(){
+document.querySelectorAll(".printing").forEach(cardElement=>{
+cardElement.classList.remove("printing","student-mode");
+});
+}
+
+function printTeacher(button){
+clearPrintState();
+button.closest(".card").classList.add("printing");
+window.print();
+}
+
+function printStudent(button){
+clearPrintState();
+button.closest(".card").classList.add("printing","student-mode");
+window.print();
+}
+
+window.addEventListener("afterprint",clearPrintState);
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("place").addEventListener("change",render);
+document.getElementById("form").addEventListener("change",render);
+document.getElementById("state").addEventListener("change",render);
+render();
+</script>
+</body>
+</html>
