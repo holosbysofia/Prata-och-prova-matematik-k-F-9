@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Tolv praktiska aktiviteter om statistik för årskurs 7–9, kopplade till Lgr22.">
+<title>Statistik 7–9 | Praktisk matematik</title>
+<style>
+:root{--bg:#f3eee3;--paper:#fffdf8;--green:#4e705e;--dark:#29483b;--soft:#dfe8dd;--sand:#e8dece;--red:#a8665b;--ink:#2e3933;--muted:#68746d;--line:#d9d2c6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif;line-height:1.6}
+button,select,input{font:inherit}
+header{min-height:72px;padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--paper);border-bottom:1px solid var(--line)}
+header a{text-decoration:none;color:var(--dark);font-weight:bold}
+.back{color:var(--green);font-size:13px}
+.hero{padding:58px 7% 70px;background:linear-gradient(140deg,var(--paper),#e4eadf)}
+.hero small{color:var(--green);font-weight:bold;letter-spacing:.14em}
+.hero h1{max-width:1000px;margin:14px 0;color:var(--dark);font:clamp(40px,6vw,68px)/1.05 Georgia,serif}
+.hero p{max-width:800px;color:var(--muted);font-size:17px}
+.lgr{max-width:1080px;margin:-22px auto 35px;padding:22px;background:var(--dark);color:white;border-radius:12px}
+.lgr b{color:#dce8ca}
+.lgr p{margin:5px 0;font-size:13px}
+.tools{max-width:1080px;margin:auto;padding:20px;display:grid;grid-template-columns:1fr repeat(3,180px);gap:10px}
+.tools input,.tools select{padding:12px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px}
+.tools input:focus,.tools select:focus,button:focus-visible,a:focus-visible{outline:3px solid #e0b868;outline-offset:2px}
+.results{max-width:1080px;margin:5px auto 16px;padding:0 20px;color:var(--muted);font-size:13px}
+.list{max-width:1080px;margin:auto;padding:0 20px 75px}
+.card{margin:17px 0;padding:24px;background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--green);border-radius:13px;box-shadow:0 7px 20px #29483b0c}
+.card.done-card{border-left-color:var(--dark);box-shadow:0 0 0 2px #b8c9bc inset}
+.top{display:flex;gap:16px}
+.icon{width:52px;height:52px;flex:0 0 52px;display:grid;place-items:center;background:var(--soft);border-radius:14px;font-size:26px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{padding:4px 9px;background:#ecefe8;border-radius:20px;font-size:10px;font-weight:bold}
+.card h2{margin:8px 0 5px;color:var(--dark);font:26px Georgia,serif}
+.summary{color:var(--muted);font-size:14px}
+.actions{margin-top:16px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.actions button{padding:9px 12px;border:0;border-radius:7px;cursor:pointer;font-size:12px;font-weight:bold}
+.open{background:var(--dark);color:white}
+.print{background:#e7e3da;color:var(--ink)}
+.student{background:var(--soft);color:var(--dark)}
+.status{margin-left:auto;display:flex;gap:7px}
+.status button{background:white;border:1px solid}
+.red{color:var(--red);border-color:#cda7a0!important}
+.green{color:var(--green);border-color:#9db8aa!important}
+.red.active{background:var(--red);color:white}
+.green.active{background:var(--green);color:white}
+.details{display:none;margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+.card.opened .details{display:block}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.fact{padding:11px;background:#f2efe8;border-radius:7px;font-size:12px}
+.fact b{display:block;color:var(--green);font-size:9px;text-transform:uppercase}
+.lgrbox{margin:18px 0;padding:16px;background:#edf2e9;border:1px solid #bdcdbd;border-radius:8px}
+.details h3{margin:20px 0 7px;color:var(--dark);font-size:16px}
+.steps{padding:0;list-style:none}
+.steps li{margin:9px 0;display:flex;gap:10px;font-size:13px}
+.steps i{width:25px;height:25px;flex:0 0 25px;display:grid;place-items:center;background:var(--dark);color:white;border-radius:50%;font-style:normal;font-weight:bold}
+.talk{padding:16px 20px;background:var(--soft);border-radius:8px}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.twocol>div{padding:15px;background:#f2efe8;border-radius:8px}
+.student-sheet{display:none;min-height:250mm;padding:12mm;border:2px solid var(--green)}
+.student-sheet h2{color:var(--dark);font-family:Georgia,serif}
+.box{min-height:70px;margin:10px 0;border:1px solid #9eaaa3}
+.line{height:28px;border-bottom:1px solid #777}
+.empty{padding:45px;background:var(--paper);border-radius:12px;text-align:center}
+footer{padding:25px 6%;display:flex;justify-content:space-between;gap:20px;background:var(--dark);color:#d9e3de;font-size:12px}
+
+@media(max-width:760px){
+.tools{grid-template-columns:1fr 1fr}
+.tools input{grid-column:span 2}
+.facts{grid-template-columns:1fr 1fr}
+.twocol{grid-template-columns:1fr}
+.status{width:100%;margin-left:0}
+.hero{padding:48px 22px 62px}
+}
+
+@media(max-width:480px){
+.tools{grid-template-columns:1fr}
+.tools input{grid-column:auto}
+.actions>button{width:100%}
+.status{display:grid;grid-template-columns:1fr 1fr}
+.top{display:block}
+.icon{margin-bottom:10px}
+footer{flex-direction:column}
+}
+
+@page{size:A4 portrait;margin:13mm}
+
+@media print{
+body{background:white;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+header,.hero,.lgr,.tools,.results,footer,.no-print{display:none!important}
+.list{padding:0;max-width:none}
+.card{display:none}
+.card.printing{display:block;margin:0;padding:5mm;border:0;border-left:5px solid var(--green);box-shadow:none}
+.card.printing .details{display:block}
+.card.student-mode>.top,.card.student-mode>.actions,.card.student-mode>.details{display:none!important}
+.card.student-mode .student-sheet{display:block}
+.facts{grid-template-columns:repeat(4,1fr)}
+.details section,.lgrbox,.twocol>div{break-inside:avoid}
+h2,h3{break-after:avoid}
+}
+</style>
+</head>
+<body>
+
+<header>
+<a href="index.html">∑ Praktisk matematik F–9</a>
+<a class="back" href="7-9.html">← 7–9 områden</a>
+</header>
+
+<section class="hero">
+<small>7–9 · STATISTIK · LGR22</small>
+<h1>Statistik i praktiken</h1>
+<p>Eleverna samlar in, organiserar, visualiserar, analyserar och kritiskt granskar data från egna undersökningar och verkliga sammanhang.</p>
+</section>
+
+<section class="lgr">
+<p><b>Syfte enligt Lgr22:</b> Utveckla förmågan att använda matematikens begrepp och metoder, formulera och lösa problem samt föra och följa matematiska resonemang.</p>
+<p><b>Centralt innehåll:</b> Tabeller, diagram och grafer för att beskriva resultat av undersökningar, med och utan digitala verktyg. Lägesmått och spridningsmått för bedömning av statistiska resultat samt kritisk granskning av hur statistik presenteras.</p>
+</section>
+
+<section class="tools no-print" aria-label="Filtrera aktiviteter">
+<input id="search" type="search" placeholder="Sök aktivitet…" aria-label="Sök aktivitet">
+
+<select id="place" aria-label="Välj plats">
+<option>Alla platser</option>
+<option>Klassrum</option>
+<option>Inne på skolan</option>
+<option>Utomhus</option>
+<option>Inne och ute</option>
+</select>
+
+<select id="form" aria-label="Välj arbetsform">
+<option>Alla arbetsformer</option>
+<option>Enskilt</option>
+<option>Par</option>
+<option>Grupp</option>
+<option>Helklass</option>
+</select>
+
+<select id="state" aria-label="Välj status">
+<option>Alla statusar</option>
+<option>Inte klar</option>
+<option>Klar</option>
+</select>
+</section>
+
+<div class="results no-print" id="results" aria-live="polite"></div>
+<main class="list" id="list"></main>
+
+<footer>
+<strong>Praktisk matematik 7–9</strong>
+<span>12 aktiviteter · Enkla hjälpmedel · Lgr22 · A4-utskrift i färg</span>
+</footer>
+
+<script>
+const activities=[
+{
+id:"datainsamlingsuppdraget-79",
+icon:"📝",
+title:"Datainsamlingsuppdraget",
+place:"Inne på skolan",
+form:"Grupp",
+time:"50 min",
+material:"Frågekort, protokoll och digitalt formulär vid behov",
+prep:"Välj ett ofarligt och anonymt undersökningsområde",
+summary:"Grupperna formulerar en statistisk fråga och samlar in användbara data på ett etiskt sätt.",
+goal:"planera och genomföra en statistisk undersökning",
+content:"Datainsamling, tabeller och beskrivning av resultat från egna undersökningar.",
+concepts:"frågeställning, population, urval, variabel, observation, svarsalternativ och anonymitet",
+assessment:"Observera om frågan går att undersöka och om insamlingsmetoden ger relevanta data.",
+steps:[
+"Formulera en tydlig statistisk fråga.",
+"Bestäm population, urval och variabel.",
+"Samla in data utan namn eller känsliga uppgifter.",
+"Kontrollera bortfall och dokumentera metoden."
+],
+talk:[
+"Vad vill ni kunna säga efter undersökningen?",
+"Kan frågans formulering påverka svaren?"
+],
+support:"Ge färdiga ämnen och en enkel protokollmall.",
+challenge:"Jämför två frågeformuleringar och analysera möjlig påverkan."
+},
+{
+id:"stickprovsjakten-79",
+icon:"🎯",
+title:"Stickprovsjakten",
+place:"Inne på skolan",
+form:"Par",
+time:"40 min",
+material:"Urvalskort, elevlistor utan namn och analysmall",
+prep:"Förbered situationer med representativa och snedvridna urval",
+summary:"Paren undersöker hur olika urvalsmetoder kan ge olika slutsatser.",
+goal:"bedöma om ett urval är representativt",
+content:"Statistiska undersökningar och kritisk granskning av resultat.",
+concepts:"population, stickprov, representativitet, slumpmässigt urval, bortfall och urvalsfel",
+assessment:"Lyssna efter om eleven skiljer population från stickprov och kan förklara en snedvridning.",
+steps:[
+"Identifiera undersökningens population.",
+"Granska hur stickprovet valdes.",
+"Förutse vilka grupper som kan saknas.",
+"Föreslå en mer rättvis urvalsmetod."
+],
+talk:[
+"Vem får möjlighet att svara?",
+"När kan ett stort urval ändå bli missvisande?"
+],
+support:"Använd små konkreta grupper och färgade kort.",
+challenge:"Planera ett stratifierat urval och motivera proportionerna."
+},
+{
+id:"diagramverkstaden-79",
+icon:"📊",
+title:"Diagramverkstaden",
+place:"Klassrum",
+form:"Grupp",
+time:"50 min",
+material:"Datakort, rutpapper, linjal och kalkylprogram",
+prep:"Förbered kategoriska och numeriska datamängder",
+summary:"Eleverna väljer, konstruerar och jämför diagram som passar olika slags data.",
+goal:"välja och skapa en lämplig statistisk representation",
+content:"Tabeller, diagram och grafer med och utan digitala verktyg.",
+concepts:"frekvenstabell, stapeldiagram, linjediagram, histogram, cirkeldiagram, axel och skala",
+assessment:"Kontrollera om diagramtypen passar datan och om rubrik, axlar, skala och enheter är tydliga.",
+steps:[
+"Bestäm vilken typ av data ni har.",
+"Gör en frekvenstabell.",
+"Välj och konstruera ett diagram.",
+"Motivera varför representationen passar."
+],
+talk:[
+"Vad blir lätt att se i ert diagram?",
+"Vad riskerar att döljas?"
+],
+support:"Ge en checklista för diagrammens delar.",
+challenge:"Visa samma data på två sätt och jämför budskapen."
+},
+{
+id:"vilseledande-diagram-79",
+icon:"🕵️",
+title:"Diagramdetektiverna",
+place:"Klassrum",
+form:"Par",
+time:"45 min",
+material:"Reklamdiagram, nyhetsgrafik och granskningsmall",
+prep:"Välj exempel med kapad axel, ojämn skala eller missvisande bildsymboler",
+summary:"Paren avslöjar hur diagram kan överdriva, dölja eller förvränga skillnader.",
+goal:"kritiskt granska statistiska presentationer",
+content:"Tolkning och kritisk granskning av tabeller, diagram och statistiska påståenden.",
+concepts:"kapad axel, skala, proportion, källa, urval, perspektiv och vilseledande framställning",
+assessment:"Bedöm om eleven pekar ut den konkreta grafiska eller statistiska orsaken till missvisningen.",
+steps:[
+"Beskriv vad diagrammet verkar påstå.",
+"Granska axlar, skala, symboler, källa och urval.",
+"Förklara hur läsaren påverkas.",
+"Rita en mer rättvis version."
+],
+talk:[
+"Är diagrammet fel eller bara vinklat?",
+"Vilken information behöver läsaren för att bedöma påståendet?"
+],
+support:"Använd en granskningslista med fem frågor.",
+challenge:"Skapa två korrekta diagram som ändå betonar olika perspektiv."
+},
+{
+id:"lagesmattslabbet-79",
+icon:"⚖️",
+title:"Lägesmåttslabbet",
+place:"Klassrum",
+form:"Grupp",
+time:"45 min",
+material:"Talbrickor, datakort och räknare",
+prep:"Förbered datamängder med och utan extremvärden",
+summary:"Grupperna gestaltar och jämför medelvärde, median och typvärde.",
+goal:"beräkna och välja ett lämpligt lägesmått",
+content:"Lägesmått för bedömning av resultat vid statistiska undersökningar.",
+concepts:"medelvärde, median, typvärde, summa, antal, sortering och extremvärde",
+assessment:"Kontrollera om eleven kan beräkna måtten och förklara vilket som bäst beskriver datan.",
+steps:[
+"Sortera datamängden.",
+"Bestäm median och typvärde.",
+"Fördela totalen lika för att tolka medelvärdet.",
+"Lägg till ett extremvärde och jämför förändringen."
+],
+talk:[
+"Vilket lägesmått påverkas mest av extremvärdet?",
+"När är typvärdet mest användbart?"
+],
+support:"Använd få heltal och konkret utjämning med brickor.",
+challenge:"Skapa en datamängd med givet medelvärde och median."
+},
+{
+id:"spridningsjakten-79",
+icon:"↔️",
+title:"Spridningsjakten",
+place:"Utomhus",
+form:"Grupp",
+time:"45 min",
+material:"Tidtagare, måttband och protokoll",
+prep:"Välj en säker aktivitet som kan mätas flera gånger",
+summary:"Eleverna samlar in mätvärden och jämför variationen med variationsbredd.",
+goal:"beräkna och tolka ett spridningsmått",
+content:"Spridningsmått för bedömning av statistiska resultat.",
+concepts:"spridning, variationsbredd, största värde, minsta värde, avvikelse och variation",
+assessment:"Se om eleven använder spridningen tillsammans med ett lägesmått när grupper jämförs.",
+steps:[
+"Genomför och mät samma aktivitet flera gånger.",
+"Sortera gruppens värden.",
+"Beräkna lägesmått och variationsbredd.",
+"Jämför med en annan grupp och formulera en slutsats."
+],
+talk:[
+"Kan två grupper ha samma medelvärde men olika resultat?",
+"Vad berättar variationsbredden inte?"
+],
+support:"Markera minsta och största värde med färg.",
+challenge:"Jämför variationsbredd med kvartilavstånd."
+},
+{
+id:"kvartilverkstaden-79",
+icon:"📦",
+title:"Kvartilverkstaden",
+place:"Klassrum",
+form:"Par",
+time:"45 min",
+material:"Tallinjer, datakort, snöre och rutpapper",
+prep:"Förbered sorterade datamängder med minst tolv värden",
+summary:"Paren delar data i fyra delar och bygger lådagram för att synliggöra centrum och spridning.",
+goal:"bestämma kvartiler och tolka ett lådagram",
+content:"Lägesmått, spridningsmått och grafisk beskrivning av data.",
+concepts:"minimum, undre kvartil, median, övre kvartil, maximum, kvartilavstånd och lådagram",
+assessment:"Observera om eleven sorterar data och placerar femtalsbeskrivningen korrekt.",
+steps:[
+"Sortera alla värden.",
+"Bestäm minimum, kvartiler, median och maximum.",
+"Rita ett lådagram på en skalenlig tallinje.",
+"Tolka centrum, spridning och eventuell skevhet."
+],
+talk:[
+"Var finns den mittersta hälften av värdena?",
+"Hur jämförs två lådagram?"
+],
+support:"Använd ett udda antal värden i vardera halvan.",
+challenge:"Jämför två grupper med lådagram och kvartilavstånd."
+},
+{
+id:"samma-medeltal-79",
+icon:"👥",
+title:"Samma medeltal – olika verklighet",
+place:"Klassrum",
+form:"Par",
+time:"40 min",
+material:"Datakort och jämförelsemall",
+prep:"Skapa par av datamängder med samma medelvärde men olika spridning",
+summary:"Paren visar varför ett enda sammanfattande tal inte alltid räcker.",
+goal:"jämföra fördelningar med lägesmått och spridningsmått",
+content:"Bedömning av statistiska resultat med lägesmått och spridningsmått.",
+concepts:"fördelning, lägesmått, spridningsmått, extremvärde, representativt värde och slutsats",
+assessment:"Bedöm om eleven använder flera mått och hänvisar till fördelningens form.",
+steps:[
+"Beräkna medelvärde och median för båda grupperna.",
+"Beräkna och jämför spridningen.",
+"Skapa diagram över värdena.",
+"Skriv en slutsats som tar hänsyn till hela fördelningen."
+],
+talk:[
+"Vad döljer medelvärdet?",
+"Vilka mått behövs för en rättvis jämförelse?"
+],
+support:"Använd små datamängder med heltal.",
+challenge:"Skapa två egna datamängder med samma median men olika medelvärde."
+},
+{
+id:"sambandsdetektiverna-79",
+icon:"🔎",
+title:"Sambandsdetektiverna",
+place:"Inne på skolan",
+form:"Grupp",
+time:"50 min",
+material:"Mätdata, koordinatpapper och kalkylprogram",
+prep:"Välj två mätbara variabler utan känsliga personuppgifter",
+summary:"Grupperna gör spridningsdiagram och diskuterar samband, avvikare och möjliga förklaringar.",
+goal:"tolka statistiska samband utan att dra för starka slutsatser",
+content:"Diagram och grafer för att beskriva och tolka resultat av undersökningar.",
+concepts:"variabel, datapunkt, spridningsdiagram, positivt samband, negativt samband, avvikare och orsakssamband",
+assessment:"Lyssna efter om eleven skiljer observerat samband från bevisad orsak.",
+steps:[
+"Samla eller använd parvisa mätvärden.",
+"Rita ett spridningsdiagram.",
+"Beskriv riktning, styrka och avvikare.",
+"Formulera vad datan visar och inte visar."
+],
+talk:[
+"Betyder samband att den ena variabeln orsakar den andra?",
+"Vilka andra faktorer kan påverka?"
+],
+support:"Använd färdig data och markerade axlar.",
+challenge:"Undersök hur en avvikare påverkar tolkningen."
+},
+{
+id:"digitala-datalabbet-79",
+icon:"💻",
+title:"Digitala datalabbet",
+place:"Klassrum",
+form:"Par",
+time:"55 min",
+material:"Dator eller surfplatta och kalkylprogram",
+prep:"Förbered en anonym datamängd",
+summary:"Paren använder digitala verktyg för att sortera, beräkna, visualisera och kontrollera data.",
+goal:"använda digitala verktyg för statistisk analys",
+content:"Tabeller, diagram och grafer med digitala verktyg.",
+concepts:"kalkylblad, cell, formel, sortering, filter, diagram, medelvärde och median",
+assessment:"Kontrollera att eleven förstår vad verktygets formler gör och granskar diagrammets standardval.",
+steps:[
+"Mata in och kvalitetssäkra datan.",
+"Sortera och skapa en frekvenstabell.",
+"Beräkna lägesmått och spridning med formler.",
+"Skapa, formatera och tolka ett diagram."
+],
+talk:[
+"Vilka fel kan ett digitalt verktyg inte upptäcka?",
+"Hur kontrollerar ni att formeln använder rätt celler?"
+],
+support:"Ge en steglista och färdiga kolumnrubriker.",
+challenge:"Använd filter för att jämföra två delgrupper."
+},
+{
+id:"statistikstationer-79",
+icon:"🔄",
+title:"Fem praktiska statistikstationer",
+place:"Klassrum",
+form:"Grupp",
+time:"70 min",
+material:"Datakort, diagram, räknare och stationsprotokoll",
+prep:"Förbered fem stationer och tydliga rotationssignaler",
+summary:"Eleverna tränar datainsamling, diagram, lägesmått, spridning och kritisk granskning.",
+goal:"använda och förklara centrala statistiska metoder",
+content:"Statistiska undersökningar, representationer, lägesmått och spridningsmått.",
+concepts:"urval, frekvens, diagram, medelvärde, median, variationsbredd och källa",
+assessment:"Använd stationsprotokollet för att följa metodval, beräkningar och motiveringar.",
+steps:[
+"Station 1: bedöm ett urval.",
+"Station 2: bygg en frekvenstabell.",
+"Station 3: välj diagram.",
+"Station 4: beräkna lägesmått och spridning.",
+"Station 5: avslöja en vilseledande presentation."
+],
+talk:[
+"Vilken station krävde mest resonemang?",
+"Vilken kontroll gjorde störst skillnad?"
+],
+support:"Ge ett löst exempel och en begreppsbank per station.",
+challenge:"Skapa en sjätte station med facit och bedömningsfråga."
+},
+{
+id:"kunskapsuppdrag-statistikern-79",
+icon:"🧭",
+title:"Kunskapsuppdraget – Statistikern 7–9",
+place:"Klassrum",
+form:"Enskilt",
+time:"70–90 min",
+material:"Datamaterial, diagram, räknare och analysprotokoll",
+prep:"Förbered sex fristående deluppdrag",
+summary:"Eleven visar självständigt hur data samlas in, representeras, analyseras och granskas.",
+goal:"genomföra och värdera en statistisk undersökning",
+content:"Tabeller, diagram, lägesmått, spridningsmått och kritisk granskning enligt Lgr22.",
+concepts:"population, urval, frekvens, diagram, lägesmått, spridningsmått, källa och slutsats",
+assessment:"Dokumentera elevens metodval, beräkningar, representationer, resonemang och kritiska granskning.",
+steps:[
+"Bedöm ett urval och en datainsamling.",
+"Skapa en frekvenstabell.",
+"Välj och rita ett diagram.",
+"Beräkna lägesmått och spridningsmått.",
+"Jämför två datamängder.",
+"Granska ett statistiskt påstående och formulera en välgrundad slutsats."
+],
+talk:[
+"Vilka belägg stödjer din slutsats?",
+"Vad kan undersökningen inte säga?"
+],
+support:"Ge ett deluppdrag i taget, begreppsbank och formelstöd.",
+challenge:"Analysera hur slutsatsen förändras när ett extremvärde eller ett bortfall tillkommer."
+}
+];
+
+const done=JSON.parse(localStorage.getItem("79-statistik-done")||"[]");
+
+function card(a){
+const isDone=done.includes(a.id);
+
+return `<article class="card ${isDone?"done-card":""}" data-id="${a.id}" data-place="${a.place}" data-form="${a.form}">
+<div class="top">
+<span class="icon" aria-hidden="true">${a.icon}</span>
+<div>
+<div class="tags">
+<span class="tag">7–9</span>
+<span class="tag">${a.place}</span>
+<span class="tag">${a.form}</span>
+<span class="tag">${a.time}</span>
+</div>
+<h2>${a.title}</h2>
+<p class="summary">${a.summary}</p>
+</div>
+</div>
+
+<div class="actions no-print">
+<button class="open" type="button" aria-expanded="false" onclick="toggleActivity(this)">Visa hela aktiviteten</button>
+<button class="print" type="button" onclick="printTeacher(this)">🖨 Lärarhandledning</button>
+<button class="student" type="button" onclick="printStudent(this)">📝 Elevblad</button>
+
+<div class="status" aria-label="Aktivitetsstatus">
+<button class="red ${isDone?"":"active"}" type="button" onclick="markActivity(this,false)">● Inte klar</button>
+<button class="green ${isDone?"active":""}" type="button" onclick="markActivity(this,true)">✓ Klar</button>
+</div>
+</div>
+
+<div class="details">
+<div class="facts">
+<div class="fact"><b>Tid</b>${a.time}</div>
+<div class="fact"><b>Plats</b>${a.place}</div>
+<div class="fact"><b>Arbetsform</b>${a.form}</div>
+<div class="fact"><b>Material</b>${a.material}</div>
+</div>
+
+<section class="lgrbox">
+<h3>Koppling till Lgr22</h3>
+<p><b>Lärandemål:</b> Eleven ska kunna ${a.goal}.</p>
+<p><b>Centralt innehåll:</b> ${a.content}</p>
+<p><b>Förmågor:</b> Begrepp, metoder, problemlösning, resonemang och kommunikation.</p>
+</section>
+
+<section>
+<h3>Förberedelser</h3>
+<p>${a.prep}.</p>
+</section>
+
+<section>
+<h3>Gör så här – steg för steg</h3>
+<ol class="steps">
+${a.steps.map((step,index)=>`<li><i>${index+1}</i><span>${step}</span></li>`).join("")}
+</ol>
+</section>
+
+<section class="talk">
+<h3>Matematiska samtalsfrågor</h3>
+<ul>${a.talk.map(question=>`<li>${question}</li>`).join("")}</ul>
+</section>
+
+<div class="twocol">
+<div>
+<h3>Språk och begrepp</h3>
+<p>${a.concepts}.</p>
+<p><b>Meningsstarter:</b> Jag vet att … eftersom … / Min representation visar … / Svaret är rimligt eftersom …</p>
+</div>
+
+<div>
+<h3>Formativ bedömning</h3>
+<p>${a.assessment}</p>
+</div>
+
+<div>
+<h3>Stöd</h3>
+<p>${a.support}</p>
+</div>
+
+<div>
+<h3>Utmaning</h3>
+<p>${a.challenge}</p>
+</div>
+</div>
+</div>
+
+<section class="student-sheet">
+<h2>${a.title}</h2>
+<p>Namn: __________________________ Datum: ____________</p>
+<p><b>Mitt mål:</b> Jag ska kunna ${a.goal}.</p>
+
+<h3>Mitt uppdrag</h3>
+<ol>${a.steps.map(step=>`<li>${step}</li>`).join("")}</ol>
+
+<h3>Min matematiska dokumentation</h3>
+<div class="box"></div>
+<div class="box"></div>
+
+<h3>Jag motiverar och kontrollerar</h3>
+<div class="box"></div>
+
+<h3>Exit ticket</h3>
+<p>Det här förstår jag nu:</p>
+<div class="line"></div>
+
+<p>Det här behöver jag undersöka vidare:</p>
+<div class="line"></div>
+</section>
+</article>`;
+}
+
+function render(){
+const query=document.getElementById("search").value.toLowerCase();
+const selectedPlace=document.getElementById("place").value;
+const selectedForm=document.getElementById("form").value;
+const selectedState=document.getElementById("state").value;
+
+const filtered=activities.filter(a=>{
+const searchable=`${a.title} ${a.summary} ${a.concepts}`.toLowerCase();
+
+return(!query||searchable.includes(query))&&
+(selectedPlace==="Alla platser"||a.place===selectedPlace)&&
+(selectedForm==="Alla arbetsformer"||a.form===selectedForm)&&
+(selectedState==="Alla statusar"||
+(selectedState==="Klar"&&done.includes(a.id))||
+(selectedState==="Inte klar"&&!done.includes(a.id)));
+});
+
+document.getElementById("list").innerHTML=filtered.length
+?filtered.map(card).join("")
+:`<div class="empty">Inga aktiviteter matchar dina val.</div>`;
+
+document.getElementById("results").textContent=
+`${filtered.length} av ${activities.length} aktiviteter visas`;
+}
+
+function toggleActivity(button){
+const cardElement=button.closest(".card");
+const isOpen=cardElement.classList.toggle("opened");
+button.textContent=isOpen?"Dölj aktiviteten":"Visa hela aktiviteten";
+button.setAttribute("aria-expanded",String(isOpen));
+}
+
+function markActivity(button,value){
+const id=button.closest(".card").dataset.id;
+const position=done.indexOf(id);
+
+if(value&&position<0)done.push(id);
+if(!value&&position>=0)done.splice(position,1);
+
+localStorage.setItem("79-statistik-done",JSON.stringify(done));
+render();
+}
+
+function clearPrintState(){
+document.querySelectorAll(".printing").forEach(cardElement=>{
+cardElement.classList.remove("printing","student-mode");
+});
+}
+
+function printTeacher(button){
+clearPrintState();
+button.closest(".card").classList.add("printing");
+window.print();
+}
+
+function printStudent(button){
+clearPrintState();
+button.closest(".card").classList.add("printing","student-mode");
+window.print();
+}
+
+window.addEventListener("afterprint",clearPrintState);
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("place").addEventListener("change",render);
+document.getElementById("form").addEventListener("change",render);
+document.getElementById("state").addEventListener("change",render);
+render();
+</script>
+</body>
+</html>
